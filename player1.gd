@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
 var speed = 10000
-var acceleration = 1
-var shipvelocity = 0
+var acceleration = 0.3
+var shipvelocity = 0.0
+var shipvelocityX = 0
+var shipvelocityY = 0
 var friction = 0
 var target_rotation = 0
-
+var shipvector = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -13,17 +15,18 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.	
 func _process(delta):
 	#friction calculation based off velocity
-	friction = pow(1.2, (shipvelocity - 8)) - pow(1.2, -8)
+	friction = pow(2, (shipvelocity - 8)) - pow(2, -8)
 	shipvelocity -= friction
 	#moves ship forward constantly based off shipvelocity
-	velocity = transform.x * 3000 * shipvelocity * delta
+	shipvector = transform.x * 3000 * shipvelocity * delta
+	velocity = shipvector
 	# Movement input
 	if Input.is_action_pressed("ui_up"):
 		shipvelocity += acceleration
 	elif Input.is_action_pressed("ui_down"):
-		shipvelocity -= acceleration
-	else:
-		velocity = lerp(velocity, Vector2(0.0, 0.0), 0.005)
+		pass
+		#shipvelocity -= acceleration
+	
 
 	# Rotation input
 	if Input.is_action_pressed("ui_left"):
