@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 10000
-var acceleration = 2
+var acceleration = 1
 var shipvelocity = 0
 var friction = 0
 var target_rotation = 0
@@ -13,9 +13,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.	
 func _process(delta):
 	#friction calculation based off velocity
-	friction = pow(1.2, (shipvelocity - 8))
+	friction = pow(1.2, (shipvelocity - 8)) - pow(1.2, -8)
+	shipvelocity -= friction
 	#moves ship forward constantly based off shipvelocity
-	velocity = transform.x * 10 * ((shipvelocity * delta)-(friction * delta))
+	velocity = transform.x * 3000 * shipvelocity * delta
 	# Movement input
 	if Input.is_action_pressed("ui_up"):
 		shipvelocity += acceleration
