@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cko4ofiuwlv6j"]
+[gd_scene load_steps=4 format=3 uid="uid://cko4ofiuwlv6j"]
 
 [ext_resource type="Script" path="res://player1.gd" id="1_ni2rt"]
+[ext_resource type="Texture2D" uid="uid://by7q18s3bfad0" path="res://shuttle2.png" id="2_4i48j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hf56h"]
 size = Vector2(40, 40)
@@ -25,3 +26,9 @@ offset_right = 20.0
 offset_bottom = 2.0
 color = Color(1, 1, 0, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.07718e-11, -5.96046e-08)
+rotation = 1.56921
+scale = Vector2(0.769231, 0.807692)
+texture = ExtResource("2_4i48j")
