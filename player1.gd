@@ -1,33 +1,30 @@
 extends CharacterBody2D
 
 var speed = 10000
-var acceleration = 0.3
-var shipvelocity = 0.0
-var shipvelocityX = 0
-var shipvelocityY = 0
-var friction = 0
+var acceleration = 0
 var target_rotation = 0
-var shipvector = 0
+var shipvector = Vector2(0,0)
+var shipvectorforward = Vector2(0,0)
+var shipvectorbackward = Vector2(0,0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.	
 func _process(delta):
-	#friction calculation based off velocity
-	friction = pow(2, (shipvelocity - 8)) - pow(2, -8)
-	shipvelocity -= friction
-	#moves ship forward constantly based off shipvelocity
-	shipvector = transform.x * 3000 * shipvelocity * delta
+	#outputs ship velocity by adding acceleration subtracted by friction
+	shipvectorforward = Vector2(transform.x * 500 * acceleration * delta)
+	shipvector += shipvectorforward - shipvectorbackward
+	#claculates friction vector
+	shipvectorbackward.x = 0.0000001 * (pow((shipvector.x), 3))
+	shipvectorbackward.y = 0.0000001 * (pow((shipvector.y), 3))
+	
 	velocity = shipvector
 	# Movement input
 	if Input.is_action_pressed("ui_up"):
-		shipvelocity += acceleration
-	elif Input.is_action_pressed("ui_down"):
-		pass
-		#shipvelocity -= acceleration
-	
-
+		acceleration = 1
+	else:
+		acceleration = 0
 	# Rotation input
 	if Input.is_action_pressed("ui_left"):
 		target_rotation -= 0.1
@@ -39,6 +36,7 @@ func _process(delta):
 
 	# Print the current rotation in degrees
 	#print(rad_to_deg(rotation))
-	print(shipvelocity)
+	
+	print(shipvector)
 	# Apply velocity and move the character
 	move_and_slide()
