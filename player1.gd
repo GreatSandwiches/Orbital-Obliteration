@@ -16,13 +16,13 @@ func _process(delta):
 	shipvectorforward = Vector2(transform.x * 500 * acceleration * delta)
 	shipvector += shipvectorforward - shipvectorbackward
 	#claculates friction vector
-	shipvectorbackward.x = 0.0000001 * (pow((shipvector.x), 3))
-	shipvectorbackward.y = 0.0000001 * (pow((shipvector.y), 3))
+	shipvectorbackward.x = 0.000001 * (pow((shipvector.x), 3))
+	shipvectorbackward.y = 0.000001 * (pow((shipvector.y), 3))
 	
 	velocity = shipvector
 	# Movement input
 	if Input.is_action_pressed("ui_up"):
-		acceleration = 1
+		acceleration = 2
 	else:
 		acceleration = 0
 	# Rotation input
