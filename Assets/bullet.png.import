@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by7q18s3bfad0"
-path="res://.godot/imported/shuttle2.png-db8054f4af70ef93da46a6e88c255d99.ctex"
+uid="uid://d21ki2l7wli2e"
+path="res://.godot/imported/bullet.png-4c3a60f3b94fcc693bdb889fe34d5669.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shuttle2.png"
-dest_files=["res://.godot/imported/shuttle2.png-db8054f4af70ef93da46a6e88c255d99.ctex"]
+source_file="res://Assets/bullet.png"
+dest_files=["res://.godot/imported/bullet.png-4c3a60f3b94fcc693bdb889fe34d5669.ctex"]
 
 [params]
 

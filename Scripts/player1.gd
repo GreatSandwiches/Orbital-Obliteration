@@ -6,11 +6,18 @@ var target_rotation = 0
 var shipvector = Vector2(0,0)
 var shipvectorforward = Vector2(0,0)
 var shipvectorbackward = Vector2(0,0)
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+@export var bullet_scene: PackedScene
+var can_shoot = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.	
+func _shoot():
+	var bullet = bullet_scene.instantiate()
+	bullet.position = $ProjectileSpawn.global_position
+	bullet.rotation = rotation
+	add_sibling(bullet)
+	
+func _on_timer_timeout():
+	can_shoot = true
+
 func _process(delta):
 	#outputs ship velocity by adding acceleration subtracted by friction
 	shipvectorforward = Vector2(transform.x * 500 * acceleration * delta)
@@ -33,6 +40,12 @@ func _process(delta):
 
 	# Smooth rotation using lerp_angle
 	rotation = lerp_angle(rotation, target_rotation, 0.1)
+	
+	if Input.is_action_pressed("ui_spacebar") and can_shoot:
+		_shoot()
+		can_shoot = false
+		$Timer.start()
+		
 
 	# Print the current rotation in degrees
 	#print(rad_to_deg(rotation))
