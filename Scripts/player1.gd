@@ -46,10 +46,5 @@ func _process(delta):
 		can_shoot = false
 		$Timer.start()
 		
-
-	# Print the current rotation in degrees
-	#print(rad_to_deg(rotation))
-	
-	print(shipvector)
 	# Apply velocity and move the character
 	move_and_slide()
