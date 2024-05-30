@@ -1,13 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://535q1ejgfkac"]
+[gd_scene load_steps=5 format=3 uid="uid://0xfg10bi6vgc"]
 
-[ext_resource type="Script" path="res://player1.gd" id="1_ni2rt"]
 [ext_resource type="Texture2D" path="res://shuttle2.png" id="2_4i48j"]
+[ext_resource type="Script" path="res://Scripts/player1.gd" id="2_ki2ly"]
+
+[sub_resource type="GDScript" id="GDScript_hn08o"]
+script/source = "extends CharacterBody2D
+
+var speed = 10000
+var acceleration = 0
+var target_rotation = 0
+var shipvector = Vector2(0,0)
+var shipvectorforward = Vector2(0,0)
+var shipvectorbackward = Vector2(0,0)
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.	
+func _process(delta):
+	#outputs ship velocity by adding acceleration subtracted by friction
+	shipvectorforward = Vector2(transform.x * 500 * acceleration * delta)
+	shipvector += shipvectorforward - shipvectorbackward
+	#claculates friction vector
+	shipvectorbackward.x = 0.000001 * (pow((shipvector.x), 3))
+	shipvectorbackward.y = 0.000001 * (pow((shipvector.y), 3))
+	
+	velocity = shipvector
+	# Movement input
+	if Input.is_action_pressed(\"ui_up\"):
+		acceleration = 2
+	else:
+		acceleration = 0
+	# Rotation input
+	if Input.is_action_pressed(\"ui_left\"):
+		target_rotation -= 0.1
+	elif Input.is_action_pressed(\"ui_right\"):
+		target_rotation += 0.1
+
+	# Smooth rotation using lerp_angle
+	rotation = lerp_angle(rotation, target_rotation, 0.1)
+
+	# Print the current rotation in degrees
+	#print(rad_to_deg(rotation))
+	
+	print(shipvector)
+	# Apply velocity and move the character
+	move_and_slide()
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hf56h"]
 size = Vector2(40, 40)
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_ni2rt")
+script = SubResource("GDScript_hn08o")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -20.0
@@ -32,3 +77,8 @@ position = Vector2(-1.07718e-11, -5.96046e-08)
 rotation = 1.56921
 scale = Vector2(0.769231, 0.807692)
 texture = ExtResource("2_4i48j")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+script = ExtResource("2_ki2ly")

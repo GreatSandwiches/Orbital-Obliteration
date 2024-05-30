@@ -15,7 +15,7 @@ func _ready():
 	add_child(timer)
 	timer.start()
 	
-	
+	# Use await to queue_free the bullet after 'lifetime' seconds
 	await timer.timeout
 	queue_free()
 

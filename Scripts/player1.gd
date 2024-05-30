@@ -8,21 +8,27 @@ var shipvectorforward = Vector2(0,0)
 var shipvectorbackward = Vector2(0,0)
 @export var bullet_scene: PackedScene
 var can_shoot = true
+var shoot_cooldown = 0.5
+
+func _ready():
+	$Timer.wait_time = shoot_cooldown
+	$Timer.one_shot = true
+	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
 func _shoot():
 	var bullet = bullet_scene.instantiate()
 	bullet.position = $ProjectileSpawn.global_position
 	bullet.rotation = rotation
-	add_sibling(bullet)
+	get_parent().add_child(bullet)
 	
 func _on_timer_timeout():
 	can_shoot = true
 
 func _process(delta):
-	#outputs ship velocity by adding acceleration subtracted by friction
+	# Outputs ship velocity by adding acceleration subtracted by friction
 	shipvectorforward = Vector2(transform.x * 500 * acceleration * delta)
 	shipvector += shipvectorforward - shipvectorbackward
-	#claculates friction vector
+	# Calculates friction vector
 	shipvectorbackward.x = 0.000001 * (pow((shipvector.x), 3))
 	shipvectorbackward.y = 0.000001 * (pow((shipvector.y), 3))
 	
