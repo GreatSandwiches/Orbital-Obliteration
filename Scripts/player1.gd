@@ -26,13 +26,25 @@ func _on_timer_timeout():
 
 func _process(delta):
 	# Outputs ship velocity by adding acceleration subtracted by friction
-	shipvectorforward = Vector2(transform.x * 500 * acceleration * delta)
+	shipvectorforward = Vector2(transform.x * acceleration * delta)
 	shipvector += shipvectorforward - shipvectorbackward
 	# Calculates friction vector
-	shipvectorbackward.x = 0.00001 * (pow((shipvector.x), 3))
-	shipvectorbackward.y = 0.00001 * (pow((shipvector.y), 3))
 	
-	velocity = shipvector
+	# old script:
+	#shipvectorbackward.x = 0.000001 * (pow((shipvector.x), 3))
+	#shipvectorbackward.y = 0.000001 * (pow((shipvector.y), 3))
+	
+	# new script:
+	if shipvector.x >= 0:
+		shipvectorbackward.x = 0.01 * (pow((shipvector.x + 1), 3) - 1)
+	if shipvector.x <= 0:
+		shipvectorbackward.x = 0.01 * (pow((shipvector.x - 1), 3) + 1)
+	if shipvector.y >= 0:
+		shipvectorbackward.y = 0.01 * (pow((shipvector.y + 1), 3) - 1)
+	if shipvector.y <= 0:
+		shipvectorbackward.y = 0.01 * (pow((shipvector.y - 1), 3) + 1)
+	
+	velocity = 500 * shipvector
 	# Movement input
 	if Input.is_action_pressed("ui_up"):
 		acceleration = 2
