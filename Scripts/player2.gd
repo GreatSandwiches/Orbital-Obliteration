@@ -34,20 +34,20 @@ func _process(delta):
 	
 	velocity = shipvector
 	# Movement input
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_w"):
 		acceleration = 2
 	else:
 		acceleration = 0
 	# Rotation input
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_a"):
 		target_rotation -= 0.1
-	elif Input.is_action_pressed("ui_right"):
+	elif Input.is_action_pressed("ui_d"):
 		target_rotation += 0.1
 
 	# Smooth rotation using lerp_angle
 	rotation = lerp_angle(rotation, target_rotation, 0.1)
 	
-	if Input.is_action_pressed("ui_spacebar") and can_shoot:
+	if Input.is_action_pressed("ui_shift") and can_shoot:
 		_shoot()
 		can_shoot = false
 		$Timer.start()

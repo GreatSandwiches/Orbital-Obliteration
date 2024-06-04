@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cko4ofiuwlv6j"]
+[gd_scene load_steps=5 format=3 uid="uid://0xfg10bi6vgc"]
 
 [ext_resource type="Script" path="res://Scripts/player1.gd" id="1_cog17"]
-[ext_resource type="Texture2D" uid="uid://by7q18s3bfad0" path="res://Assets/shuttle2.png" id="2_6ftr1"]
+[ext_resource type="Texture2D" uid="uid://by7q18s3bfad0" path="res://Assets/shuttle2.png" id="2_4i48j"]
 [ext_resource type="PackedScene" uid="uid://dl5s4omwkwndu" path="res://Scenes/bullet.tscn" id="2_38ghs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hf56h"]
@@ -33,11 +33,11 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-1.07718e-11, -5.96046e-08)
 rotation = 1.56921
 scale = Vector2(0.769231, 0.807692)
-texture = ExtResource("2_6ftr1")
-
-[node name="ProjectileSpawn" type="Node2D" parent="."]
-position = Vector2(30, 0)
+texture = ExtResource("2_4i48j")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
+
+[node name="ProjectileSpawn" type="Node2D" parent="."]
+position = Vector2(24, 0)
