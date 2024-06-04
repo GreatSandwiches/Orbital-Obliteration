@@ -18,7 +18,18 @@ func _ready():
 	# Use await to queue_free the bullet after 'lifetime' seconds
 	await timer.timeout
 	queue_free()
+	print("bullet")
 
 func _process(delta):
 	# Move the bullet forward in the direction it is facing
 	position += velocity * delta
+	
+func _on_area_entered(area):
+	if area.is_in_group("players"):
+		area.take_damage(10)
+		queue_free()
+		print("jfr")
+
+
+
+
