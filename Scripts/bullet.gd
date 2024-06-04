@@ -22,3 +22,8 @@ func _ready():
 func _process(delta):
 	# Move the bullet forward in the direction it is facing
 	position += velocity * delta
+	
+func _on_Bullet_body_entered(body):
+	if body.is_in_group("players"):
+		body.take_damage(10)
+		queue_free()

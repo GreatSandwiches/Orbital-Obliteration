@@ -16,6 +16,11 @@ func _ready():
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("bullets"):
+		take_damage(10)
+		
 func take_damage(amount):
 	health -= amount
 	if health <= 0:
@@ -63,3 +68,6 @@ func _process(delta):
 		
 	# Apply velocity and move the character
 	move_and_slide()
+
+
+
