@@ -29,8 +29,8 @@ func _process(delta):
 	shipvectorforward = Vector2(transform.x * 500 * acceleration * delta)
 	shipvector += shipvectorforward - shipvectorbackward
 	# Calculates friction vector
-	shipvectorbackward.x = 0.00001 * (pow((shipvector.x), 3))
-	shipvectorbackward.y = 0.00001 * (pow((shipvector.y), 3))
+	shipvectorbackward.x = 0.000001 * (pow((shipvector.x), 3))
+	shipvectorbackward.y = 0.000001 * (pow((shipvector.y), 3))
 	
 	velocity = shipvector
 	# Movement input
