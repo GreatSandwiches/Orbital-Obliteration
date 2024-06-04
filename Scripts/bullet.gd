@@ -13,7 +13,7 @@ func _ready():
 	timer.wait_time = lifetime
 	timer.one_shot = true
 	add_child(timer)
-	timer.start()
+	timer.start() 
 	
 	# Use await to queue_free the bullet after 'lifetime' seconds
 	await timer.timeout
