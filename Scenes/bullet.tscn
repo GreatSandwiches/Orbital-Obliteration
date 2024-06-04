@@ -1,21 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dl5s4omwkwndu"]
 
 [ext_resource type="Texture2D" uid="uid://d21ki2l7wli2e" path="res://Assets/bullet.png" id="1_0c3ku"]
-<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_t3dxr"]
-=======
-[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_lyqo8"]
->>>>>>> Stashed changes
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c34kw"]
 size = Vector2(30, 8)
 
 [node name="Area2D" type="Area2D"]
-<<<<<<< Updated upstream
 script = ExtResource("1_t3dxr")
-=======
-script = ExtResource("1_lyqo8")
->>>>>>> Stashed changes
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3.375, 2.875)
@@ -25,7 +17,3 @@ texture = ExtResource("1_0c3ku")
 shape = SubResource("RectangleShape2D_c34kw")
 
 [node name="Timer" type="Timer" parent="."]
-<<<<<<< Updated upstream
-=======
-one_shot = true
->>>>>>> Stashed changes
