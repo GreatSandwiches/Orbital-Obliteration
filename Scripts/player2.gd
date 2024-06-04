@@ -9,12 +9,21 @@ var shipvectorbackward = Vector2(0,0)
 @export var bullet_scene: PackedScene
 var can_shoot = true
 var shoot_cooldown = 0.5
+var health = 100
 
 func _ready():
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
+func take_damage(amount):
+	health -= amount
+	if health <= 0:
+		die()
+
+func die():
+	get_tree().reload_current_scene()
+	
 func _shoot():
 	var bullet = bullet_scene.instantiate()
 	bullet.position = $ProjectileSpawn.global_position
