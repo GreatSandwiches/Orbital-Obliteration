@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://0xfg10bi6vgc"]
+[gd_scene load_steps=5 format=3 uid="uid://cko4ofiuwlv6j"]
 
 [ext_resource type="Script" path="res://Scripts/player1.gd" id="1_cog17"]
 [ext_resource type="Texture2D" uid="uid://by7q18s3bfad0" path="res://Assets/shuttle2.png" id="2_4i48j"]
