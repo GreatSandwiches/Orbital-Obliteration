@@ -51,13 +51,25 @@ func _process(delta):
 	position.y = clamp(position.y, CameraLimits.limit_top, CameraLimits.limit_bottom)
 
 	# Outputs ship velocity by adding acceleration subtracted by friction
-	shipvectorforward = Vector2(transform.x * 500 * acceleration * delta)
+	shipvectorforward = Vector2(transform.x * acceleration * delta)
 	shipvector += shipvectorforward - shipvectorbackward
 	# Calculates friction vector
-	shipvectorbackward.x = 0.00001 * (pow((shipvector.x), 3))
-	shipvectorbackward.y = 0.00001 * (pow((shipvector.y), 3))
 	
-	velocity = shipvector
+	if shipvector.x >= 0:
+		shipvectorbackward.x = 0.01 * (pow((shipvector.x + 1), 3) - 1)
+	if shipvector.x <= 0:
+		shipvectorbackward.x = 0.01 * (pow((shipvector.x - 1), 3) + 1)
+	if shipvector.y >= 0:
+		shipvectorbackward.y = 0.01 * (pow((shipvector.y + 1), 3) - 1)
+	if shipvector.y <= 0:
+		shipvectorbackward.y = 0.01 * (pow((shipvector.y - 1), 3) + 1)
+		
+	#old
+	#shipvectorbackward.x = 0.00001 * (pow((shipvector.x), 3))
+	#shipvectorbackward.y = 0.00001 * (pow((shipvector.y), 3))
+	
+	velocity = 500 * shipvector
+	
 	# Movement input
 	if Input.is_action_pressed("ui_w"):
 		acceleration = 2
