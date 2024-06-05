@@ -26,6 +26,7 @@ shape = SubResource("RectangleShape2D_28reh")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="ProjectileSpawn" type="Node2D" parent="."]
+position = Vector2(54, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -34,10 +35,11 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_wo4as")
 
 [node name="HBar" type="ProgressBar" parent="."]
-offset_left = -44.0
-offset_top = 24.0
-offset_right = 44.0
-offset_bottom = 51.0
+modulate = Color(0.847059, 0.0941176, 0, 1)
+offset_left = -19.0
+offset_top = 25.0
+offset_right = 19.0
+offset_bottom = 31.0
 show_percentage = false
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

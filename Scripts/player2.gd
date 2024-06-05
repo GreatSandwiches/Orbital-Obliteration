@@ -12,6 +12,7 @@ var shoot_cooldown = 0.5
 var health = 100
 
 func _ready():
+	update_health_bar()
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
@@ -19,7 +20,7 @@ func _ready():
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("bullets"):
-		take_damage(10)
+		take_damage(20)
 		
 func take_damage(amount):
 	health -= amount
