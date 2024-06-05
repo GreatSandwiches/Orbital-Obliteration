@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 10000
 var acceleration = 0
-var target_rotation = 0
+var target_rotation = 3.14
 var shipvector = Vector2(0,0)
 var shipvectorforward = Vector2(0,0)
 var shipvectorbackward = Vector2(0,0)
@@ -12,6 +12,7 @@ var shoot_cooldown = 0.5
 var health = 100
 
 func _ready():
+	print(rotation_degrees)
 	update_health_bar()
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
