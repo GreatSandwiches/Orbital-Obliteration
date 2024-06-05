@@ -23,10 +23,16 @@ func _on_area_2d_area_entered(area):
 		
 func take_damage(amount):
 	health -= amount
+	update_health_bar()
 	if health <= 0:
 		die()
+		
+func update_health_bar():
+	$HBar.value = health 
 
 func die():
+	health = 100
+	update_health_bar()
 	get_tree().reload_current_scene()
 	
 func _shoot():
