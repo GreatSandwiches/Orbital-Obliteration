@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CameraLimits="*res://Scripts/CameraLimits.gd"
+
 [input]
 
 ui_spacebar={
