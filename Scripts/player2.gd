@@ -6,7 +6,7 @@ var target_rotation = 3.14
 var shipvector = Vector2(0,0)
 var shipvectorforward = Vector2(0,0)
 var shipvectorbackward = Vector2(0,0)
-@export var bullet_scene: PackedScene
+@export var bullet_p2_scene: PackedScene
 var can_shoot = true
 var shoot_cooldown = 0.5
 var health = 100
@@ -21,7 +21,7 @@ func _ready():
 
 
 func _on_area_2d_area_entered(area):
-	if area.is_in_group("bullets"):
+	if area.is_in_group("p1_bullet"):
 		take_damage(20)
 		
 func take_damage(amount):
@@ -39,7 +39,7 @@ func die():
 	get_tree().reload_current_scene()
 	
 func _shoot():
-	var bullet = bullet_scene.instantiate()
+	var bullet = bullet_p2_scene.instantiate()
 	bullet.position = $ProjectileSpawn.global_position
 	bullet.rotation = rotation
 	get_parent().add_child(bullet)
