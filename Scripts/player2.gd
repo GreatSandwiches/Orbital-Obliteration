@@ -10,6 +10,7 @@ var shipvectorbackward = Vector2(0,0)
 var can_shoot = true
 var shoot_cooldown = 0.5
 var health = 100
+var score = 0
 
 func _ready():
 	print(rotation_degrees)

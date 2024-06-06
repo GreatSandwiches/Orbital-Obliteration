@@ -1,5 +1,4 @@
 extends Area2D
-
 @export var speed = 400
 @export var lifetime = 2.0
 var velocity = Vector2.ZERO
