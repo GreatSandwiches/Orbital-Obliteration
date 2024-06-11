@@ -11,6 +11,7 @@ var can_shoot = true
 var shoot_cooldown = 0.5
 var health = 100
 var score = 0
+@onready var global = get_node("/root/Global")
 
 func _ready():
 	print(rotation_degrees)
@@ -48,7 +49,7 @@ func _on_timer_timeout():
 	can_shoot = true
 
 func _process(delta):
-	print(position)
+	print(global.p1_location)
 	# Constrain the player's position within the camera limits
 	position.x = clamp(position.x, CameraLimits.limit_left, CameraLimits.limit_right)
 	position.y = clamp(position.y, CameraLimits.limit_top, CameraLimits.limit_bottom)
@@ -70,6 +71,9 @@ func _process(delta):
 	#old
 	#shipvectorbackward.x = 0.00001 * (pow((shipvector.x), 3))
 	#shipvectorbackward.y = 0.00001 * (pow((shipvector.y), 3))
+	
+	#current position identifier for use with trail
+	global.p1_location = -25 * transform.x + position
 	
 	velocity = 500 * shipvector
 	
