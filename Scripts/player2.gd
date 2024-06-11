@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var global = get_node("/root/Global")
 var speed = 10000
 var acceleration = 0
 var target_rotation = 3.14
@@ -35,6 +36,8 @@ func update_health_bar():
 
 func die():
 	health = 100
+	global.p1_score += 1
+	print(global.p1_score)
 	update_health_bar()
 	get_tree().reload_current_scene()
 	
@@ -48,6 +51,7 @@ func _on_timer_timeout():
 	can_shoot = true
 
 func _process(delta):
+	print(global.p1_score)
 	# Constrain the player's position within the camera limits
 	position.x = clamp(position.x, CameraLimits.limit_left, CameraLimits.limit_right)
 	position.y = clamp(position.y, CameraLimits.limit_top, CameraLimits.limit_bottom)

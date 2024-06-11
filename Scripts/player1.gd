@@ -48,7 +48,7 @@ func _on_timer_timeout():
 	can_shoot = true
 
 func _process(delta):
-	print(position)
+	#print(position)
 	# Constrain the player's position within the camera limits
 	position.x = clamp(position.x, CameraLimits.limit_left, CameraLimits.limit_right)
 	position.y = clamp(position.y, CameraLimits.limit_top, CameraLimits.limit_bottom)
