@@ -36,6 +36,7 @@ func update_health_bar():
 
 func die():
 	health = 100
+	global.p2_score +=1
 	update_health_bar()
 	get_tree().reload_current_scene()
 	
