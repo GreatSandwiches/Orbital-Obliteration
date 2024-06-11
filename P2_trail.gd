@@ -1,9 +1,7 @@
-extends Node
+extends Line2D
 
-var p1_score = 0
-var p2_score = 0
-var p1_location = 0
-var p2_location = 0
+@onready var global = get_node("/root/Global")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -11,4 +9,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	global_position = Vector2(0,0)
+	add_point(global.p2_location, -1)

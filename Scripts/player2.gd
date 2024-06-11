@@ -76,6 +76,8 @@ func _process(delta):
 	
 	velocity = 500 * shipvector
 	
+	global.p2_location = -25 * transform.x + position
+	
 	# Movement input
 	if Input.is_action_pressed("ui_w"):
 		acceleration = 2
