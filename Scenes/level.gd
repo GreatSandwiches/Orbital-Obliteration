@@ -11,3 +11,4 @@ func _ready():
 
 func _process(delta):
 	$P1_score.text = ("P1: " + str(global.p1_score))
+	$P2_score.text = ("P2: " + str(global.p2_score))
