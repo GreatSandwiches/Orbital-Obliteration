@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://xwfny7na0w5h"]
+
+[ext_resource type="Script" path="res://P2_trail.gd" id="1_ibmxs"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="P2_trail_line" type="Line2D" parent="."]
+script = ExtResource("1_ibmxs")
