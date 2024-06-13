@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b07vwngjvg1ef" path="res://Scenes/p1_trail.tscn" id="4_52232"]
 [ext_resource type="PackedScene" uid="uid://xwfny7na0w5h" path="res://Scenes/p2_trail.tscn" id="5_vrpef"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_ny81s")
 metadata/_edit_horizontal_guides_ = [650.0, 3.0]
 metadata/_edit_vertical_guides_ = [1140.0, 1150.0]

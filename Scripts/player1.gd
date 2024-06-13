@@ -14,7 +14,6 @@ var score = 0
 @onready var global = get_node("/root/Global")
 
 func _ready():
-	print(rotation_degrees)
 	update_health_bar()
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
@@ -50,7 +49,6 @@ func _on_timer_timeout():
 	can_shoot = true
 
 func _process(delta):
-	print(global.p1_location)
 	# Constrain the player's position within the camera limits
 	position.x = clamp(position.x, CameraLimits.limit_left, CameraLimits.limit_right)
 	position.y = clamp(position.y, CameraLimits.limit_top, CameraLimits.limit_bottom)
