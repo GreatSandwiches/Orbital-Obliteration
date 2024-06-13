@@ -11,8 +11,6 @@ func _ready():
 func _process(delta):
 	global_position = Vector2(0,0)
 	add_point(global.p1_location, -1)
-	
-	print(get_point_position(0))
 	if get_point_position(0) == Vector2(0,0):
 		remove_point(0)
 	if get_point_count() > 20:
