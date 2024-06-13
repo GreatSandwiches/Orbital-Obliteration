@@ -12,3 +12,14 @@ func _ready():
 func _process(delta):
 	$P1_score.text = ("P1: " + str(global.p1_score))
 	$P2_score.text = ("P2: " + str(global.p2_score))
+	
+	if global.p1_score  == 3:
+		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+	
+	elif global.p2_score == 3:
+		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+		
+	
+		
+	
+		
