@@ -11,12 +11,6 @@ script = ExtResource("1_ny81s")
 metadata/_edit_horizontal_guides_ = [650.0, 3.0]
 metadata/_edit_vertical_guides_ = [1140.0, 1150.0]
 
-[node name="Player" parent="." instance=ExtResource("1_qkieh")]
-position = Vector2(232, 304)
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_dt80m")]
-position = Vector2(889, 322)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(577, 325)
 limit_left = 0
@@ -43,3 +37,9 @@ position = Vector2(190, 306)
 
 [node name="Node2D2" parent="." instance=ExtResource("5_vrpef")]
 position = Vector2(922, 321)
+
+[node name="Player" parent="." instance=ExtResource("1_qkieh")]
+position = Vector2(232, 304)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_dt80m")]
+position = Vector2(889, 322)
