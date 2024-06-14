@@ -10,6 +10,8 @@ func _ready():
 
 
 func _process(delta):
+	$P1_Health.value = global.p1_health
+	$P2_Health.value = global.p2_health
 	$P1_score.text = ("P1: " + str(global.p1_score))
 	$P2_score.text = ("P2: " + str(global.p2_score))
 	
@@ -18,6 +20,7 @@ func _process(delta):
 	
 	elif global.p2_score == 3:
 		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+	
 		
 	
 		

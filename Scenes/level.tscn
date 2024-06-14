@@ -36,17 +36,17 @@ limit_right = 1150
 limit_bottom = 650
 
 [node name="P2_score" type="Label" parent="."]
-offset_left = 119.0
-offset_top = 16.0
-offset_right = 357.0
-offset_bottom = 77.0
+offset_left = 601.0
+offset_top = 13.0
+offset_right = 839.0
+offset_bottom = 74.0
 text = "P2:"
 
 [node name="P1_score" type="Label" parent="."]
-offset_left = 31.0
-offset_top = 17.0
-offset_right = 207.0
-offset_bottom = 67.0
+offset_left = 527.0
+offset_top = 13.0
+offset_right = 703.0
+offset_bottom = 63.0
 text = "P1:"
 
 [node name="Node2D" parent="." instance=ExtResource("4_52232")]
@@ -64,9 +64,26 @@ position = Vector2(889, 322)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_dhv0k")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="P2_Health" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = 837.0
+offset_top = 20.0
+offset_right = 1122.0
+offset_bottom = 72.0
+show_percentage = false
+
+[node name="P1_Health" type="ProgressBar" parent="."]
+modulate = Color(0, 0, 1, 1)
+offset_left = 33.0
+offset_top = 16.0
+offset_right = 327.0
+offset_bottom = 69.0
+show_percentage = false

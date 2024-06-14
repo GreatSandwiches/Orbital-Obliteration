@@ -10,12 +10,11 @@ var shipvectorbackward = Vector2(0,0)
 @export var bullet_p2_scene: PackedScene
 var can_shoot = true
 var shoot_cooldown = 0.5
-var health = 100
 var score = 0
 
 func _ready():
 	print(rotation_degrees)
-	update_health_bar()
+	global.p2_health = 100
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
@@ -26,19 +25,16 @@ func _on_area_2d_area_entered(area):
 		take_damage(20)
 		
 func take_damage(amount):
-	health -= amount
-	update_health_bar()
-	if health <= 0:
+	global.p2_health -= amount
+	if global.p2_health <= 0:
 		die()
 		
-func update_health_bar():
-	$HBar.value = health 
+
 
 func die():
-	health = 100
+	global.p2_health = 100 
 	global.p1_score += 1
 	print(global.p1_score)
-	update_health_bar()
 	get_tree().reload_current_scene()
 	
 func _shoot():
