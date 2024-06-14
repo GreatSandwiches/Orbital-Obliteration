@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6nya08ap8q3i"]
+[gd_scene load_steps=4 format=3 uid="uid://c6nya08ap8q3i"]
 
 [ext_resource type="Script" path="res://Scripts/end_screen.gd" id="1_f45ix"]
+[ext_resource type="Shader" path="res://Scenes/end_screen.gdshader" id="2_jodhm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xau2y"]
+shader = ExtResource("2_jodhm")
+shader_parameter/vhs_resolution = Vector2(320, 240)
+shader_parameter/samples = 2
+shader_parameter/crease_noise = 1.0
+shader_parameter/crease_opacity = 0.5
+shader_parameter/filter_intensity = 0.1
+shader_parameter/tape_crease_smear = 0.2
+shader_parameter/tape_crease_intensity = 0.2
+shader_parameter/tape_crease_jitter = 0.1
+shader_parameter/tape_crease_speed = 0.5
+shader_parameter/tape_crease_discoloration = 1.0
+shader_parameter/bottom_border_thickness = 6.0
+shader_parameter/bottom_border_jitter = 6.0
+shader_parameter/noise_intensity = 0.1
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,6 +27,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f45ix")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_xau2y")
+offset_left = -166.0
+offset_top = -40.0
+offset_right = 1710.0
+offset_bottom = 1016.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
