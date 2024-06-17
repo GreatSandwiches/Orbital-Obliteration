@@ -9,12 +9,11 @@ var shipvectorbackward = Vector2(0,0)
 @export var bullet_p1_scene: PackedScene
 var can_shoot = true
 var shoot_cooldown = 0.5
-var health = 100
 var score = 0
 @onready var global = get_node("/root/Global")
 
 func _ready():
-	update_health_bar()
+	global.p1_health = 100
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
@@ -25,18 +24,15 @@ func _hit(area):
 		take_damage(20)
 		
 func take_damage(amount):
-	health -= amount
-	update_health_bar()
-	if health <= 0:
+	global.p1_health -= amount
+	if global.p1_health <= 0:
 		die()
 		
-func update_health_bar():
-	$HBar.value = health 
+
 
 func die():
-	health = 100
+	global.p1_health = 100
 	global.p2_score +=1
-	update_health_bar()
 	get_tree().reload_current_scene()
 	
 func _shoot():

@@ -10,7 +10,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
 shader = ExtResource("6_2dmde")
 shader_parameter/vhs_resolution = Vector2(320, 240)
-shader_parameter/samples = 3
+shader_parameter/samples = 2
 shader_parameter/crease_noise = 1.0
 shader_parameter/crease_opacity = 0.5
 shader_parameter/filter_intensity = 0.1

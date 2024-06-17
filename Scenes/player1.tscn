@@ -52,14 +52,4 @@ position = Vector2(26, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_w1tpt")
 
-[node name="HBar" type="ProgressBar" parent="."]
-modulate = Color(0, 0.529412, 0.917647, 1)
-self_modulate = Color(1, 1, 0.933333, 1)
-offset_left = -30.0
-offset_top = -20.0
-offset_right = -21.0
-offset_bottom = 21.0
-fill_mode = 3
-show_percentage = false
-
 [connection signal="area_entered" from="Area2D" to="." method="_hit"]
