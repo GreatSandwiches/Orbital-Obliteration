@@ -10,6 +10,7 @@ func _ready():
 
 
 func _process(delta):
+	$P2_Heat.value = global.p2_gunheat
 	$P1_Health.value = global.p1_health
 	$P2_Health.value = global.p2_health
 	$P1_score.text = ("P1: " + str(global.p1_score))

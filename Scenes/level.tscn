@@ -64,6 +64,7 @@ position = Vector2(889, 322)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_dhv0k")
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,4 +86,12 @@ offset_left = 33.0
 offset_top = 16.0
 offset_right = 327.0
 offset_bottom = 69.0
+show_percentage = false
+
+[node name="P2_Heat" type="ProgressBar" parent="."]
+offset_left = 880.0
+offset_top = 73.0
+offset_right = 1121.0
+offset_bottom = 100.0
+max_value = 10.0
 show_percentage = false
