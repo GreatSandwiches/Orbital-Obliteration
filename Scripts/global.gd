@@ -5,7 +5,7 @@ var p1_location = Vector2(0,0)
 var p1_health = 100
 var p1_gunheat = 0
 var p1_maxgunheat = 10
-var p1_coolingrate = 0.5
+var p1_coolingrate = 3
 
 #p2 variables
 var p2_score = 0

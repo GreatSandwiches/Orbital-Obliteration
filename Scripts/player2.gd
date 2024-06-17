@@ -81,7 +81,7 @@ func _process(delta):
 	#heat cooldown
 	if global.p2_gunheat > 0 and cancool:
 		global.p2_gunheat -= global.p2_coolingrate * delta
-		print("cooling", global.p2_gunheat)
+		#print("cooling", global.p2_gunheat)
 		if global.p2_gunheat < 0:
 			global.p2_gunheat = 0
 			
@@ -115,10 +115,10 @@ func _process(delta):
 	if Input.is_action_pressed("ui_shift") and can_shoot:
 		if global.p2_gunheat < global.p2_maxgunheat:
 			_shoot()
-			global.p2_gunheat += 2 
+			global.p2_gunheat += 2
 			can_shoot = false
 			$Timer.start()
-			print(global.p2_gunheat)
+			
 		
 				
 		

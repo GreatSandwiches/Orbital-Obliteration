@@ -10,10 +10,12 @@ var shipvectorbackward = Vector2(0,0)
 var can_shoot = true
 var shoot_cooldown = 0.5
 var score = 0
+var cancool = true
 @onready var global = get_node("/root/Global")
 
 func _ready():
 	global.p1_health = 100
+	global.p1_gunheat = 0
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
@@ -33,6 +35,7 @@ func take_damage(amount):
 func die():
 	global.p1_health = 100
 	global.p2_score +=1
+	global.p1_gunheat = 0
 	get_tree().reload_current_scene()
 	
 func _shoot():
@@ -72,6 +75,19 @@ func _process(delta):
 	
 	velocity = 500 * shipvector
 	
+	
+	#heat cooldown functionality
+	if global.p1_gunheat > 0 and cancool:
+		global.p1_gunheat -= global.p1_coolingrate * delta
+		if global.p1_gunheat < 0:
+			global.p1_gunheat = 0
+	
+	# Jank but it works ig // shot detection for guncooldown
+	if Input.is_action_pressed("ui_spacebar"):
+		cancool = false
+	else:
+		cancool = true
+	
 	# Movement input
 	if Input.is_action_pressed("ui_up"):
 		acceleration = 2
@@ -86,10 +102,14 @@ func _process(delta):
 	# Smooth rotation using lerp_angle
 	rotation = lerp_angle(rotation, target_rotation, 0.1)
 	
+	# detecting for if player can shoot when key is pressed
 	if Input.is_action_pressed("ui_spacebar") and can_shoot:
-		_shoot()
-		can_shoot = false
-		$Timer.start()
+		if global.p1_gunheat < global.p1_maxgunheat:
+			_shoot()
+			global.p1_gunheat += 2
+			can_shoot = false
+			$Timer.start()
+			
 		
 	# Apply velocity and move the character
 	move_and_slide()
