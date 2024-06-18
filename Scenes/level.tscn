@@ -8,7 +8,7 @@
 [ext_resource type="Shader" path="res://Scenes/level.gdshader" id="6_2dmde"]
 [ext_resource type="PackedScene" uid="uid://d2sr2tferkxir" path="res://Scenes/pausemenu.tscn" id="7_jbmpc"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="7_jsaq6"]
-[ext_resource type="PackedScene" path="res://Scenes/map1.tscn" id="9_57lkv"]
+[ext_resource type="PackedScene" uid="uid://cxqpyn8t4eyys" path="res://Scenes/map1.tscn" id="9_57lkv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
 shader = ExtResource("6_2dmde")
@@ -96,7 +96,7 @@ offset_left = 35.0
 offset_top = 70.0
 offset_right = 276.0
 offset_bottom = 97.0
-max_value = 10.0
+max_value = 15.0
 show_percentage = false
 
 [node name="P2_Heat" type="ProgressBar" parent="."]
@@ -104,7 +104,7 @@ offset_left = 880.0
 offset_top = 73.0
 offset_right = 1121.0
 offset_bottom = 100.0
-max_value = 10.0
+max_value = 15.0
 show_percentage = false
 
 [node name="Pause" type="Node2D" parent="."]

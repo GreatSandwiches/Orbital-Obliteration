@@ -1,9 +1,8 @@
 extends Area2D
 
+@onready var global = get_node("/root/Global")
 
-func _on_area_entered(area):
-	if area.is_in_group("players"):
-		pass
+
 
 
 # Called when the node enters the scene tree for the first time.

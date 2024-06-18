@@ -13,6 +13,7 @@ size = Vector2(40, 40)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cog17")
 bullet_p1_scene = ExtResource("2_t3o58")
+metadata/player1 = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

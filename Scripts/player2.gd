@@ -9,7 +9,7 @@ var shipvectorforward = Vector2(0,0)
 var shipvectorbackward = Vector2(0,0)
 @export var bullet_p2_scene: PackedScene
 var can_shoot = true
-var shoot_cooldown = 0.5
+
 var score = 0
 var cancool = true
 
@@ -17,7 +17,7 @@ func _ready():
 	print(rotation_degrees)
 	global.p2_health = 100
 	global.p2_gunheat = 0
-	$Timer.wait_time = shoot_cooldown
+	$Timer.wait_time = global.p2_firerate
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
@@ -25,6 +25,17 @@ func _ready():
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("p1_bullet"):
 		take_damage(20)
+		
+# Powerup detections
+func _on_rapidfire_entered(area):
+	if area.has_meta("rapidfire"):
+		global.p2_firerate = 0.2
+		print("powerup triggered")
+		
+
+		
+		
+
 		
 func take_damage(amount):
 	global.p2_health -= amount
