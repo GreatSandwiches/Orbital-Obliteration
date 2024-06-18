@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq85yj3x5flfx"]
+
+[ext_resource type="Script" path="res://Scripts/rapidfire_powerup.gd" id="1_jd40g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6wed"]
+size = Vector2(40, 40)
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_jd40g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+color = Color(1, 0, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_g6wed")
