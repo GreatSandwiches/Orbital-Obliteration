@@ -49,19 +49,15 @@ func _on_RapidFireTimer_timeout():
 	print("Power-up ended")
 	print(global.p2_firerate)
 
-
-		
-
-		
-	
-
-		
 func take_damage(amount):
 	global.p2_health -= amount
 	if global.p2_health <= 0:
 		die()
 		
-
+func _mine_collision(area):
+	if area.is_in_group("space_mine"):
+		shipvector = -shipvector * 2
+		take_damage(30)
 
 func die():
 	global.p2_health = 100 
@@ -75,10 +71,7 @@ func _shoot():
 	bullet.position = $ProjectileSpawn.global_position
 	bullet.rotation = rotation
 	get_parent().add_child(bullet)
-	
-	
 
-	
 func _on_timer_timeout():
 	can_shoot = true
 
@@ -101,13 +94,11 @@ func _process(delta):
 	if shipvector.y <= 0:
 		shipvectorbackward.y = 0.01 * (pow((shipvector.y - 1), 3) + 1)
 		
-		
 	velocity = 500 * shipvector
 	#old
 	#shipvectorbackward.x = 0.00001 * (pow((shipvector.x), 3))
 	#shipvectorbackward.y = 0.00001 * (pow((shipvector.y), 3))
-	
-	
+
 	#heat cooldown
 	if global.p2_gunheat > 0 and cancool:
 		global.p2_gunheat -= global.p2_coolingrate * delta
@@ -115,14 +106,11 @@ func _process(delta):
 		if global.p2_gunheat < 0:
 			global.p2_gunheat = 0
 			
-			
 	# Jank but it works ig // shot detection for guncooldown
 	if Input.is_action_pressed("ui_shift"):
 		cancool = true
 	else:
 		cancool = true
-			
-	
 	
 	global.p2_location = -25 * transform.x + position
 	
@@ -140,7 +128,6 @@ func _process(delta):
 	# Smooth rotation using lerp_angle
 	rotation = lerp_angle(rotation, target_rotation, 0.1)
 	
-	
 	# detecting for if player can shoot when key is pressed
 	if Input.is_action_pressed("ui_shift") and can_shoot:
 		if global.p2_gunheat < global.p2_maxgunheat:
@@ -148,10 +135,7 @@ func _process(delta):
 			global.p2_gunheat += 4
 			can_shoot = false
 			$Timer.start()
-			
-		
-				
-		
+
 	# Apply velocity and move the character
 	move_and_slide()
 

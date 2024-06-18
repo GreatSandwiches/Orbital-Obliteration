@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxqpyn8t4eyys"]
 
-[ext_resource type="PackedScene" uid="uid://cq85yj3x5flfx" path="res://Scenes/rapidfire_powerup.tscn" id="1_wwf2v"]
+[ext_resource type="PackedScene" uid="uid://cgig2m158mu6n" path="res://Scenes/rapidfire_powerup.tscn" id="1_wwf2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tsddk"]
 size = Vector2(40, 277)
