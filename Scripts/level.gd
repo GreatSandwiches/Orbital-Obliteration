@@ -5,7 +5,7 @@ extends Node2D
 var paused = false
 
 func _ready():
-	$PauseMenu.hide()
+	
 	CameraLimits.set_limits(camera.limit_left, camera.limit_right, camera.limit_top, camera.limit_bottom)
 
 func _process(delta):
@@ -21,14 +21,4 @@ func _process(delta):
 
 	
 			
-	if Input.is_action_pressed("ui_cancel"):
-		if paused == false:
-			print("paused")
-			paused = true
-			get_tree().paused = true
-			$PauseMenu.show()
-		else:
-			print("unpaused")
-			paused = false
-			get_tree().paused = false
-			$PauseMenu.hide()
+	

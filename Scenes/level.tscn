@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=10 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://xwfny7na0w5h" path="res://Scenes/p2_trail.tscn" id="5_vrpef"]
 [ext_resource type="Shader" path="res://Scenes/level.gdshader" id="6_2dmde"]
 [ext_resource type="PackedScene" uid="uid://d2sr2tferkxir" path="res://Scenes/pausemenu.tscn" id="7_jbmpc"]
+[ext_resource type="Script" path="res://Scripts/Pause.gd" id="7_jsaq6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
 shader = ExtResource("6_2dmde")
@@ -105,5 +106,9 @@ offset_bottom = 100.0
 max_value = 10.0
 show_percentage = false
 
-[node name="PauseMenu" parent="." instance=ExtResource("7_jbmpc")]
+[node name="Pause" type="Node2D" parent="."]
+process_mode = 3
+script = ExtResource("7_jsaq6")
+
+[node name="PauseMenu" parent="Pause" instance=ExtResource("7_jbmpc")]
 visible = false
