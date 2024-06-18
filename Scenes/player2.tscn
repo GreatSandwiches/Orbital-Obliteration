@@ -10,7 +10,7 @@ size = Vector2(40, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wo4as"]
 size = Vector2(40, 40)
 
-[node name="Player2" type="CharacterBody2D" groups=["players"]]
+[node name="Player2" type="CharacterBody2D"]
 script = ExtResource("1_jnj5c")
 bullet_p2_scene = ExtResource("2_i7yjg")
 metadata/player2 = true
@@ -31,7 +31,7 @@ shape = SubResource("RectangleShape2D_28reh")
 [node name="ProjectileSpawn" type="Node2D" parent="."]
 position = Vector2(54, 0)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["player", "player2"]]
 metadata/player2 = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -44,8 +44,9 @@ rotation = 1.5708
 scale = Vector2(0.769231, 0.769231)
 texture = ExtResource("3_r8ddm")
 
-[node name="RapidFireTimer" type="Timer" parent="." groups=["player", "player2"]]
+[node name="RapidFireTimer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_mine_collision"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
