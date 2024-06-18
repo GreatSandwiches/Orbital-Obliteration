@@ -30,7 +30,10 @@ func take_damage(amount):
 	if global.p1_health <= 0:
 		die()
 		
-
+func _mine_collision(area):
+	if area.is_in_group("space_mine"):
+		shipvector = -shipvector * 2
+		take_damage(30)
 
 func die():
 	global.p1_health = 100
@@ -113,9 +116,4 @@ func _process(delta):
 		
 	# Apply velocity and move the character
 	move_and_slide()
-
-
-
-
-
 

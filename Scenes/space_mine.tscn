@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx3536rcka2kg"]
+
+[ext_resource type="Script" path="res://Scripts/space_mine.gd" id="1_1tsss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sefsv"]
+size = Vector2(40, 40)
+
+[node name="Area2D" type="Area2D" groups=["space_mine"]]
+script = ExtResource("1_1tsss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_sefsv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+color = Color(1, 0, 0, 1)
+
+[connection signal="area_entered" from="." to="." method="_player_collision"]
