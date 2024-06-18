@@ -53,5 +53,9 @@ position = Vector2(26, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_w1tpt")
 
+[node name="RapidFireTimer" type="Timer" parent="." groups=["player", "player2"]]
+
 [connection signal="area_entered" from="Area2D" to="." method="_hit"]
 [connection signal="area_entered" from="Area2D" to="." method="_mine_collision"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
+[connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]

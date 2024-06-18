@@ -47,6 +47,32 @@ func _shoot():
 	bullet.rotation = rotation
 	get_parent().add_child(bullet)
 	
+	
+	# Function to handle the rapid-fire power-up
+func _on_rapidfire_entered(area):
+	if area.has_meta("rapidfire"):
+		global.p1_firerate = 0.2
+		global.p1_coolingrate = 15
+		$Timer.wait_time = global.p1_firerate
+		print("Power-up triggered")
+		print(global.p1_firerate)
+		
+		# Start the RapidFireTimer
+		$RapidFireTimer.start(10)  # 10 seconds duration
+
+# Function to reset the fire rate and cooling rate
+func _on_RapidFireTimer_timeout():
+	global.p1_firerate = 0.5  # Reset to default 
+	global.p1_coolingrate = 3  # Reset to default 
+	$Timer.wait_time = global.p1_firerate
+	print("Power-up ended")
+	print(global.p1_firerate)
+	
+	
+	
+	
+	
+	
 func _on_timer_timeout():
 	can_shoot = true
 
