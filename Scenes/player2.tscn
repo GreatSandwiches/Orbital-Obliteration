@@ -44,5 +44,8 @@ rotation = 1.5708
 scale = Vector2(0.769231, 0.769231)
 texture = ExtResource("3_r8ddm")
 
+[node name="RapidFireTimer" type="Timer" parent="." groups=["player", "player2"]]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
+[connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]

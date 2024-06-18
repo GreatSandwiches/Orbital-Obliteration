@@ -19,3 +19,5 @@ color = Color(1, 0, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_g6wed")
+
+[connection signal="area_entered" from="." to="." method="_rapidfire_collect"]

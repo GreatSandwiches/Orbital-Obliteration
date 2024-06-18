@@ -13,3 +13,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+
+
+func _rapidfire_collect(area):
+	if area.is_in_group("player"):
+		print("pickedup")
+		queue_free()
