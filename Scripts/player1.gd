@@ -84,7 +84,7 @@ func _process(delta):
 	
 	# Jank but it works ig // shot detection for guncooldown
 	if Input.is_action_pressed("ui_spacebar"):
-		cancool = false
+		cancool = true
 	else:
 		cancool = true
 	
@@ -106,7 +106,7 @@ func _process(delta):
 	if Input.is_action_pressed("ui_spacebar") and can_shoot:
 		if global.p1_gunheat < global.p1_maxgunheat:
 			_shoot()
-			global.p1_gunheat += 2
+			global.p1_gunheat += 4
 			can_shoot = false
 			$Timer.start()
 			

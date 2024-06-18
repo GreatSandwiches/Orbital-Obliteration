@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2sr2tferkxir"]
+
+[ext_resource type="Script" path="res://Scripts/pausemenu.gd" id="1_vilrx"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 152.0
+offset_top = 82.0
+offset_right = 152.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vilrx")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 129.0
+offset_right = 763.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 100
+text = "Game Paused"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 303.0
+offset_right = 463.0
+offset_bottom = 334.0
+text = "Close"
+
+[node name="pause" type="Button" parent="."]
+layout_mode = 0
+offset_left = -146.0
+offset_top = 521.0
+offset_right = -53.0
+offset_bottom = 558.0
+text = "Pause"
+
+[connection signal="pressed" from="Button" to="." method="_on_close_button_pressed"]

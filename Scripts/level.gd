@@ -1,13 +1,12 @@
-
-
 extends Node2D
 
 @onready var global = get_node("/root/Global")
 @onready var camera = get_node("Camera2D")
+var paused = false
 
 func _ready():
+	$PauseMenu.hide()
 	CameraLimits.set_limits(camera.limit_left, camera.limit_right, camera.limit_top, camera.limit_bottom)
-
 
 func _process(delta):
 	$P2_Heat.value = global.p2_gunheat
@@ -16,15 +15,20 @@ func _process(delta):
 	$P2_Health.value = global.p2_health
 	$P1_score.text = ("P1: " + str(global.p1_score))
 	$P2_score.text = ("P2: " + str(global.p2_score))
-	
-	if global.p1_score  == 3:
+
+	if global.p1_score == 3 or global.p2_score == 3:
 		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+
 	
-	elif global.p2_score == 3:
-		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
-	
-		
-	
-		
-	
-		
+			
+	if Input.is_action_pressed("ui_cancel"):
+		if paused == false:
+			print("paused")
+			paused = true
+			get_tree().paused = true
+			$PauseMenu.show()
+		else:
+			print("unpaused")
+			paused = false
+			get_tree().paused = false
+			$PauseMenu.hide()
