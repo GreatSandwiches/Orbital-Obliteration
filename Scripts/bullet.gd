@@ -28,7 +28,8 @@ func _on_area_entered(area):
 		area.take_damage(10)
 		queue_free()
 		print("jfr")
-
+	if area.is_in_group("wall"):
+		queue_free()
 
 
 

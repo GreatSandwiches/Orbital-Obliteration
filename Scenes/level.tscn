@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=11 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://Scenes/level.gdshader" id="6_2dmde"]
 [ext_resource type="PackedScene" uid="uid://d2sr2tferkxir" path="res://Scenes/pausemenu.tscn" id="7_jbmpc"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="7_jsaq6"]
+[ext_resource type="PackedScene" uid="uid://cxqpyn8t4eyys" path="res://Scenes/map1.tscn" id="9_57lkv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
 shader = ExtResource("6_2dmde")
@@ -58,10 +59,10 @@ position = Vector2(190, 306)
 position = Vector2(922, 321)
 
 [node name="Player" parent="." instance=ExtResource("1_qkieh")]
-position = Vector2(232, 304)
+position = Vector2(119, 149)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_dt80m")]
-position = Vector2(889, 322)
+position = Vector2(1023, 503)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -112,3 +113,5 @@ script = ExtResource("7_jsaq6")
 
 [node name="PauseMenu" parent="Pause" instance=ExtResource("7_jbmpc")]
 visible = false
+
+[node name="map1" parent="." instance=ExtResource("9_57lkv")]
