@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://by7q18s3bfad0" path="res://Assets/shuttle2.png" id="2_4i48j"]
 [ext_resource type="PackedScene" uid="uid://bkdtwu8o4hci5" path="res://Scenes/bullet_p1.tscn" id="2_t3o58"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf56h"]
-size = Vector2(40, 40)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vcr06"]
+radius = 20.025
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1tpt"]
-size = Vector2(40, 40)
+[sub_resource type="CircleShape2D" id="CircleShape2D_6atld"]
+radius = 20.025
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cog17")
@@ -24,7 +24,7 @@ offset_bottom = 20.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_hf56h")
+shape = SubResource("CircleShape2D_vcr06")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 visible = false
@@ -51,11 +51,11 @@ position = Vector2(26, 0)
 [node name="Area2D" type="Area2D" parent="." groups=["player", "player1"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_w1tpt")
+shape = SubResource("CircleShape2D_6atld")
 
 [node name="RapidFireTimer" type="Timer" parent="." groups=["player", "player2"]]
 
 [connection signal="area_entered" from="Area2D" to="." method="_hit"]
-[connection signal="area_entered" from="Area2D" to="." method="_mine_collision"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_mine_collision"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
