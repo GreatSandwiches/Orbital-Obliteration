@@ -48,6 +48,11 @@ func _on_RapidFireTimer_timeout():
 	$Timer.wait_time = global.p2_firerate
 	print("Power-up ended")
 	print(global.p2_firerate)
+	
+	# Damage booster powerup
+func _on_damagepowerup_entered(area):
+	pass 
+	
 
 func take_damage(amount):
 	global.p2_health -= amount
@@ -138,6 +143,9 @@ func _process(delta):
 
 	# Apply velocity and move the character
 	move_and_slide()
+
+
+
 
 
 
