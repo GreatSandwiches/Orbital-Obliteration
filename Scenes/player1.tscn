@@ -55,7 +55,7 @@ shape = SubResource("CircleShape2D_6atld")
 
 [node name="RapidFireTimer" type="Timer" parent="." groups=["player", "player2"]]
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_mine_collision"]
 [connection signal="area_entered" from="Area2D" to="." method="_hit"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
