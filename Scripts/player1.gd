@@ -16,6 +16,8 @@ var cancool = true
 func _ready():
 	global.p1_health = 100
 	global.p1_gunheat = 0
+	global.p1_firerate = 0.5
+	global.p1_gundamage = 20
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
@@ -23,7 +25,7 @@ func _ready():
 
 func _hit(area):
 	if area.is_in_group("p2_bullet"):
-		take_damage(20)
+		take_damage(global.p2_gundamage)
 		
 func take_damage(amount):
 	global.p1_health -= amount

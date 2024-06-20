@@ -18,6 +18,7 @@ func _ready():
 	global.p2_health = 100
 	global.p2_gunheat = 0
 	global.p2_firerate = 0.5
+	global.p2_gundamage = 20
 	$Timer.wait_time = global.p2_firerate
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
@@ -25,7 +26,7 @@ func _ready():
 # damage detection
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("p1_bullet"):
-		take_damage(20)
+		take_damage(global.p1_gundamage)
 		
 # Powerup detections
 
@@ -51,7 +52,8 @@ func _on_RapidFireTimer_timeout():
 	
 	# Damage booster powerup
 func _on_damagepowerup_entered(area):
-	pass 
+	if area.has_meta("damageincrease"):
+		global.p2_gundamage = 50
 	
 
 func take_damage(amount):
