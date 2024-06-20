@@ -13,4 +13,5 @@ func _player_collision(area):
 		queue_free()
 	if area.is_in_group("player1"):
 		global.spacemine_collision_pos_p1 = position
+		global.spacemine_pos_p1_updated = true
 		print(global.spacemine_collision_pos_p1)

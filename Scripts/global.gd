@@ -10,6 +10,7 @@ var p1_firerate = 0.5
 var p1_gundamage = 1
 var p1_bulletsize = 1
 var spacemine_collision_pos_p1 = Vector2(0,0)
+var spacemine_pos_p1_updated = false
 
 #p2 variables
 var p2_score = 0
