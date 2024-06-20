@@ -12,3 +12,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+# Makes powerup dissapear after collected
+func _on_damage_collect(area):
+	if area.is_in_group("player"):
+		print("pickedup")
+		queue_free()
