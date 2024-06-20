@@ -3,7 +3,7 @@ extends Area2D
 func _ready():
 	pass # Replace with function body.
 func _process(delta):
-	pass
+	print(position)
 
 
 func _player_collision(area):
