@@ -7,6 +7,8 @@ var p1_gunheat = 0
 var p1_maxgunheat = 15
 var p1_coolingrate = 3
 var p1_firerate = 0.5
+var p1_gundamage = 1
+var p1_bulletsize = 1
 
 #p2 variables
 var p2_score = 0
@@ -16,6 +18,8 @@ var p2_gunheat = 0
 var p2_maxgunheat = 15
 var p2_coolingrate = 3
 var p2_firerate = 0.5
+var p2_gundamage = 1
+var p2_bulletsize = 1
 
 
 #Variables
