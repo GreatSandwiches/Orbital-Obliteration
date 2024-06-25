@@ -9,6 +9,7 @@ var shipvectorforward = Vector2(0,0)
 var shipvectorbackward = Vector2(0,0)
 @export var bullet_p2_scene: PackedScene
 var can_shoot = true
+@onready var p2 = $Player2
 
 var score = 0
 var cancool = true
@@ -79,7 +80,8 @@ func die():
 	global.p1_score += 1
 	global.p2_gunheat = 0
 	print(global.p1_score)
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
+	position = Vector2(1020, 500)
 	
 func _shoot():
 	var bullet = bullet_p2_scene.instantiate()
