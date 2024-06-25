@@ -43,7 +43,7 @@ func die():
 	global.p1_health = 100
 	global.p2_score +=1
 	global.p1_gunheat = 0
-	get_tree().reload_current_scene()
+	position = Vector2(120, 150)
 	
 func _shoot():
 	var bullet = bullet_p1_scene.instantiate()
