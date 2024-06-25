@@ -22,7 +22,7 @@ var p2_coolingrate = 3
 var p2_firerate = 0.5
 var p2_gundamage = 1
 var p2_bulletsize = 1
-
+var spacemine_collision_pos_p2 = Vector2(0,0)
 
 #Variables
 

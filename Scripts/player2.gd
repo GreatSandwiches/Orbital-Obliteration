@@ -10,7 +10,7 @@ var shipvectorbackward = Vector2(0,0)
 @export var bullet_p2_scene: PackedScene
 var can_shoot = true
 @onready var p2 = $Player2
-
+var knockback = Vector2(0,0)
 var score = 0
 var cancool = true
 
@@ -70,10 +70,11 @@ func take_damage(amount):
 	if global.p2_health <= 0:
 		die()
 		
-func _mine_collision(area):
-	if area.is_in_group("space_mine"):
-		shipvector = -shipvector * 2
-		take_damage(30)
+func _mine_collision():
+	knockback = (position - global.spacemine_collision_pos_p2)
+	print(knockback)
+	shipvector += knockback * 0.07
+	take_damage(30)
 
 func die():
 	global.p2_health = 100 
