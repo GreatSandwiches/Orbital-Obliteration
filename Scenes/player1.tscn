@@ -57,5 +57,4 @@ shape = SubResource("CircleShape2D_6atld")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_hit"]
-[connection signal="area_entered" from="Area2D" to="." method="_mine_collision"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
