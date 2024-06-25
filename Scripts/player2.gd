@@ -55,7 +55,7 @@ func _on_RapidFireTimer_timeout():
 func _on_damagepowerup_entered(area):
 	if area.has_meta("damageincrease"):
 		global.p2_gundamage = 50
-		
+		print(global.p2_gundamage)
 		$DamageBoostTimer.start(10)
 
 

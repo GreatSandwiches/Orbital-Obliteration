@@ -73,7 +73,16 @@ func _on_RapidFireTimer_timeout():
 	print(global.p1_firerate)
 	
 	
-	
+func _on_damagepowerup_entered(area):
+	if area.has_meta("damageincrease"):
+		global.p1_gundamage = 50
+		print(global.p2_gundamage)
+		$DamageBoostTimer.start(10)
+
+
+func _on_DamagePowerupTimer_timeout():
+	global.p1_gundamage = 20
+	print("Damagepowerup ended")
 	
 	
 	
