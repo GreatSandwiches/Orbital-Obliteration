@@ -11,6 +11,7 @@ var can_shoot = true
 var shoot_cooldown = 0.5
 var score = 0
 var cancool = true
+var knockback = Vector2(0,0)
 @onready var global = get_node("/root/Global")
 
 func _ready():
@@ -22,7 +23,6 @@ func _ready():
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
-
 func _hit(area):
 	if area.is_in_group("p2_bullet"):
 		take_damage(global.p2_gundamage)
@@ -32,10 +32,12 @@ func take_damage(amount):
 	if global.p1_health <= 0:
 		die()
 		
-func _mine_collision(area):
-	if area.is_in_group("space_mine"):
-		shipvector = -shipvector * 2
-		take_damage(30)
+func _mine_collision():
+	knockback = (position - global.spacemine_collision_pos_p1)
+	print(knockback)
+	shipvector += knockback * 0.07
+	take_damage(30)
+	global.spacemine_pos_p1_updated = false
 
 func die():
 	global.p1_health = 100

@@ -60,10 +60,10 @@ position = Vector2(190, 306)
 [node name="Node2D2" parent="." instance=ExtResource("5_vrpef")]
 position = Vector2(922, 321)
 
-[node name="Player" parent="." instance=ExtResource("1_qkieh")]
+[node name="Player1" parent="." instance=ExtResource("1_qkieh")]
 position = Vector2(119, 149)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_dt80m")]
+[node name="Player2" parent="." instance=ExtResource("2_dt80m")]
 position = Vector2(1023, 503)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
