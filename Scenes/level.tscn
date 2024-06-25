@@ -64,7 +64,7 @@ position = Vector2(922, 321)
 position = Vector2(119, 149)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_dt80m")]
-position = Vector2(1023, 503)
+position = Vector2(1020, 500)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
