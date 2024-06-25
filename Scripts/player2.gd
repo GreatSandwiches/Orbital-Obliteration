@@ -39,13 +39,13 @@ func _on_rapidfire_entered(area):
 		print("Power-up triggered")
 		print(global.p2_firerate)
 		
-		# Start the RapidFireTimer
-		$RapidFireTimer.start(10)  # 10 seconds duration
+		# StartRapidFireTimer
+		$RapidFireTimer.start(10)  
 
 # Function to reset the fire rate and cooling rate
 func _on_RapidFireTimer_timeout():
-	global.p2_firerate = 0.5  # Reset to default 
-	global.p2_coolingrate = 3  # Reset to default 
+	global.p2_firerate = 0.5   
+	global.p2_coolingrate = 3  
 	$Timer.wait_time = global.p2_firerate
 	print("Power-up ended")
 	print(global.p2_firerate)
@@ -54,8 +54,16 @@ func _on_RapidFireTimer_timeout():
 func _on_damagepowerup_entered(area):
 	if area.has_meta("damageincrease"):
 		global.p2_gundamage = 50
-	
+		
+		$DamageBoostTimer.start(10)
 
+
+func _on_DamagePowerupTimer_timeout():
+	global.p2_gundamage = 20
+	print("Damagepowerup ended")
+	
+	
+		
 func take_damage(amount):
 	global.p2_health -= amount
 	if global.p2_health <= 0:
