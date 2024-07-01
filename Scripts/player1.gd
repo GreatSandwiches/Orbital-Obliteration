@@ -37,7 +37,6 @@ func _mine_collision():
 	print(knockback)
 	shipvector += knockback * 0.07
 	take_damage(30)
-	global.spacemine_pos_p1_updated = false
 
 func die():
 	global.p1_health = 100
