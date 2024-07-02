@@ -141,7 +141,7 @@ func _process(delta):
 		target_rotation += 0.1
 
 	# Smooth rotation using lerp_angle
-	rotation = lerp_angle(rotation, target_rotation, 0.1)
+	rotation = lerp_angle(rotation, target_rotation, 0.25)
 	
 	# detecting for if player can shoot when key is pressed
 	if Input.is_action_pressed("ui_spacebar") and can_shoot:
