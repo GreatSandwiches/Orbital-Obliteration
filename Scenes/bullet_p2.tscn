@@ -1,21 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://bd24338h4v8cs"]
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_hwef5"]
-[ext_resource type="Texture2D" uid="uid://d21ki2l7wli2e" path="res://Assets/bullet.png" id="2_l1r16"]
+[ext_resource type="Texture2D" uid="uid://bbc4q8ghm5m5w" path="res://Assets/small bullet.png" id="2_m77vd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c34kw"]
-size = Vector2(30, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_f1vmn"]
+radius = 5.0
 
 [node name="Area2D" type="Area2D" groups=["p2_bullet"]]
 script = ExtResource("1_hwef5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3.375, 2.875)
-texture = ExtResource("2_l1r16")
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1.5, -1.5)
+scale = Vector2(3.14101, 3.14101)
+texture = ExtResource("2_m77vd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("RectangleShape2D_c34kw")
+shape = SubResource("CircleShape2D_f1vmn")
 
 [node name="Timer" type="Timer" parent="."]
 

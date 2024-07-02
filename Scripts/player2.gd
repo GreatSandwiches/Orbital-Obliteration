@@ -18,8 +18,9 @@ func _ready():
 	print(rotation_degrees)
 	global.p2_health = 100
 	global.p2_gunheat = 0
-	global.p2_firerate = 0.5
+	global.p2_firerate = 0.3
 	global.p2_gundamage = 20
+	global.p2_coolingrate = 3
 	$Timer.wait_time = global.p2_firerate
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
@@ -34,9 +35,8 @@ func _on_area_2d_area_entered(area):
 # Function to handle the rapid-fire power-up
 func _on_rapidfire_entered(area):
 	if area.has_meta("rapidfire"):
-		global.p2_firerate = 0.2
-		global.p2_coolingrate = 15
-		$Timer.wait_time = global.p2_firerate
+		global.p2_firerate = 0.1
+		global.p2_coolingrate = 8
 		print("Power-up triggered")
 		print(global.p2_firerate)
 		
@@ -45,8 +45,8 @@ func _on_rapidfire_entered(area):
 
 # Function to reset the fire rate and cooling rate
 func _on_RapidFireTimer_timeout():
-	global.p2_firerate = 0.5   
-	global.p2_coolingrate = 3  
+	global.p2_firerate = 0.3 
+	global.p2_coolingrate = 3
 	$Timer.wait_time = global.p2_firerate
 	print("Power-up ended")
 	print(global.p2_firerate)
@@ -150,9 +150,9 @@ func _process(delta):
 	if Input.is_action_pressed("ui_shift") and can_shoot:
 		if global.p2_gunheat < global.p2_maxgunheat:
 			_shoot()
-			global.p2_gunheat += 4
+			global.p2_gunheat += 2
 			can_shoot = false
-			$Timer.start()
+			$Timer.start(global.p2_firerate)
 
 	# Apply velocity and move the character
 	move_and_slide()

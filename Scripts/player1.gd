@@ -17,8 +17,9 @@ var knockback = Vector2(0,0)
 func _ready():
 	global.p1_health = 100
 	global.p1_gunheat = 0
-	global.p1_firerate = 0.5
+	global.p1_firerate = 0.3
 	global.p1_gundamage = 20
+	global.p1_coolingrate = 3
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
@@ -54,9 +55,8 @@ func _shoot():
 	# Function to handle the rapid-fire power-up
 func _on_rapidfire_entered(area):
 	if area.has_meta("rapidfire"):
-		global.p1_firerate = 0.2
-		global.p1_coolingrate = 15
-		$Timer.wait_time = global.p1_firerate
+		global.p1_firerate = 0.1
+		global.p1_coolingrate = 8
 		print("Power-up triggered")
 		print(global.p1_firerate)
 		
@@ -65,9 +65,8 @@ func _on_rapidfire_entered(area):
 
 # Function to reset the fire rate and cooling rate
 func _on_RapidFireTimer_timeout():
-	global.p1_firerate = 0.5  # Reset to default 
+	global.p1_firerate = 0.3  # Reset to default 
 	global.p1_coolingrate = 3  # Reset to default 
-	$Timer.wait_time = global.p1_firerate
 	print("Power-up ended")
 	print(global.p1_firerate)
 	
@@ -147,9 +146,9 @@ func _process(delta):
 	if Input.is_action_pressed("ui_spacebar") and can_shoot:
 		if global.p1_gunheat < global.p1_maxgunheat:
 			_shoot()
-			global.p1_gunheat += 4
+			global.p1_gunheat += 2
 			can_shoot = false
-			$Timer.start()
+			$Timer.start(global.p1_firerate)
 			
 		
 	# Apply velocity and move the character
