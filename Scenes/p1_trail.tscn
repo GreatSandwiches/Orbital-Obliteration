@@ -5,7 +5,7 @@
 [sub_resource type="Gradient" id="Gradient_ccin5"]
 colors = PackedColorArray(1, 1, 1, 0, 0, 0.666667, 0.905882, 1)
 
-[node name="Node2D" type="Node2D"]
+[node name="Trail1" type="Node2D"]
 
 [node name="P1_trail_line" type="Line2D" parent="."]
 default_color = Color(0, 0.717647, 1, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=13 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://cxqpyn8t4eyys" path="res://Scenes/map1.tscn" id="9_57lkv"]
 [ext_resource type="PackedScene" uid="uid://cx3536rcka2kg" path="res://Scenes/space_mine.tscn" id="10_wd516"]
 [ext_resource type="PackedScene" uid="uid://dyrshme8bcxd0" path="res://Scenes/damagepowerup.tscn" id="11_0q2pb"]
-[ext_resource type="PackedScene" uid="uid://caicae68dgien" path="res://Scenes/asteroid.tscn" id="12_7bmga"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
 shader = ExtResource("6_2dmde")
@@ -130,9 +129,3 @@ position = Vector2(556, 444)
 
 [node name="Damagepowerup" parent="." instance=ExtResource("11_0q2pb")]
 position = Vector2(592, 574)
-
-[node name="RigidBody2D" parent="." instance=ExtResource("12_7bmga")]
-position = Vector2(340, 542)
-
-[node name="RigidBody2D2" parent="." instance=ExtResource("12_7bmga")]
-position = Vector2(795, 554)
