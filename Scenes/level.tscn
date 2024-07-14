@@ -8,10 +8,10 @@
 [ext_resource type="Shader" path="res://Scenes/level.gdshader" id="6_2dmde"]
 [ext_resource type="PackedScene" uid="uid://d2sr2tferkxir" path="res://Scenes/pausemenu.tscn" id="7_jbmpc"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="7_jsaq6"]
-[ext_resource type="PackedScene" uid="uid://cxqpyn8t4eyys" path="res://Scenes/map1.tscn" id="9_57lkv"]
 [ext_resource type="PackedScene" uid="uid://cx3536rcka2kg" path="res://Scenes/space_mine.tscn" id="10_wd516"]
 [ext_resource type="PackedScene" uid="uid://dyrshme8bcxd0" path="res://Scenes/damagepowerup.tscn" id="11_0q2pb"]
 [ext_resource type="PackedScene" uid="uid://caicae68dgien" path="res://Scenes/asteroid.tscn" id="12_7bmga"]
+[ext_resource type="PackedScene" uid="uid://b6lcjfhd2a4iq" path="res://Scenes/wall_tile.tscn" id="13_5ns1h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
 shader = ExtResource("6_2dmde")
@@ -117,8 +117,6 @@ script = ExtResource("7_jsaq6")
 [node name="PauseMenu" parent="Pause" instance=ExtResource("7_jbmpc")]
 visible = false
 
-[node name="map1" parent="." instance=ExtResource("9_57lkv")]
-
 [node name="Area2D" parent="." instance=ExtResource("10_wd516")]
 position = Vector2(469, 279)
 
@@ -136,3 +134,69 @@ position = Vector2(340, 542)
 
 [node name="RigidBody2D2" parent="." instance=ExtResource("12_7bmga")]
 position = Vector2(795, 554)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(213, 110)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(213, 150)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(213, 190)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(213, 230)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(173, 230)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(133, 230)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(401, 408)
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(245, 586)
+
+[node name="StaticBody2D9" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(211, 418)
+
+[node name="StaticBody2D10" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(49, 343)
+
+[node name="StaticBody2D11" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(698, 471)
+
+[node name="StaticBody2D12" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(940, 540)
+
+[node name="StaticBody2D13" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(940, 500)
+
+[node name="StaticBody2D14" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(940, 460)
+
+[node name="StaticBody2D15" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(940, 420)
+
+[node name="StaticBody2D16" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(980, 420)
+
+[node name="StaticBody2D17" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(1020, 420)
+
+[node name="StaticBody2D18" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(507, 145)
+
+[node name="StaticBody2D19" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(717, 189)
+
+[node name="StaticBody2D20" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(851, 352)
+
+[node name="StaticBody2D21" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(1003, 249)
+
+[node name="StaticBody2D22" parent="." instance=ExtResource("13_5ns1h")]
+position = Vector2(877, 126)

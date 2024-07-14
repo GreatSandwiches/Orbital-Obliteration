@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6lcjfhd2a4iq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wot7h"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdd17"]
+size = Vector2(40, 40)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wot7h")
+
+[node name="Area2D" type="Area2D" parent="." groups=["wall"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_bdd17")
