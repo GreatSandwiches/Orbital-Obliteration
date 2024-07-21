@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @onready var global = get_node("/root/Global")
 
-var velocity = Vector2(10,0)	
+var velocity = Vector2(8,0)	
 var vertical = false
 var horizontal = false
 var vel_change = Vector2(0,0)
@@ -21,7 +21,8 @@ func _wallhit(place):
 		print(place)
 		var needed_rotation =  difference.angle() - velocity.angle()
 		velocity = velocity.rotated(needed_rotation)
-		
+	velocity = velocity * 0.9
+
 
 func _main_hitbox(area):
 	pass
@@ -49,7 +50,7 @@ func _horizontal_exited(area):
 	if area.is_in_group("wall"):
 		var horizontal = false
 
-func _process(delta):
+func _physics_process(delta):
 	move_and_collide(velocity)
 	global.asteroid1_pos = position
 

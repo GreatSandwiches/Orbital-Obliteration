@@ -137,7 +137,7 @@ position = Vector2(585, 341)
 position = Vector2(776, 554)
 
 [node name="wall" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(883, 556)
+position = Vector2(899, 572)
 
 [node name="wall2" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(718, 559)
+position = Vector2(718, 575)
