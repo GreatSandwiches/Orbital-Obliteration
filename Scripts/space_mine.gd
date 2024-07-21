@@ -6,8 +6,9 @@ signal p1_exploded
 signal p2_exploded
 
 func _ready():
-	p1_exploded.connect(get_node("/root/Node2D2/Player1")._mine_collision)
-	p2_exploded.connect(get_node("/root/Node2D2/Player2")._mine_collision)
+	p1_exploded.connect(get_node("/root/Level/Player1")._mine_collision)
+	p2_exploded.connect(get_node("/root/Level/Player2")._mine_collision)
+	
 func _process(delta):
 	pass
 

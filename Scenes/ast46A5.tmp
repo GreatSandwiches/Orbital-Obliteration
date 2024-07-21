@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://8e7suvn44440"]
+
+[ext_resource type="Script" path="res://Scripts/asteroid.gd" id="1_4jije"]
+[ext_resource type="Texture2D" uid="uid://clgq1sf74wbat" path="res://Assets/asteroid.png" id="2_hvax5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1571y"]
+resource_name = "asteroid"
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_affjk"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nginn"]
+radius = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b25ua"]
+size = Vector2(8, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5be8i"]
+size = Vector2(46, 8)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_1571y")
+gravity_scale = 0.0
+freeze_mode = 1
+continuous_cd = 1
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_4jije")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_affjk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.8125, 2.8125)
+texture = ExtResource("2_hvax5")
+
+[node name="Area2D" type="Area2D" parent="." groups=["ast1"]]
+metadata/asteroid1 = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_nginn")
+
+[node name="Vertical" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vertical"]
+shape = SubResource("RectangleShape2D_b25ua")
+
+[node name="Horizontal" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Horizontal"]
+shape = SubResource("RectangleShape2D_5be8i")
+
+[connection signal="area_entered" from="Area2D" to="." method="_main_hitbox"]
+[connection signal="area_entered" from="Vertical" to="." method="_vertical_hbx"]
+[connection signal="area_exited" from="Vertical" to="." method="vertical_exited"]
+[connection signal="area_entered" from="Horizontal" to="." method="_horizontal_hbx"]
+[connection signal="area_exited" from="Horizontal" to="." method="_horizontal_exited"]

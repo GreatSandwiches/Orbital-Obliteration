@@ -24,10 +24,8 @@ var p2_bulletsize = 1
 var spacemine_collision_pos_p2 = Vector2(0,0)
 
 #Variables
-
-
-
-
+var asteroid1_pos = Vector2(0,0)
+var wall_pos1 = Vector2(0,0)
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=14 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dyrshme8bcxd0" path="res://Scenes/damagepowerup.tscn" id="11_0q2pb"]
 [ext_resource type="PackedScene" uid="uid://cgig2m158mu6n" path="res://Scenes/rapidfire_powerup.tscn" id="13_3gpil"]
 [ext_resource type="PackedScene" uid="uid://8e7suvn44440" path="res://Scenes/asteroid1.tscn" id="13_hwmt6"]
-[ext_resource type="PackedScene" uid="uid://pxgo36n3bmqi" path="res://Scenes/wall_tile.tscn" id="13_oomva"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
 shader = ExtResource("6_2dmde")
@@ -135,9 +134,3 @@ position = Vector2(585, 341)
 
 [node name="Asteroid1" parent="." instance=ExtResource("13_hwmt6")]
 position = Vector2(776, 554)
-
-[node name="wall" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(883, 556)
-
-[node name="wall2" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(718, 559)
