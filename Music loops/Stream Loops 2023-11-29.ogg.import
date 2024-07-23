@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c8hjoxap2n3fn"
+path="res://.godot/imported/Stream Loops 2023-11-29.ogg-b26ec7952d39afccf3db8cfebcee39ab.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music loops/Stream Loops 2023-11-29.ogg"
+dest_files=["res://.godot/imported/Stream Loops 2023-11-29.ogg-b26ec7952d39afccf3db8cfebcee39ab.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
