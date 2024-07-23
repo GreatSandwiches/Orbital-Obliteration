@@ -6,7 +6,12 @@ var velocity = Vector2(0,0)
 var vertical = false
 var horizontal = false
 var vel_change = Vector2(0,0)
+signal p1_vel_transfer
+signal p2_vel_transfer
 
+func _ready():
+	p1_vel_transfer.connect(get_node("/root/Level/Player1")._ast_vel_transfer)
+	p2_vel_transfer.connect(get_node("/root/Level/Player2")._ast_vel_transfer)
 
 func _wallhit(place, wall):
 	var difference = position - global.wall_pos1
@@ -26,9 +31,12 @@ func _wallhit(place, wall):
 
 func _main_hitbox(area):
 	if area.is_in_group("player1"):
-		var scaling = abs(velocity.angle() / global.p1_velocity.angle())
+		var scaling = 1 / abs(-velocity.angle() + global.p1_velocity.angle())
+		print(scaling)
 		var velocity_diff = global.p1_velocity - velocity
-		velocity += velocity_diff * scaling
+		print(velocity_diff)
+		velocity += velocity_diff
+		p1_vel_transfer.emit(velocity_diff)
 		var difference = position - global.p1_position
 		var angle = difference.angle()
 		var needed_rotation =  difference.angle() - velocity.angle()

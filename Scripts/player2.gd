@@ -92,6 +92,9 @@ func _shoot():
 
 func _on_timer_timeout():
 	can_shoot = true
+	
+func _ast_vel_transfer(amount):
+	shipvector -= amount
 
 func _process(delta):
 	global.p2_position = position

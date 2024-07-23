@@ -87,9 +87,12 @@ func _on_DamagePowerupTimer_timeout():
 func _on_timer_timeout():
 	can_shoot = true
 
+func _ast_vel_transfer(amount):
+	shipvector -= amount / 500
+
 func _process(delta):
 	global.p1_position = position
-	global.p1_velocity = shipvector
+	global.p1_velocity = velocity
 	# Constrain the player's position within the camera limits
 	position.x = clamp(position.x, CameraLimits.limit_left, CameraLimits.limit_right)
 	position.y = clamp(position.y, CameraLimits.limit_top, CameraLimits.limit_bottom)
