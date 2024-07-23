@@ -12,10 +12,5 @@ func _process(delta):
 func _collision(area):
 	if area.is_in_group("ast1"):
 		global.wall_pos1 = position
-		if self.overlaps_area(get_node("/root/Level/Asteroid1").get_child(3)):
-			hit1.emit("vertical hitbox", self)
-		elif self.overlaps_area(get_node("/root/Level/Asteroid1").get_child(4)):
-			hit1.emit("horizontal hitbox", self)
-		else:
-			hit1.emit("corner", self)
+		hit1.emit(self)
 

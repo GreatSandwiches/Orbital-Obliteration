@@ -16,10 +16,10 @@ radius = 17.0
 radius = 18.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b25ua"]
-size = Vector2(8, 38)
+size = Vector2(8, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5be8i"]
-size = Vector2(38, 8)
+size = Vector2(36, 8)
 
 [node name="RigidBody2D" type="RigidBody2D"]
 mass = 0.01
