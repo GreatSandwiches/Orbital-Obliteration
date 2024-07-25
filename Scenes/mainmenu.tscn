@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://yrm8t0y7iduu"]
+[gd_scene load_steps=4 format=3 uid="uid://yrm8t0y7iduu"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_g2rkn"]
+
+[sub_resource type="Gradient" id="Gradient_e46vi"]
+colors = PackedColorArray(0.113725, 0.607843, 0.698039, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uygj6"]
+gradient = SubResource("Gradient_e46vi")
+fill_from = Vector2(0.509174, 0)
+fill_to = Vector2(0.5, 0.988532)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -28,5 +36,12 @@ offset_right = 746.0
 offset_bottom = 531.0
 theme_override_font_sizes/font_size = 50
 text = "Play"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -100
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 646.0
+texture = SubResource("GradientTexture2D_uygj6")
 
 [connection signal="pressed" from="Button" to="." method="_play"]
