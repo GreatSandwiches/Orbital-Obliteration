@@ -243,5 +243,5 @@ position = Vector2(798, 94)
 z_index = -100
 offset_right = 1148.0
 offset_bottom = 648.0
-color = Color(0.180392, 0.227451, 0.270588, 1)
+color = Color(0.313726, 0.384314, 0.447059, 1)
 metadata/_edit_lock_ = true
