@@ -116,7 +116,7 @@ func _process(delta):
 	#shipvectorbackward.y = 0.00001 * (pow((shipvector.y), 3))
 	
 	#current position identifier for use with trail
-	global.p1_location = -25 * transform.x + position
+	global.p1_location = -10 * transform.x + position
 	
 	velocity = 500 * shipvector
 	
