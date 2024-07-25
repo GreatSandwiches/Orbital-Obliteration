@@ -36,12 +36,6 @@ offset_bottom = 2.0
 color = Color(1, 1, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.38419e-07, 0)
-rotation = 1.56921
-scale = Vector2(0.0559562, 0.058754)
-texture = ExtResource("3_aiyja")
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
@@ -55,12 +49,18 @@ position = Vector2(26, 0)
 position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_6atld")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+rotation = 1.56921
+scale = Vector2(0.0559562, 0.058754)
+texture = ExtResource("3_aiyja")
+
 [node name="RapidFireTimer" type="Timer" parent="." groups=["player", "player2"]]
 
 [node name="DamageBoostTimer" type="Timer" parent="."]
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_hit"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
 [connection signal="timeout" from="DamageBoostTimer" to="." method="_on_DamagePowerupTimer_timeout"]

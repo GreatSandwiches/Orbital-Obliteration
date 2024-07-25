@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://Scripts/player2.gd" id="1_jnj5c"]
 [ext_resource type="PackedScene" uid="uid://bd24338h4v8cs" path="res://Scenes/bullet_p2.tscn" id="2_i7yjg"]
-[ext_resource type="Texture2D" uid="uid://by7q18s3bfad0" path="res://Assets/shuttle2.png" id="3_r8ddm"]
+[ext_resource type="Texture2D" uid="uid://3you0cugki4b" path="res://Assets/simple p2 ship.png" id="3_x5cr5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ycbn"]
-radius = 20.0
+radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5toj"]
-radius = 20.0
+radius = 15.0
 
 [node name="Player2" type="CharacterBody2D"]
 script = ExtResource("1_jnj5c")
@@ -23,7 +23,7 @@ offset_right = 20.0
 offset_bottom = 21.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_1ycbn")
 
 [node name="Timer" type="Timer" parent="."]
@@ -35,21 +35,21 @@ position = Vector2(21, 1)
 metadata/player2 = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 1)
+position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_l5toj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4.76837e-07, 1)
+position = Vector2(0.157494, 6.89337e-07)
 rotation = 1.5708
-scale = Vector2(0.769231, 0.769231)
-texture = ExtResource("3_r8ddm")
+scale = Vector2(0.0562715, 0.0587323)
+texture = ExtResource("3_x5cr5")
 
 [node name="RapidFireTimer" type="Timer" parent="."]
 
 [node name="DamageBoostTimer" type="Timer" parent="."]
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
 [connection signal="timeout" from="DamageBoostTimer" to="." method="_on_DamagePowerupTimer_timeout"]
