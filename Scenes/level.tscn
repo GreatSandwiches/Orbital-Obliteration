@@ -177,37 +177,37 @@ scale = Vector2(29, 1)
 position = Vector2(939, 542)
 
 [node name="wall2" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(939, 502)
+position = Vector2(939, 507)
 
 [node name="wall3" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(939, 462)
+position = Vector2(939, 472)
 
 [node name="wall4" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(939, 422)
+position = Vector2(939, 437)
 
 [node name="wall5" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(979, 422)
+position = Vector2(974, 437)
 
 [node name="wall6" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(1019, 422)
+position = Vector2(1009, 437)
 
 [node name="wall7" parent="." instance=ExtResource("13_oomva")]
 position = Vector2(213, 107)
 
 [node name="wall8" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(213, 147)
+position = Vector2(213, 142)
 
 [node name="wall9" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(213, 187)
+position = Vector2(213, 177)
 
 [node name="wall10" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(213, 227)
+position = Vector2(213, 212)
 
 [node name="wall11" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(173, 227)
+position = Vector2(178, 212)
 
 [node name="wall12" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(133, 227)
+position = Vector2(143, 212)
 
 [node name="wall13" parent="." instance=ExtResource("13_oomva")]
 position = Vector2(372, 441)

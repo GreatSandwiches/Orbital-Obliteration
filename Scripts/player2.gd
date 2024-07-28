@@ -135,7 +135,7 @@ func _process(delta):
 	else:
 		cancool = true
 	
-	global.p2_location = -25 * transform.x + position
+	global.p2_location = -10 * transform.x + position
 	
 	# Movement input
 	if Input.is_action_pressed("ui_w"):
@@ -149,7 +149,7 @@ func _process(delta):
 		target_rotation += 0.1
 
 	# Smooth rotation using lerp_angle
-	rotation = lerp_angle(rotation, target_rotation, 0.1)
+	rotation = lerp_angle(rotation, target_rotation, 0.25)
 	
 	# detecting for if player can shoot when key is pressed
 	if Input.is_action_pressed("ui_shift") and can_shoot:

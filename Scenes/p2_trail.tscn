@@ -8,6 +8,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 0, 0, 1)
 [node name="Trail2" type="Node2D"]
 
 [node name="P2_trail_line" type="Line2D" parent="."]
+width = 15.0
 default_color = Color(1, 0, 0, 1)
 gradient = SubResource("Gradient_2fw82")
 joint_mode = 2
