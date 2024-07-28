@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgig2m158mu6n"]
+[gd_scene load_steps=4 format=3 uid="uid://cgig2m158mu6n"]
 
 [ext_resource type="Script" path="res://Scripts/rapidfire_powerup.gd" id="1_jd40g"]
+[ext_resource type="Texture2D" uid="uid://db7sm58km1b6i" path="res://Assets/simple firerate powerup.png" id="2_qff64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6wed"]
 size = Vector2(40, 40)
@@ -10,6 +11,7 @@ script = ExtResource("1_jd40g")
 metadata/rapidfire = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -19.0
 offset_right = 20.0
@@ -19,5 +21,10 @@ color = Color(1, 0, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_g6wed")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.14577e-06, 1)
+scale = Vector2(0.0390625, 0.0390625)
+texture = ExtResource("2_qff64")
 
 [connection signal="area_entered" from="." to="." method="_rapidfire_collect"]
