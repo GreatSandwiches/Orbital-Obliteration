@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=19 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://cx3536rcka2kg" path="res://Scenes/space_mine.tscn" id="10_wd516"]
 [ext_resource type="PackedScene" uid="uid://dyrshme8bcxd0" path="res://Scenes/damagepowerup.tscn" id="11_0q2pb"]
 [ext_resource type="PackedScene" uid="uid://cgig2m158mu6n" path="res://Scenes/rapidfire_powerup.tscn" id="13_3gpil"]
-[ext_resource type="PackedScene" uid="uid://8e7suvn44440" path="res://Scenes/asteroid1.tscn" id="13_hwmt6"]
 [ext_resource type="PackedScene" uid="uid://bx5vstpo8eqeh" path="res://Scenes/wall_tile.tscn" id="13_oomva"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ltrh0"]
@@ -150,11 +149,8 @@ position = Vector2(556, 444)
 [node name="Damagepowerup" parent="." instance=ExtResource("11_0q2pb")]
 position = Vector2(392, 556)
 
-[node name="Rapidfire" parent="." instance=ExtResource("13_3gpil")]
+[node name="Node2D3" parent="." instance=ExtResource("13_3gpil")]
 position = Vector2(751, 204)
-
-[node name="Asteroid1" parent="." instance=ExtResource("13_hwmt6")]
-position = Vector2(789, 541)
 
 [node name="Border2" parent="." instance=ExtResource("13_oomva")]
 position = Vector2(1170, 310)
@@ -242,5 +238,5 @@ position = Vector2(798, 94)
 z_index = -100
 offset_right = 1148.0
 offset_bottom = 648.0
-color = Color(0.313726, 0.384314, 0.447059, 1)
+color = Color(0.180392, 0.227451, 0.270588, 1)
 metadata/_edit_lock_ = true
