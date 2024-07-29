@@ -17,39 +17,24 @@ func _ready():
 	var horizontal_area = get_node("/root/Level/Asteroid1").get_child(4)
 
 func _wallhit(wall):
-	if processing == false:
+	
 		var vertical_area = get_node("/root/Level/Asteroid1").get_child(3)
 		var horizontal_area = get_node("/root/Level/Asteroid1").get_child(4)
-		print(len(vertical_area.get_overlapping_areas()))
-		print(len(horizontal_area.get_overlapping_areas()))
-		
 		var difference = position - global.wall_pos1
 		var angle = difference.angle()
-		#if vertical_area.overlaps_area(wall):
-		#	velocity.y = velocity.y * -1
-		#elif horizontal_area.overlaps_area(wall):
-		#	velocity.x = velocity.x * -1
-		#else:
-		#	var needed_rotation =  difference.angle() - velocity.angle()
-		#	velocity = velocity.rotated(needed_rotation)
-			
 		var needed_rotation =  difference.angle() - velocity.angle()
-		velocity = velocity.rotated(needed_rotation)	
+		print(needed_rotation)
+		
+		if vertical_area.overlaps_area(wall):
+			velocity.y = velocity.y * -1
+		elif horizontal_area.overlaps_area(wall):
+			velocity.x = velocity.x * -1
+		else:
+			velocity = velocity.rotated(needed_rotation)
 		
 		velocity = velocity * 0.9
 		
-		
-		var list = []
-		for body in horizontal_area.get_overlapping_areas():
-			if body.is_in_group("wall"):
-				list.append(body)
-				print(list)
-		if len(list) > 1:
-			processing = true
-		else:
-			processing = false
-		
-			
+	
 func _main_hitbox(area):
 	if area.is_in_group("player1"):
 		var scaling = 1 / abs(-velocity.angle() + global.p1_velocity.angle())
@@ -89,7 +74,7 @@ func _horizontal_exited(area):
 		var horizontal = false
 
 func _physics_process(delta):
-	move_and_collide(velocity * delta)
+	move_and_collide(velocity * 1)
 	rotation = 0
 	global.asteroid1_pos = position
 

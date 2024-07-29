@@ -13,5 +13,5 @@ func _process(delta):
 	add_point(global.p2_location, -1)
 	if get_point_position(0) == Vector2(0,0):
 		remove_point(0)
-	if get_point_count() > 20:
+	if get_point_count() > 10:
 		remove_point(0)
