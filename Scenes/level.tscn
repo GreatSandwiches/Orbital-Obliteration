@@ -154,7 +154,7 @@ position = Vector2(392, 556)
 position = Vector2(751, 204)
 
 [node name="Asteroid1" parent="." instance=ExtResource("13_hwmt6")]
-position = Vector2(789, 541)
+position = Vector2(783, 374)
 
 [node name="Border2" parent="." instance=ExtResource("13_oomva")]
 position = Vector2(1170, 310)

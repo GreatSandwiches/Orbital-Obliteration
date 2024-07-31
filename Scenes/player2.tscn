@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi0oghkdlwk23"]
+[gd_scene load_steps=11 format=3 uid="uid://bi0oghkdlwk23"]
 
 [ext_resource type="Script" path="res://Scripts/player2.gd" id="1_jnj5c"]
 [ext_resource type="PackedScene" uid="uid://bd24338h4v8cs" path="res://Scenes/bullet_p2.tscn" id="2_i7yjg"]
@@ -6,6 +6,32 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ycbn"]
 radius = 15.0
+
+[sub_resource type="Gradient" id="Gradient_e63dg"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k3bch"]
+gradient = SubResource("Gradient_e63dg")
+
+[sub_resource type="Curve" id="Curve_212nh"]
+_data = [Vector2(0.00809717, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.593468), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iuaxn"]
+curve = SubResource("Curve_212nh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p3ep2"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 2.08165e-12, 2.08165e-12)
+spread = 38.27
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_iuaxn")
+color = Color(1, 0.658824, 0.603922, 1)
+color_ramp = SubResource("GradientTexture1D_k3bch")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5toj"]
 radius = 15.0
@@ -30,6 +56,10 @@ shape = SubResource("CircleShape2D_1ycbn")
 
 [node name="ProjectileSpawn" type="Node2D" parent="."]
 position = Vector2(21, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_p3ep2")
 
 [node name="Area2D" type="Area2D" parent="." groups=["player", "player2"]]
 metadata/player2 = true
