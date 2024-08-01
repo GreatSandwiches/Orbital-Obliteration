@@ -15,3 +15,11 @@ func _process(delta):
 		remove_point(0)
 	if get_point_count() > 10:
 		remove_point(0)
+		
+	#Smoketrail
+	if global.p2_health < 30:
+		hide()
+	else:
+		show()
+		
+

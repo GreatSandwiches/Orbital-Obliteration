@@ -25,6 +25,7 @@ func _ready():
 	$Timer.wait_time = global.p2_firerate
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
+	$Area2D/SmokeTrail.emitting = false
 
 # damage detection
 func _on_area_2d_area_entered(area):
@@ -80,6 +81,7 @@ func _mine_collision():
 	take_damage(30)
 
 func die():
+	$Area2D/SmokeTrail.emitting = false
 	global.p2_health = 100 
 	global.p1_score += 1
 	global.p2_gunheat = 0
@@ -142,7 +144,13 @@ func _process(delta):
 	
 	#damagepowerup timer/visual representation
 	if global.p2_gundamagepowerup == true:
-		pass
+		pass #not funtioning yet
+	
+	#smoke trail activation
+	if global.p2_health < 30:
+		$Area2D/SmokeTrail.emitting = true
+		$ProjectileSpawn.visible = false
+		
 	
 	# Movement input
 	if Input.is_action_pressed("ui_w"):
