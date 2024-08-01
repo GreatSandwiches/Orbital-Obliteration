@@ -11,6 +11,7 @@ signal p2_exploded
 func _ready():
 	p1_exploded.connect(get_node("/root/Level/Player1")._mine_collision)
 	p2_exploded.connect(get_node("/root/Level/Player2")._mine_collision)
+	$AnimatedSprite2D.play()
 	
 func _process(delta):
 	pass
