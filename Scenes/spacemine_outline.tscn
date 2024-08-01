@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://qi2wm5f32xuy"]
+
+[ext_resource type="Texture2D" uid="uid://cskfouuhrddig" path="res://Assets/spacemine outline.png" id="1_lp2xe"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(9.53674e-07, -5.72205e-06)
+scale = Vector2(0.0566406, 0.0566406)
+texture = ExtResource("1_lp2xe")
