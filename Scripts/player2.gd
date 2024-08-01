@@ -149,7 +149,7 @@ func _process(delta):
 	#smoke trail activation
 	if global.p2_health < 30:
 		$Area2D/SmokeTrail.emitting = true
-		$ProjectileSpawn.visible = false
+		
 		
 	
 	# Movement input
