@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://0xfg10bi6vgc"]
+[gd_scene load_steps=11 format=3 uid="uid://0xfg10bi6vgc"]
 
 [ext_resource type="Script" path="res://Scripts/player1.gd" id="1_cog17"]
 [ext_resource type="PackedScene" uid="uid://bkdtwu8o4hci5" path="res://Scenes/bullet_p1.tscn" id="2_t3o58"]
@@ -9,6 +9,38 @@ radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6atld"]
 radius = 15.0333
+
+[sub_resource type="Gradient" id="Gradient_gwf4w"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k3bch"]
+gradient = SubResource("Gradient_gwf4w")
+
+[sub_resource type="Curve" id="Curve_fcb8u"]
+_data = [Vector2(0.00809717, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.593468), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iuaxn"]
+curve = SubResource("Curve_fcb8u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o58f2"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 2.08165e-12, 2.08165e-12)
+spread = 38.27
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_iuaxn")
+color = Color(1, 0.658824, 0.603922, 1)
+color_ramp = SubResource("GradientTexture1D_k3bch")
+hue_variation_min = 2.08167e-17
+hue_variation_max = 0.2
+collision_mode = 1
+collision_friction = 0.07
+collision_bounce = 1.0
+collision_use_scale = true
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cog17")
@@ -49,6 +81,13 @@ position = Vector2(26, 0)
 position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_6atld")
 
+[node name="SmokeTrail" type="GPUParticles2D" parent="Area2D"]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_o58f2")
+trail_lifetime = 1.0
+trail_sections = 21
+trail_section_subdivisions = 20
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.38419e-07, 0)
 rotation = 1.56921
@@ -59,8 +98,8 @@ texture = ExtResource("3_aiyja")
 
 [node name="DamageBoostTimer" type="Timer" parent="."]
 
+[connection signal="area_entered" from="Area2D" to="." method="_hit"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
-[connection signal="area_entered" from="Area2D" to="." method="_hit"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
 [connection signal="timeout" from="DamageBoostTimer" to="." method="_on_DamagePowerupTimer_timeout"]

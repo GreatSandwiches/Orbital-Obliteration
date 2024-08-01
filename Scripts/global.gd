@@ -12,6 +12,7 @@ var p1_bulletsize = 1
 var spacemine_collision_pos_p1 = Vector2(0,0)
 var p1_position = Vector2(0,0)
 var p1_velocity = Vector2(0,0)
+var p1_gundamagepowerup = false
 
 #p2 variables
 var p2_score = 0
@@ -26,6 +27,7 @@ var p2_bulletsize = 1
 var spacemine_collision_pos_p2 = Vector2(0,0)
 var p2_position = Vector2(0,0)
 var p2_velocity = Vector2(0,0)
+var p2_gundamagepowerup = false
 
 #Variables
 var asteroid1_pos = Vector2(0,0)

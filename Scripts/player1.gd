@@ -120,6 +120,13 @@ func _process(delta):
 	
 	velocity = 500 * shipvector
 	
+	#smoke trail activation
+	if global.p1_health < 30:
+		$Area2D/SmokeTrail.emitting = true
+		
+	else:
+		$Area2D/SmokeTrail.emitting = false
+		
 	
 	#heat cooldown functionality
 	if global.p1_gunheat > 0 and cancool:
