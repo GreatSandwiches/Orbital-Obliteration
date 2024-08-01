@@ -34,4 +34,9 @@ position = Vector2(3.57628e-07, 0.999984)
 scale = Vector2(0.0390625, 0.0390625)
 texture = ExtResource("3_yxpvk")
 
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_rapidfire_collect"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

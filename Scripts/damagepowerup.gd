@@ -1,6 +1,8 @@
 extends Area2D
 
 @onready var global = get_node("/root/Global")
+@onready var hitbox = $CollisionShape2D
+@onready var respawn_timer = $RespawnTimer
 
 
 
@@ -17,4 +19,12 @@ func _process(delta):
 func _on_damage_collect(area):
 	if area.is_in_group("player"):
 		print("pickedup")
-		queue_free()
+		hitbox.set_deferred("disabled", true)
+		hide()
+		respawn_timer.start(10)
+
+
+
+func _on_respawn_timer_timeout():
+	hitbox.disabled = false
+	show()
