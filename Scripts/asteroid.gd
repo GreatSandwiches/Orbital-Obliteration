@@ -26,9 +26,11 @@ func _wallhit(wall):
 		print(needed_rotation)
 		
 		if vertical_area.overlaps_area(wall):
-			velocity.y = velocity.y * -1
+			if angle < PI / 2:
+				velocity.y = velocity.y * -1
 		elif horizontal_area.overlaps_area(wall):
-			velocity.x = velocity.x * -1
+			if angle < PI / 2:
+				velocity.x = velocity.x * -1
 		else:
 			velocity = velocity.rotated(needed_rotation)
 		
