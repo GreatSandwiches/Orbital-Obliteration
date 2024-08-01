@@ -1,6 +1,9 @@
 extends Area2D
 
 @onready var global = get_node("/root/Global")
+@onready var respawn_timer = $RespawnTimer
+@onready var hitbox = $CollisionShape2D
+
 
 signal p1_exploded
 signal p2_exploded
@@ -15,7 +18,10 @@ func _process(delta):
 
 func _player_collision(area):
 	if area.is_in_group("player"):
-		queue_free()
+		print(hitbox)
+		hitbox.set_deferred("disabled", true)
+		hide()
+		respawn_timer.start(5)
 		
 	if area.is_in_group("player1"):
 		global.spacemine_collision_pos_p1 = position
@@ -26,3 +32,9 @@ func _player_collision(area):
 		global.spacemine_collision_pos_p2 = position
 		print(global.spacemine_collision_pos_p2)
 		p2_exploded.emit()
+
+
+func _on_respawn_timer_timeout():
+	$CollisionShape2D.disabled = false
+	show()
+	print("minerespawn")
