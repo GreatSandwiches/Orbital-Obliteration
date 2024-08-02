@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx3536rcka2kg"]
+[gd_scene load_steps=11 format=3 uid="uid://cx3536rcka2kg"]
 
 [ext_resource type="Script" path="res://Scripts/space_mine.gd" id="1_1tsss"]
 [ext_resource type="Texture2D" uid="uid://b40atbfui1aud" path="res://Assets/simple spacemine.png" id="2_srfb6"]
@@ -20,6 +20,36 @@ animations = [{
 "name": &"default",
 "speed": 0.8
 }]
+
+[sub_resource type="Gradient" id="Gradient_kqsf6"]
+offsets = PackedFloat32Array(0.031746, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b13rc"]
+gradient = SubResource("Gradient_kqsf6")
+
+[sub_resource type="Curve" id="Curve_mgvtj"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wn2v6"]
+curve = SubResource("Curve_mgvtj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_15n8y"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+spread = 180.0
+initial_velocity_min = 22.24
+initial_velocity_max = 35.57
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 7.66
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_wn2v6")
+color = Color(1, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_b13rc")
+hue_variation_min = 0.08
+hue_variation_max = 0.13
 
 [node name="Area2D" type="Area2D" groups=["space_mine"]]
 script = ExtResource("1_1tsss")
@@ -43,5 +73,18 @@ scale = Vector2(0.0722656, 0.0722656)
 sprite_frames = SubResource("SpriteFrames_3b5sk")
 frame_progress = 0.368609
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_15n8y")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="HideTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_player_collision"]
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="HideTimer" to="." method="_on_hide_timer_timeout"]

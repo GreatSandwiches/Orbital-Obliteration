@@ -21,15 +21,20 @@ func _player_collision(area):
 	if area.is_in_group("player"):
 		print(hitbox)
 		hitbox.set_deferred("disabled", true)
-		hide()
-		respawn_timer.start(5)
+		respawn_timer.start(8)
+		#switchsprite here?/look to make greyed out.
+		$HideTimer.start(2)
+		
+		
 		
 	if area.is_in_group("player1"):
+		$GPUParticles2D.emitting = true
 		global.spacemine_collision_pos_p1 = position
 		print(global.spacemine_collision_pos_p1)
 		p1_exploded.emit()
 		
 	if area.is_in_group("player2"):
+		$GPUParticles2D.emitting = true
 		global.spacemine_collision_pos_p2 = position
 		print(global.spacemine_collision_pos_p2)
 		p2_exploded.emit()
@@ -39,3 +44,7 @@ func _on_respawn_timer_timeout():
 	$CollisionShape2D.disabled = false
 	show()
 	print("minerespawn")
+
+
+func _on_hide_timer_timeout():
+	hide()
