@@ -81,10 +81,5 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 
-[node name="HideTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [connection signal="area_entered" from="." to="." method="_player_collision"]
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
-[connection signal="timeout" from="HideTimer" to="." method="_on_hide_timer_timeout"]
