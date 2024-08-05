@@ -26,11 +26,25 @@ func _wallhit(wall):
 		print(needed_rotation)
 		
 		if vertical_area.overlaps_area(wall):
-			if angle < PI / 2:
-				velocity.y = velocity.y * -1
+			if global.wall_pos1.y > position.y:
+				if velocity.y > 0:
+					velocity.y = velocity.y * -1
+					print("down")
+			elif global.wall_pos1.y < position.y:
+				if velocity.y < 0:
+					velocity.y = velocity.y * -1
+					print("up")
+					
 		elif horizontal_area.overlaps_area(wall):
-			if angle < PI / 2:
-				velocity.x = velocity.x * -1
+			if global.wall_pos1.x > position.x:
+				if velocity.x > 0:
+					velocity.x = velocity.x * -1
+					print("left")
+			elif global.wall_pos1.x < position.x:
+				if velocity.x < 0:
+					velocity.x = velocity.x * -1
+					print("right")
+
 		else:
 			velocity = velocity.rotated(needed_rotation)
 		
@@ -76,7 +90,7 @@ func _horizontal_exited(area):
 		var horizontal = false
 
 func _physics_process(delta):
-	move_and_collide(velocity * 1)
+	move_and_collide(velocity * 1 * delta)
 	rotation = 0
 	global.asteroid1_pos = position
 
