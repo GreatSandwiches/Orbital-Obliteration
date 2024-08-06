@@ -98,8 +98,11 @@ texture = ExtResource("3_aiyja")
 
 [node name="DamageBoostTimer" type="Timer" parent="."]
 
+[node name="OverheatTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_hit"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
-[connection signal="area_entered" from="Area2D" to="." method="_hit"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
 [connection signal="timeout" from="DamageBoostTimer" to="." method="_on_DamagePowerupTimer_timeout"]
+[connection signal="timeout" from="OverheatTimer" to="." method="_on_overheat_timer_timeout"]

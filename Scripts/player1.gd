@@ -13,6 +13,8 @@ var score = 0
 var cancool = true
 var knockback = Vector2(0,0)
 @onready var global = get_node("/root/Global")
+var is_overheated = false
+
 
 func _ready():
 	global.p1_health = 100
@@ -89,6 +91,12 @@ func _on_timer_timeout():
 
 func _ast_vel_transfer(amount):
 	shipvector -= amount / 500
+	
+	
+func _on_overheat_timer_timeout():
+	is_overheated = false
+	can_shoot = true
+	
 
 func _process(delta):
 	global.p1_position = position
@@ -155,14 +163,21 @@ func _process(delta):
 	rotation = lerp_angle(rotation, target_rotation, 0.25)
 	
 	# detecting for if player can shoot when key is pressed
-	if Input.is_action_pressed("ui_spacebar") and can_shoot:
+	if Input.is_action_pressed("ui_spacebar") and can_shoot and not is_overheated:
 		if global.p1_gunheat < global.p1_maxgunheat:
 			_shoot()
 			global.p1_gunheat += 2
 			can_shoot = false
 			$Timer.start(global.p1_firerate)
+		else:
+			is_overheated = true
+			can_shoot = false
+			$OverheatTimer.start(3.5)
 			
 		
 	# Apply velocity and move the character
 	move_and_slide()
+
+
+
 

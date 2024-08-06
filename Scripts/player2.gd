@@ -13,6 +13,7 @@ var can_shoot = true
 var knockback = Vector2(0,0)
 var score = 0
 var cancool = true
+var is_overheated = false
 
 func _ready():
 	print(rotation_degrees)
@@ -101,7 +102,13 @@ func _on_timer_timeout():
 func _ast_vel_transfer(amount):
 	shipvector -= amount
 
-func _process(delta):
+func _on_overheat_timer_timeout():
+	is_overheated = false
+	can_shoot = true
+
+	
+	
+func _physics_process(delta):
 	global.p2_position = position
 	global.p2_velocity = shipvector
 	# Constrain the player's position within the camera limits
@@ -113,6 +120,7 @@ func _process(delta):
 	shipvector += shipvectorforward - shipvectorbackward
 	# Calculates friction vector
 	
+
 	if shipvector.x >= 0:
 		shipvectorbackward.x = 0.01 * (pow((shipvector.x + 1), 3) - 1)
 	if shipvector.x <= 0:
@@ -167,15 +175,29 @@ func _process(delta):
 	rotation = lerp_angle(rotation, target_rotation, 0.25)
 	
 	# detecting for if player can shoot when key is pressed
-	if Input.is_action_pressed("ui_shift") and can_shoot:
+	if Input.is_action_pressed("ui_shift") and can_shoot and not is_overheated:
 		if global.p2_gunheat < global.p2_maxgunheat:
 			_shoot()
 			global.p2_gunheat += 2
 			can_shoot = false
 			$Timer.start(global.p2_firerate)
+		else: 
+			is_overheated = true
+			can_shoot = false
+			$OverheatTimer.start(3.5)
+			
+			
+	if cancool == false:
+		$CooldownTimer.start(1)
 
 	# Apply velocity and move the character
 	move_and_slide()
+
+
+
+
+
+
 
 
 
