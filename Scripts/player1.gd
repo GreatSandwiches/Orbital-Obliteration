@@ -172,7 +172,7 @@ func _process(delta):
 		else:
 			is_overheated = true
 			can_shoot = false
-			$OverheatTimer.start(3.5)
+			$OverheatTimer.start(2)
 			
 		
 	# Apply velocity and move the character

@@ -184,7 +184,7 @@ func _physics_process(delta):
 		else: 
 			is_overheated = true
 			can_shoot = false
-			$OverheatTimer.start(3.5)
+			$OverheatTimer.start(2)
 			
 			
 	if cancool == false:
