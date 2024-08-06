@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://be3fs0a705w8o" path="res://Assets/simple bullet.png" id="2_jkt7n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q25f8"]
-radius = 4.86187
+radius = 7.0
 
 [node name="Area2D" type="Area2D" groups=["p1_bullet"]]
 script = ExtResource("1_jtdli")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -1.13687e-13)
-scale = Vector2(0.0351563, 0.0348828)
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(0.0527344, 0.0523242)
 texture = ExtResource("2_jkt7n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

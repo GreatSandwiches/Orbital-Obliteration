@@ -130,7 +130,7 @@ func _physics_process(delta):
 	if shipvector.y <= 0:
 		shipvectorbackward.y = 0.01 * (pow((shipvector.y - 1), 3) + 1)
 		
-	velocity = 500 * shipvector
+	velocity = 400 * shipvector
 	#old
 	#shipvectorbackward.x = 0.00001 * (pow((shipvector.x), 3))
 	#shipvectorbackward.y = 0.00001 * (pow((shipvector.y), 3))

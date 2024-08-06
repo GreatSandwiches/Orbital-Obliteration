@@ -126,7 +126,7 @@ func _process(delta):
 	#current position identifier for use with trail
 	global.p1_location = -10 * transform.x + position
 	
-	velocity = 500 * shipvector
+	velocity = 400 * shipvector
 	
 	#smoke trail activation
 	if global.p1_health < 30:
@@ -162,7 +162,7 @@ func _process(delta):
 	# Smooth rotation using lerp_angle
 	rotation = lerp_angle(rotation, target_rotation, 0.25)
 	
-	# detecting for if player can shoot when key is pressed
+	# detecting for if player can shoot when key is pressed - added proper overheat detection 7/8
 	if Input.is_action_pressed("ui_spacebar") and can_shoot and not is_overheated:
 		if global.p1_gunheat < global.p1_maxgunheat:
 			_shoot()
