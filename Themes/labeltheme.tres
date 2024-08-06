@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dw5g2qeyh1v1e"]
+
+[ext_resource type="FontFile" uid="uid://bgmecac7llk31" path="res://Themes/Poppins-SemiBold.ttf" id="1_o2xt8"]
+
+[resource]
+default_font = ExtResource("1_o2xt8")
+default_font_size = 100
+Label/fonts/font = ExtResource("1_o2xt8")

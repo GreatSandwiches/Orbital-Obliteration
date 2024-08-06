@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://yrm8t0y7iduu"]
+[gd_scene load_steps=4 format=3 uid="uid://yrm8t0y7iduu"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_g2rkn"]
 [ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_x6lkf"]
+[ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="3_hwt44"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -12,6 +13,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g2rkn")
 
+[node name="TextureRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 650.0
+color = Color(0.313726, 0.384314, 0.447059, 1)
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -20,9 +27,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -247.0
-offset_top = -223.0
+offset_top = -287.0
 offset_right = 247.0
-offset_bottom = -80.0
+offset_bottom = -144.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -43,6 +50,20 @@ text = "Options"
 layout_mode = 2
 theme = ExtResource("2_x6lkf")
 text = "Quit"
+
+[node name="GameTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -491.5
+offset_top = 64.0
+offset_right = 491.5
+offset_bottom = 204.0
+grow_horizontal = 2
+theme = ExtResource("3_hwt44")
+text = "Orbital Obliteration
+"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
