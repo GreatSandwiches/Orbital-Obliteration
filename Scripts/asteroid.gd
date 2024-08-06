@@ -29,21 +29,17 @@ func _wallhit(wall):
 			if global.wall_pos1.y > position.y:
 				if velocity.y > 0:
 					velocity.y = velocity.y * -1
-					print("down")
 			elif global.wall_pos1.y < position.y:
 				if velocity.y < 0:
 					velocity.y = velocity.y * -1
-					print("up")
 					
 		elif horizontal_area.overlaps_area(wall):
 			if global.wall_pos1.x > position.x:
 				if velocity.x > 0:
 					velocity.x = velocity.x * -1
-					print("left")
 			elif global.wall_pos1.x < position.x:
 				if velocity.x < 0:
 					velocity.x = velocity.x * -1
-					print("right")
 
 		else:
 			velocity = velocity.rotated(needed_rotation)
@@ -54,15 +50,20 @@ func _wallhit(wall):
 func _main_hitbox(area):
 	if area.is_in_group("player1"):
 		var scaling = 1 / abs(-velocity.angle() + global.p1_velocity.angle())
-		print(scaling)
+		print("xxx")
 		var velocity_diff = global.p1_velocity - velocity
-		print(velocity_diff)
-		velocity += velocity_diff
-		p1_vel_transfer.emit(velocity_diff)
 		var difference = position - global.p1_position
 		var angle = difference.angle()
-		var needed_rotation =  difference.angle() - velocity.angle()
+		var needed_rotation =  angle - velocity.angle()
+		var old_velocity = velocity
+		
+		var vector_combination = velocity + global.p1_velocity
+		
+		p1_vel_transfer.emit(old_velocity, angle)
+		velocity += global.p1_velocity
 		velocity = velocity.rotated(needed_rotation)
+		
+		
 		
 		velocity = velocity * 0.9
 	
