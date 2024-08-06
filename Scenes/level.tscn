@@ -86,7 +86,7 @@ position = Vector2(922, 321)
 position = Vector2(120, 150)
 
 [node name="Player2" parent="." instance=ExtResource("2_dt80m")]
-position = Vector2(1023, 503)
+position = Vector2(999, 527)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -174,40 +174,40 @@ position = Vector2(578, 670)
 scale = Vector2(29, 1)
 
 [node name="wall" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(939, 542)
+position = Vector2(939, 574)
 
 [node name="wall2" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(939, 507)
+position = Vector2(939, 539)
 
 [node name="wall3" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(939, 472)
+position = Vector2(939, 504)
 
 [node name="wall4" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(939, 437)
+position = Vector2(939, 469)
 
 [node name="wall5" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(974, 437)
+position = Vector2(974, 469)
 
 [node name="wall6" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(1009, 437)
+position = Vector2(1009, 469)
 
 [node name="wall7" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(213, 107)
+position = Vector2(181, 139)
 
 [node name="wall8" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(213, 142)
+position = Vector2(181, 174)
 
 [node name="wall9" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(213, 177)
+position = Vector2(181, 209)
 
 [node name="wall10" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(213, 212)
+position = Vector2(181, 244)
 
 [node name="wall11" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(178, 212)
+position = Vector2(146, 244)
 
 [node name="wall12" parent="." instance=ExtResource("13_oomva")]
-position = Vector2(143, 212)
+position = Vector2(111, 244)
 
 [node name="wall13" parent="." instance=ExtResource("13_oomva")]
 position = Vector2(372, 441)
