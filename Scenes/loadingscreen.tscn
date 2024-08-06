@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmaaxtty713j"]
+
+[ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="1_k5w0o"]
+[ext_resource type="Script" path="res://Scripts/loadingscreen.gd" id="1_mvh5p"]
+[ext_resource type="FontFile" uid="uid://1xykuakl613o" path="res://Themes/Poppins-Regular.ttf" id="2_nh78s"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("loading_bar", "percentage_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mvh5p")
+loading_bar = NodePath("ProgressBar")
+percentage_label = NodePath("Percentage_label")
+
+[node name="Loading" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.5
+offset_right = 37.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("1_k5w0o")
+text = "Loading..."
+
+[node name="Percentage_label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -220.0
+offset_right = 74.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_k5w0o")
+theme_override_fonts/font = ExtResource("2_nh78s")
+theme_override_font_sizes/font_size = 80
+text = "0%"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -397.0
+offset_top = -46.5
+offset_right = 397.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 2.08165e-12
+show_percentage = false

@@ -13,7 +13,7 @@ func _process(delta):
 
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Scenes/level.tscn")
+	get_tree().change_scene_to_file("res://Scenes/loadingscreen.tscn")
 	
 
 func _on_options_pressed():
