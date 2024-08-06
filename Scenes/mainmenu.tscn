@@ -1,16 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://yrm8t0y7iduu"]
+[gd_scene load_steps=3 format=3 uid="uid://yrm8t0y7iduu"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_g2rkn"]
+[ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_x6lkf"]
 
-[sub_resource type="Gradient" id="Gradient_e46vi"]
-colors = PackedColorArray(0.113725, 0.607843, 0.698039, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uygj6"]
-gradient = SubResource("Gradient_e46vi")
-fill_from = Vector2(0.509174, 0)
-fill_to = Vector2(0.5, 0.988532)
-
-[node name="Control" type="Control"]
+[node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,29 +12,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g2rkn")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 103.0
-offset_top = 8.0
-offset_right = 1246.0
-offset_bottom = 188.0
-theme_override_font_sizes/font_size = 100
-text = "Orbital Obliteration"
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -247.0
+offset_top = -223.0
+offset_right = 247.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 397.0
-offset_top = 375.0
-offset_right = 746.0
-offset_bottom = 531.0
-theme_override_font_sizes/font_size = 50
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_x6lkf")
 text = "Play"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-z_index = -100
-layout_mode = 0
-offset_right = 1150.0
-offset_bottom = 646.0
-texture = SubResource("GradientTexture2D_uygj6")
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_x6lkf")
+text = "Options"
 
-[connection signal="pressed" from="Button" to="." method="_play"]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_x6lkf")
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
