@@ -14,11 +14,13 @@ var knockback = Vector2(0,0)
 var score = 0
 var cancool = true
 var is_overheated = false
+@onready var healthbar = $CanvasLayer/HealthBar
+@onready var health = global.p2_health
 
 func _ready():
 	print(rotation_degrees)
 	global.p2_gundamagepowerup = false
-	global.p2_health = 100
+	health = 100
 	global.p2_gunheat = 0
 	global.p2_firerate = 0.3
 	global.p2_gundamage = 20
@@ -27,6 +29,7 @@ func _ready():
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 	$Area2D/SmokeTrail.emitting = false
+	healthbar._init_health(health)
 
 # damage detection
 func _on_area_2d_area_entered(area):
@@ -71,9 +74,11 @@ func _on_DamagePowerupTimer_timeout():
 	
 		
 func take_damage(amount):
-	global.p2_health -= amount
-	if global.p2_health <= 0:
+	health -= amount
+	if health <= 0:
 		die()
+	
+	healthbar.health = health
 		
 func _mine_collision():
 	knockback = (position - global.spacemine_collision_pos_p2)
@@ -83,12 +88,12 @@ func _mine_collision():
 
 func die():
 	$Area2D/SmokeTrail.emitting = false
-	global.p2_health = 100 
+	health = 100
 	global.p1_score += 1
 	global.p2_gunheat = 0
 	print(global.p1_score)
 	#get_tree().reload_current_scene()
-	position = Vector2(1020, 500)
+	position = Vector2(1000, 530)
 	
 func _shoot():
 	var bullet = bullet_p2_scene.instantiate()
@@ -155,9 +160,14 @@ func _physics_process(delta):
 		pass #not funtioning yet
 	
 	#smoke trail activation
-	if global.p2_health < 30:
+	if health < 30:
 		$Area2D/SmokeTrail.emitting = true
+	
+	else:
+		$Area2D/SmokeTrail.emitting = false
 		
+	
+	global.p2_health = health	#updating global var
 		
 	
 	# Movement input
@@ -172,7 +182,7 @@ func _physics_process(delta):
 		target_rotation += 0.1
 
 	# Smooth rotation using lerp_angle
-	rotation = lerp_angle(rotation, target_rotation, 0.25)
+	rotation = lerp_angle(rotation, target_rotation, 1)
 	
 	# detecting for if player can shoot when key is pressed
 	if Input.is_action_pressed("ui_shift") and can_shoot and not is_overheated:

@@ -86,7 +86,7 @@ position = Vector2(922, 321)
 position = Vector2(120, 150)
 
 [node name="Player2" parent="." instance=ExtResource("2_dt80m")]
-position = Vector2(999, 527)
+position = Vector2(1000, 530)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -100,6 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="P2_Health" type="ProgressBar" parent="."]
+visible = false
 modulate = Color(1, 0, 0, 1)
 offset_left = 837.0
 offset_top = 20.0

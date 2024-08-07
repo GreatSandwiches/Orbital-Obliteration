@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var global = get_node("/root/Global")
 @onready var camera = get_node("Camera2D")
+
 var paused = false
 
 func _ready():
