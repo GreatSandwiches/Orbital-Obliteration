@@ -49,7 +49,6 @@ func _wallhit(wall):
 	
 func _main_hitbox(area):
 	if area.is_in_group("player1"):
-		var scaling = 1 / abs(-velocity.angle() + global.p1_velocity.angle())
 		print("xxx")
 		var velocity_diff = global.p1_velocity - velocity
 		var difference = position - global.p1_position
@@ -59,8 +58,10 @@ func _main_hitbox(area):
 		
 		var vector_combination = velocity + global.p1_velocity
 		
+		var scaling = global.p1_velocity.length()
+		
 		p1_vel_transfer.emit(old_velocity, angle)
-		velocity += global.p1_velocity
+		velocity += difference * scaling
 		velocity = velocity.rotated(needed_rotation)
 		
 		

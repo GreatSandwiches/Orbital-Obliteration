@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://uh01kkk767px"]
+
+[ext_resource type="Texture2D" uid="uid://c1tnc5b2dd8h7" path="res://Assets/simple turret.png" id="1_1owqo"]
+[ext_resource type="Script" path="res://Scripts/turret.gd" id="1_nyd4y"]
+[ext_resource type="PackedScene" uid="uid://sl5rp7y1cepm" path="res://Scenes/enemy_bullet.tscn" id="2_wxijs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yej8b"]
+radius = 219.385
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_nyd4y")
+bullet_scene = ExtResource("2_wxijs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.02656e-06, -1.19209e-07)
+rotation = 1.5707
+scale = Vector2(0.0742187, 0.0742187)
+texture = ExtResource("1_1owqo")
+
+[node name="ProjectileSpawn" type="Node2D" parent="."]
+position = Vector2(35, 0)
+
+[node name="Ray" type="RayCast2D" parent="."]
+exclude_parent = false
+target_position = Vector2(220, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_yej8b")

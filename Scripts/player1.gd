@@ -14,6 +14,7 @@ var cancool = true
 var knockback = Vector2(0,0)
 @onready var global = get_node("/root/Global")
 var is_overheated = false
+var big_bullet = false
 
 
 func _ready():
@@ -51,6 +52,8 @@ func _shoot():
 	var bullet = bullet_p1_scene.instantiate()
 	bullet.position = $ProjectileSpawn.global_position
 	bullet.rotation = rotation
+	if big_bullet == true:
+		bullet.set_scale(Vector2(2,2))
 	get_parent().add_child(bullet)
 	
 	
@@ -78,10 +81,12 @@ func _on_damagepowerup_entered(area):
 		global.p1_gundamage = 50
 		print(global.p2_gundamage)
 		$DamageBoostTimer.start(10)
+		big_bullet = true
 
 
 func _on_DamagePowerupTimer_timeout():
 	global.p1_gundamage = 20
+	big_bullet = false
 	print("Damagepowerup ended")
 	
 	
@@ -89,8 +94,11 @@ func _on_DamagePowerupTimer_timeout():
 func _on_timer_timeout():
 	can_shoot = true
 
-func _ast_vel_transfer(amount):
+
+func _ast_vel_transfer(amount, angle):
 	shipvector -= amount / 500
+	var rotate = angle + PI - shipvector.angle()
+	shipvector = shipvector.rotated(rotate)
 	
 	
 func _on_overheat_timer_timeout():
@@ -134,7 +142,6 @@ func _process(delta):
 		
 	else:
 		$Area2D/SmokeTrail.emitting = false
-		
 	
 	#heat cooldown functionality
 	if global.p1_gunheat > 0 and cancool:
@@ -160,7 +167,7 @@ func _process(delta):
 		target_rotation += 0.1
 
 	# Smooth rotation using lerp_angle
-	rotation = lerp_angle(rotation, target_rotation, 0.25)
+	rotation = lerp_angle(rotation, target_rotation, 1)
 	
 	# detecting for if player can shoot when key is pressed - added proper overheat detection 7/8
 	if Input.is_action_pressed("ui_spacebar") and can_shoot and not is_overheated:
