@@ -12,13 +12,14 @@ var shoot_cooldown = 0.5
 var score = 0
 var cancool = true
 var knockback = Vector2(0,0)
+var bullet_knockback = Vector2(0,0)
 @onready var global = get_node("/root/Global")
 var is_overheated = false
 var big_bullet = false
 
 
 func _ready():
-	global.p1_health = 100
+	global.p1_health = 1000
 	global.p1_gunheat = 0
 	global.p1_firerate = 0.3
 	global.p1_gundamage = 20
@@ -27,9 +28,11 @@ func _ready():
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
-func _hit(area):
-	if area.is_in_group("p2_bullet"):
+func _hit(bullet, bullet_vel):
+	if bullet.is_in_group("p2_bullet"):
 		take_damage(global.p2_gundamage)
+		shipvector += (bullet_vel * 0.0005)
+		# * bullet.get_scale() ~~~~ code for later once changes are replicated for p2
 		
 func take_damage(amount):
 	global.p1_health -= amount

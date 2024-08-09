@@ -2,8 +2,11 @@ extends Area2D
 @export var speed = 500
 @export var lifetime = 2.0
 var velocity = Vector2.ZERO
+signal hit
 
 func _ready():
+	hit.connect(get_node("/root/Level/Player1")._hit)
+	hit.connect(get_node("/root/Level/Player1")._hit)
 	# Calculate the velocity based on the rotation
 	velocity = Vector2(cos(rotation), sin(rotation)) * speed
 	
@@ -24,10 +27,9 @@ func _process(delta):
 	position += velocity * delta
 	
 func _on_area_entered(area):
-	if area.is_in_group("players"):
-		area.take_damage(10)
+	if area.is_in_group("player"):
+		hit.emit(self, velocity)
 		queue_free()
-		print("jfr")
 	if area.is_in_group("wall"):
 		queue_free()
 

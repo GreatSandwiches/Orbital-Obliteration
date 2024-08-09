@@ -18,7 +18,7 @@ scale = Vector2(0.0742187, 0.0742187)
 texture = ExtResource("1_1owqo")
 
 [node name="ProjectileSpawn" type="Node2D" parent="."]
-position = Vector2(35, 0)
+position = Vector2(39, 0)
 
 [node name="Ray" type="RayCast2D" parent="."]
 exclude_parent = false
@@ -30,3 +30,7 @@ collide_with_bodies = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
 shape = SubResource("CircleShape2D_yej8b")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_cooldown_done"]
