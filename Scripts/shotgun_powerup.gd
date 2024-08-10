@@ -3,26 +3,21 @@ extends Area2D
 @onready var global = get_node("/root/Global")
 @onready var hitbox = $CollisionShape2D
 @onready var respawn_timer = $RespawnTimer
+signal collect
 
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	collect.connect(get_node("/root/Level/Player1")._shotgun_powerup_collected)
+	
 func _process(delta):
 	pass
 
-# Makes powerup dissapear after collected
-func _on_damage_collect(area):
+func _collected(area):
 	if area.is_in_group("player"):
-		print("pickedup")
+		collect.emit()
 		hitbox.set_deferred("disabled", true)
 		hide()
 		respawn_timer.start(10)
 
-func _on_respawn_timer_timeout():
+func _duration_end():
 	hitbox.disabled = false
 	show()

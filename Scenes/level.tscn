@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=23 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bx5vstpo8eqeh" path="res://Scenes/wall_tile.tscn" id="13_oomva"]
 [ext_resource type="PackedScene" uid="uid://qi2wm5f32xuy" path="res://Scenes/spacemine_outline.tscn" id="18_7l753"]
 [ext_resource type="PackedScene" uid="uid://uh01kkk767px" path="res://Scenes/turret.tscn" id="19_kngww"]
+[ext_resource type="PackedScene" uid="uid://pj8s42scki05" path="res://Scenes/shotgun_powerup.tscn" id="20_jgln8"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ltrh0"]
 streams_count = 4
@@ -261,3 +262,6 @@ position = Vector2(556, 444)
 
 [node name="Turret" parent="." instance=ExtResource("19_kngww")]
 position = Vector2(623, 179)
+
+[node name="Shotgun_pwrp" parent="." instance=ExtResource("20_jgln8")]
+position = Vector2(210, 455)

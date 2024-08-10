@@ -16,18 +16,24 @@ var bullet_knockback = Vector2(0,0)
 @onready var global = get_node("/root/Global")
 var is_overheated = false
 var big_bullet = false
+var shotgun = false
+var base_gundamage = 20
 
 
 func _ready():
 	global.p1_health = 100
 	global.p1_gunheat = 0
 	global.p1_firerate = 0.3
-	global.p1_gundamage = 20
+	global.p1_gundamage = base_gundamage
 	global.p1_coolingrate = 3
+	global.p1_bulletspeed = 1
+	global.p1_bulletangle = 0
+	global.p1_maxgunheat = 10
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 
+# Bullet dmg and knockback code
 func _hit(bullet, bullet_vel):
 	if bullet.is_in_group("p2_bullet"):
 		take_damage(global.p2_gundamage)
@@ -55,15 +61,28 @@ func die():
 	global.p1_gunheat = 0
 	position = Vector2(120, 150)
 	
-func _shoot():
+func _shoot(deviation):
 	var bullet = bullet_p1_scene.instantiate()
 	bullet.position = $ProjectileSpawn.global_position
-	bullet.rotation = rotation
+	bullet.rotation = rotation + deviation
 	if big_bullet == true:
 		bullet.set_scale(Vector2(2,2))
+		global.p1_gundamage = base_gundamage * 2
+	else:
+		global.p1_gundamage = base_gundamage
 	get_parent().add_child(bullet)
 	
-	
+func _shotgun_powerup_collected():
+	base_gundamage = 4
+	shotgun = true
+	$ShotgunTimer.start(10)
+
+func _on_shotgun_timer_timeout():
+	base_gundamage = 20
+	shotgun = false
+	global.p1_bulletspeed = 1
+	global.p1_bulletangle = 0
+
 	# Function to handle the rapid-fire power-up
 func _on_rapidfire_entered(area):
 	if area.has_meta("rapidfire"):
@@ -85,19 +104,14 @@ func _on_RapidFireTimer_timeout():
 	
 func _on_damagepowerup_entered(area):
 	if area.has_meta("damageincrease"):
-		global.p1_gundamage = 50
-		print(global.p2_gundamage)
 		$DamageBoostTimer.start(10)
 		big_bullet = true
 
 
 func _on_DamagePowerupTimer_timeout():
-	global.p1_gundamage = 20
 	big_bullet = false
-	print("Damagepowerup ended")
-	
-	
-	
+
+
 func _on_timer_timeout():
 	can_shoot = true
 
@@ -179,19 +193,26 @@ func _process(delta):
 	# detecting for if player can shoot when key is pressed - added proper overheat detection 7/8
 	if Input.is_action_pressed("ui_spacebar") and can_shoot and not is_overheated:
 		if global.p1_gunheat < global.p1_maxgunheat:
-			_shoot()
+			# Code for generating shotgun bullets
+			if shotgun == true:
+				for deviation in [(-3*PI/36), (-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36), (3*PI/36)]:
+					var rng = RandomNumberGenerator.new()
+					global.p1_bulletspeed = 1 + rng.randf_range(-0.3, 0)
+					_shoot(deviation)
+					global.p1_gunheat += 0.1
+			else:	
+				_shoot(0)
 			global.p1_gunheat += 2
 			can_shoot = false
 			$Timer.start(global.p1_firerate)
 		else:
 			is_overheated = true
+			global.p1_gunheat = 10
 			can_shoot = false
 			$OverheatTimer.start(2)
 			
 		
 	# Apply velocity and move the character
 	move_and_slide()
-
-
 
 
