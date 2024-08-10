@@ -27,11 +27,13 @@ func _process(delta):
 	position += velocity * delta
 	
 func _on_area_entered(area):
-	if area.is_in_group("player"):
-		hit.emit(self, velocity)
-		queue_free()
+	if area.is_in_group("player1"):
+		if not self.is_in_group("p1_bullet"):
+			hit.emit(self, velocity)
+			queue_free()
+	if area.is_in_group("player2"):
+		if not self.is_in_group("p2_bullet"):
+			hit.emit(self, velocity)
+			queue_free()
 	if area.is_in_group("wall"):
 		queue_free()
-
-
-

@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_q25f8"]
 radius = 7.0
 
-[node name="Area2D" type="Area2D" groups=["p1_bullet"]]
+[node name="P1_bullet" type="Area2D" groups=["p1_bullet"]]
 script = ExtResource("1_jtdli")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
