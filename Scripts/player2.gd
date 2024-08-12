@@ -14,6 +14,9 @@ var knockback = Vector2(0,0)
 var score = 0
 var cancool = true
 var is_overheated = false
+var shotgun = false
+var base_gundamage = 20
+var big_bullet = false
 
 func _ready():
 	print(rotation_degrees)
@@ -21,7 +24,7 @@ func _ready():
 	global.p2_health = 100
 	global.p2_gunheat = 0
 	global.p2_firerate = 0.3
-	global.p2_gundamage = 20
+	global.p2_gundamage = base_gundamage
 	global.p2_coolingrate = 3
 	$Timer.wait_time = global.p2_firerate
 	$Timer.one_shot = true
@@ -29,11 +32,24 @@ func _ready():
 	$Area2D/SmokeTrail.emitting = false
 
 # damage detection
-func _on_area_2d_area_entered(area):
-	if area.is_in_group("p1_bullet"):
+func _hit(bullet, bullet_vel):
+	if bullet.is_in_group("p1_bullet"):
 		take_damage(global.p1_gundamage)
+		shipvector += (bullet_vel * 0.0005 * bullet.get_scale())	
+	if bullet.is_in_group("enemy_bullet"):
+		take_damage(20)
+		shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
 		
 # Powerup detections
+
+func _shotgun_powerup_collected():
+	base_gundamage = 5
+	shotgun = true
+	$ShotgunTimer.start(10)
+
+func _on_shotgun_timer_timeout():
+	base_gundamage = 20
+	shotgun = false
 
 # Function to handle the rapid-fire power-up
 func _on_rapidfire_entered(area):
@@ -57,19 +73,12 @@ func _on_RapidFireTimer_timeout():
 	# Damage booster powerup
 func _on_damagepowerup_entered(area):
 	if area.has_meta("damageincrease"):
-		global.p2_gundamagepowerup = true
-		global.p2_gundamage = 50
-		print(global.p2_gundamage)
 		$DamageBoostTimer.start(10)
-
+		big_bullet = true
 
 func _on_DamagePowerupTimer_timeout():
-	global.p2_gundamage = 20
-	global.p2_gundamagepowerup = false
-	print("Damagepowerup ended")
+	big_bullet = false
 	
-	
-		
 func take_damage(amount):
 	global.p2_health -= amount
 	if global.p2_health <= 0:
@@ -90,10 +99,15 @@ func die():
 	#get_tree().reload_current_scene()
 	position = Vector2(1020, 500)
 	
-func _shoot():
+func _shoot(deviation):
 	var bullet = bullet_p2_scene.instantiate()
 	bullet.position = $ProjectileSpawn.global_position
-	bullet.rotation = rotation
+	bullet.rotation = rotation + deviation
+	if big_bullet == true:
+		bullet.set_scale(Vector2(2,2))
+		global.p2_gundamage = base_gundamage * 2
+	else:
+		global.p2_gundamage = base_gundamage
 	get_parent().add_child(bullet)
 
 func _on_timer_timeout():
@@ -177,12 +191,20 @@ func _physics_process(delta):
 	# detecting for if player can shoot when key is pressed
 	if Input.is_action_pressed("ui_shift") and can_shoot and not is_overheated:
 		if global.p2_gunheat < global.p2_maxgunheat:
-			_shoot()
+			if shotgun == true:
+				for deviation in [(-3*PI/36), (-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36), (3*PI/36)]:
+					var rng = RandomNumberGenerator.new()
+					global.p2_bulletspeed = 1 + rng.randf_range(-0.2, 0)
+					_shoot(deviation)
+					global.p2_gunheat += 0.1
+			else:	
+				_shoot(0)
 			global.p2_gunheat += 2
 			can_shoot = false
 			$Timer.start(global.p2_firerate)
 		else: 
 			is_overheated = true
+			global.p2_gunheat = 10
 			can_shoot = false
 			$OverheatTimer.start(2)
 			
@@ -192,15 +214,5 @@ func _physics_process(delta):
 
 	# Apply velocity and move the character
 	move_and_slide()
-
-
-
-
-
-
-
-
-
-
 
 

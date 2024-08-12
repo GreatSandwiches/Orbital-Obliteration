@@ -27,7 +27,6 @@ func _ready():
 	global.p1_gundamage = base_gundamage
 	global.p1_coolingrate = 3
 	global.p1_bulletspeed = 1
-	global.p1_bulletangle = 0
 	global.p1_maxgunheat = 10
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
@@ -37,12 +36,10 @@ func _ready():
 func _hit(bullet, bullet_vel):
 	if bullet.is_in_group("p2_bullet"):
 		take_damage(global.p2_gundamage)
-		shipvector += (bullet_vel * 0.0005)
-		# * bullet.get_scale() ~~~~ code for later once changes are replicated for p2	
+		shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
 	if bullet.is_in_group("enemy_bullet"):
 		take_damage(20)
-		shipvector += (bullet_vel * 0.0005)
-		# * bullet.get_scale() ~~~~ code for later once changes are replicated for p2	
+		shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
 	
 func take_damage(amount):
 	global.p1_health -= amount
@@ -73,15 +70,13 @@ func _shoot(deviation):
 	get_parent().add_child(bullet)
 	
 func _shotgun_powerup_collected():
-	base_gundamage = 4
+	base_gundamage = 5
 	shotgun = true
 	$ShotgunTimer.start(10)
 
 func _on_shotgun_timer_timeout():
 	base_gundamage = 20
 	shotgun = false
-	global.p1_bulletspeed = 1
-	global.p1_bulletangle = 0
 
 	# Function to handle the rapid-fire power-up
 func _on_rapidfire_entered(area):
@@ -197,7 +192,7 @@ func _process(delta):
 			if shotgun == true:
 				for deviation in [(-3*PI/36), (-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36), (3*PI/36)]:
 					var rng = RandomNumberGenerator.new()
-					global.p1_bulletspeed = 1 + rng.randf_range(-0.3, 0)
+					global.p1_bulletspeed = 1 + rng.randf_range(-0.2, 0)
 					_shoot(deviation)
 					global.p1_gunheat += 0.1
 			else:	

@@ -3,17 +3,24 @@ extends Area2D
 @onready var global = get_node("/root/Global")
 @onready var hitbox = $CollisionShape2D
 @onready var respawn_timer = $RespawnTimer
-signal collect
+signal collect1
+signal collect2
 
 func _ready():
-	collect.connect(get_node("/root/Level/Player1")._shotgun_powerup_collected)
+	collect1.connect(get_node("/root/Level/Player1")._shotgun_powerup_collected)
+	collect2.connect(get_node("/root/Level/Player2")._shotgun_powerup_collected)
 	
 func _process(delta):
 	pass
 
 func _collected(area):
-	if area.is_in_group("player"):
-		collect.emit()
+	if area.is_in_group("player1"):
+		collect1.emit()
+		hitbox.set_deferred("disabled", true)
+		hide()
+		respawn_timer.start(10)
+	if area.is_in_group("player2"):
+		collect2.emit()
 		hitbox.set_deferred("disabled", true)
 		hide()
 		respawn_timer.start(10)

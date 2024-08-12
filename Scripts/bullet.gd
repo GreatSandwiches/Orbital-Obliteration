@@ -8,12 +8,14 @@ signal p2_hit
 
 func _ready():
 	p1_hit.connect(get_node("/root/Level/Player1")._hit)
-	#p2_hit.connect(get_node("/root/Level/Player2")._hit)
+	p2_hit.connect(get_node("/root/Level/Player2")._hit)
 	# Calculate the velocity based on the rotation
 	velocity = Vector2(cos(rotation), sin(rotation)) * speed
 	# Multiplies velocity by desired bullet speed (for shotgun powerup)
 	if self.is_in_group("p1_bullet"):
 		velocity = velocity * global.p1_bulletspeed
+	if self.is_in_group("p2_bullet"):
+		velocity = velocity * global.p2_bulletspeed
 		
 	# Create a timer to handle the bullet's lifetime
 	var timer = Timer.new()
