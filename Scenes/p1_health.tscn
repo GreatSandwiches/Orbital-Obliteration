@@ -13,6 +13,7 @@ offset_right = 23.0
 offset_bottom = 21.0
 rounded = true
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="P1_Heat" type="ProgressBar" parent="."]
 offset_left = -22.0
@@ -21,3 +22,4 @@ offset_right = 22.0
 offset_bottom = 27.0
 max_value = 10.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true

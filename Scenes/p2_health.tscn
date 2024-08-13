@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlwto10cqkuhd"]
+
+[ext_resource type="Script" path="res://Scripts/p2_health.gd" id="1_ogm68"]
+
+[node name="P2_UI" type="Node2D"]
+script = ExtResource("1_ogm68")
+
+[node name="P2_Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -23.0
+offset_top = 13.0
+offset_right = 23.0
+offset_bottom = 21.0
+rounded = true
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="P2_Heat" type="ProgressBar" parent="."]
+offset_left = -22.0
+offset_top = 21.0
+offset_right = 22.0
+offset_bottom = 27.0
+max_value = 10.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=25 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="7_jsaq6"]
 [ext_resource type="PackedScene" uid="uid://cx3536rcka2kg" path="res://Scenes/space_mine.tscn" id="10_wd516"]
 [ext_resource type="PackedScene" uid="uid://dyrshme8bcxd0" path="res://Scenes/damagepowerup.tscn" id="11_0q2pb"]
+[ext_resource type="PackedScene" uid="uid://dlwto10cqkuhd" path="res://Scenes/p2_health.tscn" id="12_86x25"]
 [ext_resource type="PackedScene" uid="uid://cgig2m158mu6n" path="res://Scenes/rapidfire_powerup.tscn" id="13_3gpil"]
 [ext_resource type="PackedScene" uid="uid://8e7suvn44440" path="res://Scenes/asteroid1.tscn" id="13_hwmt6"]
 [ext_resource type="PackedScene" uid="uid://bx5vstpo8eqeh" path="res://Scenes/wall_tile.tscn" id="13_oomva"]
@@ -102,22 +103,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="P2_Health" type="ProgressBar" parent="."]
-visible = false
-modulate = Color(1, 0, 0, 1)
-offset_left = 837.0
-offset_top = 20.0
-offset_right = 1122.0
-offset_bottom = 72.0
-show_percentage = false
+[node name="P1_UI" parent="." instance=ExtResource("21_de81g")]
+z_index = 100
+position = Vector2(0, -94)
 
-[node name="P2_Heat" type="ProgressBar" parent="."]
-offset_left = 880.0
-offset_top = 73.0
-offset_right = 1121.0
-offset_bottom = 100.0
-max_value = 10.0
-show_percentage = false
+[node name="P2_UI" parent="." instance=ExtResource("12_86x25")]
+position = Vector2(78, -94)
 
 [node name="Pause" type="Node2D" parent="."]
 process_mode = 3
@@ -250,5 +241,3 @@ position = Vector2(623, 179)
 
 [node name="Shotgun_pwrp" parent="." instance=ExtResource("20_jgln8")]
 position = Vector2(210, 455)
-
-[node name="P1_Healthbar_mobile" parent="." instance=ExtResource("21_de81g")]

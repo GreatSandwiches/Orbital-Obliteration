@@ -10,8 +10,6 @@ func _ready():
 	CameraLimits.set_limits(camera.limit_left, camera.limit_right, camera.limit_top, camera.limit_bottom)
 
 func _process(delta):
-	$P2_Heat.value = global.p2_gunheat
-	$P2_Health.value = global.p2_health
 	$P1_score.text = ("P1: " + str(global.p1_score))
 	$P2_score.text = ("P2: " + str(global.p2_score))
 
