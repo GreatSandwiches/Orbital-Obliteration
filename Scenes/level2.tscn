@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpx6cd8of6vhd"]
+[gd_scene load_steps=24 format=3 uid="uid://bpx6cd8of6vhd"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_xs5nu"]
 [ext_resource type="AudioStream" uid="uid://c8hjoxap2n3fn" path="res://Music loops/Stream Loops 2023-11-29.ogg" id="2_egdec"]
@@ -15,11 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://cx3536rcka2kg" path="res://Scenes/space_mine.tscn" id="13_68u10"]
 [ext_resource type="PackedScene" uid="uid://dyrshme8bcxd0" path="res://Scenes/damagepowerup.tscn" id="14_ma43v"]
 [ext_resource type="PackedScene" uid="uid://cgig2m158mu6n" path="res://Scenes/rapidfire_powerup.tscn" id="15_twlcc"]
-[ext_resource type="PackedScene" uid="uid://8e7suvn44440" path="res://Scenes/asteroid1.tscn" id="16_x6ya6"]
 [ext_resource type="PackedScene" uid="uid://bx5vstpo8eqeh" path="res://Scenes/wall_tile.tscn" id="17_t0wyu"]
 [ext_resource type="PackedScene" uid="uid://qi2wm5f32xuy" path="res://Scenes/spacemine_outline.tscn" id="18_013ei"]
 [ext_resource type="PackedScene" uid="uid://uh01kkk767px" path="res://Scenes/turret.tscn" id="19_e6ejq"]
 [ext_resource type="PackedScene" uid="uid://pj8s42scki05" path="res://Scenes/shotgun_powerup.tscn" id="20_i20l1"]
+[ext_resource type="PackedScene" uid="uid://chsbwbba2hmj6" path="res://Scenes/p1_health.tscn" id="21_7b6qc"]
+[ext_resource type="PackedScene" uid="uid://dlwto10cqkuhd" path="res://Scenes/p2_health.tscn" id="22_aegef"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ltrh0"]
 streams_count = 4
@@ -101,40 +102,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="P2_Health" type="ProgressBar" parent="."]
-visible = false
-modulate = Color(1, 0, 0, 1)
-offset_left = 837.0
-offset_top = 20.0
-offset_right = 1122.0
-offset_bottom = 72.0
-show_percentage = false
-
-[node name="P1_Health" type="ProgressBar" parent="."]
-modulate = Color(0, 0, 1, 1)
-offset_left = 33.0
-offset_top = 16.0
-offset_right = 327.0
-offset_bottom = 69.0
-rounded = true
-show_percentage = false
-
-[node name="P1_Heat" type="ProgressBar" parent="."]
-offset_left = 35.0
-offset_top = 70.0
-offset_right = 276.0
-offset_bottom = 97.0
-max_value = 10.0
-show_percentage = false
-
-[node name="P2_Heat" type="ProgressBar" parent="."]
-offset_left = 880.0
-offset_top = 73.0
-offset_right = 1121.0
-offset_bottom = 100.0
-max_value = 10.0
-show_percentage = false
-
 [node name="Pause" type="Node2D" parent="."]
 process_mode = 3
 script = ExtResource("11_gaxb6")
@@ -156,9 +123,6 @@ position = Vector2(477, 236)
 
 [node name="Rapidfire" parent="." instance=ExtResource("15_twlcc")]
 position = Vector2(677, 419)
-
-[node name="Asteroid1" parent="." instance=ExtResource("16_x6ya6")]
-position = Vector2(968, 787)
 
 [node name="Border2" parent="." instance=ExtResource("17_t0wyu")]
 position = Vector2(1170, 310)
@@ -305,3 +269,9 @@ position = Vector2(611, 439)
 
 [node name="Turret3" parent="." instance=ExtResource("19_e6ejq")]
 position = Vector2(572, 263)
+
+[node name="P1_UI" parent="." instance=ExtResource("21_7b6qc")]
+position = Vector2(-173, 475)
+
+[node name="P2_UI" parent="." instance=ExtResource("22_aegef")]
+position = Vector2(-165, 545)

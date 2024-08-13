@@ -4,7 +4,7 @@ extends Area2D
 signal hit1
 
 func _ready():
-	hit1.connect(get_node("/root/Level/Asteroid1")._wallhit)
+	pass
 	
 func _process(delta):
 	pass
