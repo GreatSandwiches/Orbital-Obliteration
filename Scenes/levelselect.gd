@@ -2,6 +2,8 @@ extends Control
 @onready var global = get_node("/root/Global")
 
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,16 +14,19 @@ func _process(delta):
 	pass
 
 
-func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Scenes/levelselect.tscn")
-	
 
-func _on_options_pressed():
-	get_tree().change_scene_to_file("res://Scenes/optionsmenu.tscn")
-	
+func _on_option_button_item_selected(index):
+	match index:
+		
+		0: 
+			global.selected_level = global.level_1
+		
+		1: 
+			global.selected_level = global.level_2
+		
+		
+			
 
-func _on_quit_pressed():
-	get_tree().quit()
 
-
-
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/loadingscreen.tscn")

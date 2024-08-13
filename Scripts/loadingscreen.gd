@@ -1,4 +1,5 @@
 extends Control
+@onready var global = get_node("/root/Global")
 
 @export var loading_bar : ProgressBar
 @export var percentage_label : Label
@@ -8,7 +9,7 @@ var progress : Array
 var update : float = 0.0
 
 func _ready():
-	scene_path = "res://scenes/level.tscn"
+	scene_path = global.selected_level
 	ResourceLoader.load_threaded_request(scene_path)
 	
 

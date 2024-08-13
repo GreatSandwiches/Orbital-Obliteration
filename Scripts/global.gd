@@ -34,7 +34,9 @@ var p2_gundamagepowerup = false
 #Variables
 var asteroid1_pos = Vector2(0,0)
 var wall_pos1 = Vector2(0,0)
-
+var selected_level = "res://Scenes/level.tscn"
+var level_1 = "res://Scenes/level.tscn"
+var level_2 = "res://Scenes/level2.tscn"
 
 
 # Called when the node enters the scene tree for the first time.
