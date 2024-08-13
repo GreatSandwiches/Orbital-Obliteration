@@ -192,9 +192,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_shift") and can_shoot and not is_overheated:
 		if global.p2_gunheat < global.p2_maxgunheat:
 			if shotgun == true:
-				for deviation in [(-3*PI/36), (-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36), (3*PI/36)]:
-					var rng = RandomNumberGenerator.new()
-					global.p2_bulletspeed = 1 + rng.randf_range(-0.2, 0)
+				for deviation in [(-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36)]:
+					#var rng = RandomNumberGenerator.new()
+					global.p2_bulletspeed = 1 #+ rng.randf_range(-0.2, 0)
 					_shoot(deviation)
 					global.p2_gunheat += 0.1
 			else:	
