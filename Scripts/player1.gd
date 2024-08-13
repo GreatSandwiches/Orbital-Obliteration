@@ -65,7 +65,9 @@ func _shoot(deviation):
 	if big_bullet == true:
 		bullet.set_scale(Vector2(2,2))
 		global.p1_gundamage = base_gundamage * 2
+		global.p1_bulletspeed = 0.7
 	else:
+		global.p1_bulletspeed = 1
 		global.p1_gundamage = base_gundamage
 	get_parent().add_child(bullet)
 	
@@ -105,6 +107,7 @@ func _on_damagepowerup_entered(area):
 
 func _on_DamagePowerupTimer_timeout():
 	big_bullet = false
+	
 
 
 func _on_timer_timeout():
@@ -192,7 +195,7 @@ func _process(delta):
 			if shotgun == true:
 				for deviation in [(-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36)]:
 					#var rng = RandomNumberGenerator.new()
-					global.p1_bulletspeed = 1 #+ rng.randf_range(-0.2, 0)
+					#global.p1_bulletspeed = 1 + rng.randf_range(-0.2, 0)
 					_shoot(deviation)
 					global.p1_gunheat += 0.1
 			else:	

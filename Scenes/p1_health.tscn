@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://chsbwbba2hmj6"]
+
+[ext_resource type="Script" path="res://Scripts/p1_health.gd" id="1_d2l2l"]
+
+[node name="P1_Healthbar_mobile" type="ProgressBar"]
+modulate = Color(0, 0, 1, 1)
+offset_left = -23.0
+offset_top = 8.0
+offset_right = 23.0
+offset_bottom = 16.0
+rounded = true
+show_percentage = false
+script = ExtResource("1_d2l2l")

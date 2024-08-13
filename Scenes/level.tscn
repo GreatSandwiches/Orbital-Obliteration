@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=24 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://qi2wm5f32xuy" path="res://Scenes/spacemine_outline.tscn" id="18_7l753"]
 [ext_resource type="PackedScene" uid="uid://uh01kkk767px" path="res://Scenes/turret.tscn" id="19_kngww"]
 [ext_resource type="PackedScene" uid="uid://pj8s42scki05" path="res://Scenes/shotgun_powerup.tscn" id="20_jgln8"]
+[ext_resource type="PackedScene" uid="uid://chsbwbba2hmj6" path="res://Scenes/p1_health.tscn" id="21_de81g"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ltrh0"]
 streams_count = 4
@@ -266,3 +267,9 @@ position = Vector2(623, 179)
 
 [node name="Shotgun_pwrp" parent="." instance=ExtResource("20_jgln8")]
 position = Vector2(210, 455)
+
+[node name="P1_Healthbar_mobile" parent="." instance=ExtResource("21_de81g")]
+offset_left = -226.0
+offset_top = 265.0
+offset_right = -180.0
+offset_bottom = 273.0
