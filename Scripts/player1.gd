@@ -190,9 +190,9 @@ func _process(delta):
 		if global.p1_gunheat < global.p1_maxgunheat:
 			# Code for generating shotgun bullets
 			if shotgun == true:
-				for deviation in [(-3*PI/36), (-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36), (3*PI/36)]:
-					var rng = RandomNumberGenerator.new()
-					global.p1_bulletspeed = 1 + rng.randf_range(-0.2, 0)
+				for deviation in [(-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36)]:
+					#var rng = RandomNumberGenerator.new()
+					global.p1_bulletspeed = 1 #+ rng.randf_range(-0.2, 0)
 					_shoot(deviation)
 					global.p1_gunheat += 0.1
 			else:	
