@@ -48,6 +48,9 @@ func _physics_process(delta):
 	else:
 		visible = true          
 
+
+	global.ai_position = position
+	
 	# Set the target position to the player's position
 	nav.target_position = global.p2_position
 	

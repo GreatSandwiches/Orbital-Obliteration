@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bpx6cd8of6vhd"]
+[gd_scene load_steps=27 format=3 uid="uid://bpx6cd8of6vhd"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_xs5nu"]
 [ext_resource type="AudioStream" uid="uid://c8hjoxap2n3fn" path="res://Music loops/Stream Loops 2023-11-29.ogg" id="2_egdec"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://uh01kkk767px" path="res://Scenes/turret.tscn" id="19_e6ejq"]
 [ext_resource type="PackedScene" uid="uid://pj8s42scki05" path="res://Scenes/shotgun_powerup.tscn" id="20_i20l1"]
 [ext_resource type="PackedScene" uid="uid://chsbwbba2hmj6" path="res://Scenes/p1_health.tscn" id="21_7b6qc"]
+[ext_resource type="PackedScene" uid="uid://ykxdmm4l6arj" path="res://Scenes/ai_health.tscn" id="21_aei0x"]
 [ext_resource type="PackedScene" uid="uid://dlwto10cqkuhd" path="res://Scenes/p2_health.tscn" id="22_aegef"]
 [ext_resource type="PackedScene" uid="uid://bl4whrci2amdr" path="res://Scenes/enemyai.tscn" id="22_y1k4k"]
 
@@ -279,6 +280,9 @@ position = Vector2(572, 263)
 
 [node name="P1_UI" parent="." instance=ExtResource("21_7b6qc")]
 position = Vector2(-173, 475)
+
+[node name="AI_UI" parent="." instance=ExtResource("21_aei0x")]
+position = Vector2(-176, 426)
 
 [node name="P2_UI" parent="." instance=ExtResource("22_aegef")]
 position = Vector2(-165, 545)

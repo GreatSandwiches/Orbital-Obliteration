@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=27 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dlwto10cqkuhd" path="res://Scenes/p2_health.tscn" id="12_86x25"]
 [ext_resource type="PackedScene" uid="uid://cgig2m158mu6n" path="res://Scenes/rapidfire_powerup.tscn" id="13_3gpil"]
 [ext_resource type="PackedScene" uid="uid://bx5vstpo8eqeh" path="res://Scenes/wall_tile.tscn" id="13_oomva"]
+[ext_resource type="PackedScene" uid="uid://ykxdmm4l6arj" path="res://Scenes/ai_health.tscn" id="13_q3lq5"]
 [ext_resource type="PackedScene" uid="uid://qi2wm5f32xuy" path="res://Scenes/spacemine_outline.tscn" id="18_7l753"]
 [ext_resource type="PackedScene" uid="uid://uh01kkk767px" path="res://Scenes/turret.tscn" id="19_kngww"]
 [ext_resource type="PackedScene" uid="uid://pj8s42scki05" path="res://Scenes/shotgun_powerup.tscn" id="20_jgln8"]
@@ -115,6 +116,9 @@ position = Vector2(0, -94)
 
 [node name="P2_UI" parent="." instance=ExtResource("12_86x25")]
 position = Vector2(78, -94)
+
+[node name="AI_UI" parent="." instance=ExtResource("13_q3lq5")]
+position = Vector2(144, -88)
 
 [node name="Pause" type="Node2D" parent="."]
 process_mode = 3
