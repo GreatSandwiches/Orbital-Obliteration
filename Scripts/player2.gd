@@ -157,7 +157,7 @@ func _physics_process(delta):
 			global.p2_gunheat = 0
 			
 	# Jank but it works ig // shot detection for guncooldown
-	if Input.is_action_pressed("ui_shift"):
+	if Input.is_action_pressed("ui_spacebar"):
 		cancool = true
 	else:
 		cancool = true
@@ -175,21 +175,21 @@ func _physics_process(delta):
 		
 	
 	# Movement input
-	if Input.is_action_pressed("ui_w"):
+	if Input.is_action_pressed("ui_up"):
 		acceleration = 2
 	else:
 		acceleration = 0
 	# Rotation input
-	if Input.is_action_pressed("ui_a"):
+	if Input.is_action_pressed("ui_left"):
 		target_rotation -= 0.075
-	elif Input.is_action_pressed("ui_d"):
+	elif Input.is_action_pressed("ui_right"):
 		target_rotation += 0.075
 
 	# Smooth rotation using lerp_angle
 	rotation = lerp_angle(rotation, target_rotation, 0.25)
 	
 	# detecting for if player can shoot when key is pressed
-	if Input.is_action_pressed("ui_shift") and can_shoot and not is_overheated:
+	if Input.is_action_pressed("ui_spacebar") and can_shoot and not is_overheated:
 		if global.p2_gunheat < global.p2_maxgunheat:
 			if shotgun == true:
 				for deviation in [(-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36)]:

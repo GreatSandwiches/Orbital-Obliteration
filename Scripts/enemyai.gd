@@ -79,7 +79,7 @@ func _physics_process(delta):
 			if loaded == true:
 				_shoot()
 				loaded = false
-				$Timer.start(1)
+				$Timer.start(0.5)
 				
 	# Move the character and handle collisions
 	move_and_slide()

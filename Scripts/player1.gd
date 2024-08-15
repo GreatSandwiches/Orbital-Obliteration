@@ -181,20 +181,20 @@ func _process(delta):
 			global.p1_gunheat = 0
 	
 	# Jank but it works ig // shot detection for guncooldown
-	if Input.is_action_pressed("ui_spacebar"):
+	if Input.is_action_pressed("ui_shift"):
 		cancool = true
 	else:
 		cancool = true
 	
 	# Movement input
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_w"):
 		acceleration = 2
 	else:
 		acceleration = 0
 	# Rotation input
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_a"):
 		target_rotation -= 0.075
-	elif Input.is_action_pressed("ui_right"):
+	elif Input.is_action_pressed("ui_d"):
 		target_rotation += 0.075
 
 	# Smooth rotation using lerp_angle
