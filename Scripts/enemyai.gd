@@ -1,12 +1,27 @@
 extends CharacterBody2D
 @onready var global = get_node("/root/Global")
-
+@export var bullet_scene: PackedScene
 var speed = 200
 var accel = 2
-var min_distance = 100 # Minimum distance to maintain from the player
-
+var min_distance = 100 
+var loaded = true
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 
+
+
+func _shoot():
+	if bullet_scene == null:
+		print("Error: bullet_scene is not assigned!")
+		return
+		
+	var bullet = bullet_scene.instantiate()
+	bullet.position = $ProjectileSpawn.global_position
+	bullet.rotation = rotation
+	get_parent().add_child(bullet)
+
+func _cooldown_done():
+	loaded = true
+	
 func _physics_process(delta):
 	var direction = Vector2()
 	nav.target_position = global.p2_position
@@ -26,4 +41,12 @@ func _physics_process(delta):
 	# Adjust the velocity based on the distance to the player
 	velocity = velocity.lerp(direction * speed * speed_factor, accel * delta)
 
+	if $Ray.get_collider() != null:
+		if $Ray.get_collider().is_in_group("player"):
+			if loaded == true:
+				_shoot()
+				loaded = false
+				$Timer.start(1)
+				
+				
 	move_and_slide()
