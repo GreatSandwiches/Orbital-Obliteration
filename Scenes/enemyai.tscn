@@ -27,10 +27,18 @@ position = Vector2(12, 0)
 
 [node name="Ray" type="RayCast2D" parent="."]
 exclude_parent = false
-target_position = Vector2(100, -1)
+target_position = Vector2(200, -1)
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="raycast_front" type="RayCast2D" parent="."]
+target_position = Vector2(50, 2.08165e-12)
+
+[node name="raycast_left" type="RayCast2D" parent="."]
+target_position = Vector2(2.08165e-12, -50)
+
+[node name="raycast_right" type="RayCast2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_cooldown_done"]
