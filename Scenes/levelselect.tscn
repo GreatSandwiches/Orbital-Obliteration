@@ -44,13 +44,13 @@ popup/item_0/id = 0
 popup/item_1/text = "Level 2"
 popup/item_1/id = 1
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Play"
-
 [node name="ModeSelect" type="CheckButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "1 Player / 2 Player"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
 
 [node name="GameTitle" type="Label" parent="."]
 layout_mode = 1
@@ -68,5 +68,5 @@ text = "Level Select
 horizontal_alignment = 1
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/ModeSelect" to="." method="_on_mode_select_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
