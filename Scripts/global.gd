@@ -31,12 +31,18 @@ var p2_position = Vector2(0,0)
 var p2_velocity = Vector2(0,0)
 var p2_gundamagepowerup = false
 
+
+#AI variables
+var ai_health = 100
+
+
 #Variables
 var asteroid1_pos = Vector2(0,0)
 var wall_pos1 = Vector2(0,0)
 var selected_level = "res://Scenes/level.tscn"
 var level_1 = "res://Scenes/level.tscn"
 var level_2 = "res://Scenes/level2.tscn"
+var game_mode = 0  # 0 for singleplayer 1 for multiplayer
 
 
 # Called when the node enters the scene tree for the first time.

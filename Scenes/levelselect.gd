@@ -30,3 +30,12 @@ func _on_option_button_item_selected(index):
 
 func _on_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/loadingscreen.tscn")
+
+
+func _on_mode_select_toggled(button_pressed):
+	if button_pressed == true:
+		global.game_mode = 1
+	
+	else:
+		global.game_mode = 0
+		

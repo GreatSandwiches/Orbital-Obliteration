@@ -21,6 +21,8 @@ var base_gundamage = 20
 
 
 func _ready():
+	
+		
 	global.p1_health = 100
 	global.p1_gunheat = 0
 	global.p1_firerate = 0.3
@@ -126,6 +128,16 @@ func _on_overheat_timer_timeout():
 	
 
 func _process(delta):
+	
+	if global.game_mode == 0:
+		visible = false
+		velocity = Vector2.ZERO
+		queue_free()
+		return
+	
+	
+	
+	
 	global.p1_position = position
 	global.p1_velocity = velocity
 	# Constrain the player's position within the camera limits

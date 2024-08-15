@@ -1,17 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl4whrci2amdr"]
+[gd_scene load_steps=6 format=3 uid="uid://bl4whrci2amdr"]
 
 [ext_resource type="Script" path="res://Scripts/enemyai.gd" id="1_2hp62"]
 [ext_resource type="Texture2D" uid="uid://cpwml6am2nstv" path="res://Assets/simple p1 ship.png" id="2_d4dgi"]
 [ext_resource type="PackedScene" uid="uid://sl5rp7y1cepm" path="res://Scenes/enemy_bullet.tscn" id="3_01cva"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_llli1"]
-radius = 17.0
+radius = 14.0357
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_w31cf"]
+radius = 14.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["ai"]]
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_2hp62")
 bullet_scene = ExtResource("3_01cva")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+radius = 50.0
+avoidance_layers = 7
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_llli1")
@@ -23,22 +32,34 @@ scale = Vector2(0.0559562, 0.058754)
 texture = ExtResource("2_d4dgi")
 
 [node name="ProjectileSpawn" type="Node2D" parent="."]
-position = Vector2(12, 0)
+position = Vector2(23, 0)
 
 [node name="Ray" type="RayCast2D" parent="."]
 exclude_parent = false
-target_position = Vector2(200, -1)
+target_position = Vector2(250, -1)
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="Area2D" type="Area2D" parent="." groups=["ai"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_w31cf")
+
 [node name="raycast_front" type="RayCast2D" parent="."]
-target_position = Vector2(50, 2.08165e-12)
+visible = false
+target_position = Vector2(50, 0)
 
 [node name="raycast_left" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(2.08165e-12, -50)
 
 [node name="raycast_right" type="RayCast2D" parent="."]
+visible = false
+
+[node name="raycast_back" type="RayCast2D" parent="."]
+visible = false
+target_position = Vector2(-50, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_cooldown_done"]

@@ -19,17 +19,28 @@ func _cooldown_done():
 	loaded = true
 
 func _process(delta):
-	if $Detection.overlaps_area(get_node("/root/Level/Player1").get_child(0)) or $Detection.overlaps_area(get_node("/root/Level/Player2").get_child(0)):
-		if position.distance_to(global.p1_position) <= position.distance_to(global.p2_position):
-			direction = global.p1_position - position
-		else:
-			direction = global.p2_position - position
-		print(position.distance_to(global.p1_position))
-		print(position.distance_to(global.p2_position))
-		var angle = self.transform.x.angle_to(direction)
-		self.rotate(sign(angle) * min(PI / 70, abs(angle)))
-		#old rotate script
-		#rotation = lerp_angle(rotation, (global.p1_position - position).angle(), 0.05)
+	var target_position = global.p2_position  # Default to Player 2's position
+
+	if global.game_mode == 1:
+		# Search for both players when game_mode is 1
+		if $Detection.overlaps_area(get_node("/root/Level/Player1").get_child(0)) or $Detection.overlaps_area(get_node("/root/Level/Player2").get_child(0)):
+			if position.distance_to(global.p1_position) <= position.distance_to(global.p2_position):
+				target_position = global.p1_position
+			else:
+				target_position = global.p2_position
+	else:
+		# Only look for Player 2 when game_mode is 0
+		if $Detection.overlaps_area(get_node("/root/Level/Player2").get_child(0)):
+			target_position = global.p2_position
+
+	# Calculate direction towards the target position
+	direction = target_position - position
+	
+	# Rotate towards the target direction smoothly
+	var angle = self.transform.x.angle_to(direction)
+	self.rotate(sign(angle) * min(PI / 70, abs(angle)))
+
+	# Shooting logic
 	if $Ray.get_collider() != null:
 		if $Ray.get_collider().is_in_group("player"):
 			if loaded == true:

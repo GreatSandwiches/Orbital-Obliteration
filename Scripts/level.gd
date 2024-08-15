@@ -7,6 +7,8 @@ var paused = false
 
 func _ready():
 	
+	
+	
 	CameraLimits.set_limits(camera.limit_left, camera.limit_right, camera.limit_top, camera.limit_bottom)
 
 func _process(delta):

@@ -5,10 +5,16 @@ extends Area2D
 var velocity = Vector2.ZERO
 signal p1_hit
 signal p2_hit
+signal ai_hit
 
 func _ready():
-	p1_hit.connect(get_node("/root/Level/Player1")._hit)
-	p2_hit.connect(get_node("/root/Level/Player2")._hit)
+	if global.game_mode == 1:
+		p1_hit.connect(get_node("/root/Level/Player1")._hit)
+		p2_hit.connect(get_node("/root/Level/Player2")._hit)
+	else:
+		p2_hit.connect(get_node("/root/Level/Player2")._hit)
+		ai_hit.connect(get_node("/root/Level/EnemyAi")._hit)
+		
 	# Calculate the velocity based on the rotation
 	velocity = Vector2(cos(rotation), sin(rotation)) * speed
 	# Multiplies velocity by desired bullet speed (for shotgun powerup)
@@ -43,4 +49,7 @@ func _on_area_entered(area):
 			p2_hit.emit(self, velocity)
 			queue_free()
 	if area.is_in_group("wall"):
+		queue_free()
+	if area.is_in_group("ai"):
+		ai_hit.emit(self, velocity)
 		queue_free()
