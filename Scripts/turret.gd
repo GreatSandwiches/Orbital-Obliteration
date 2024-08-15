@@ -4,10 +4,12 @@ extends Node2D
 @export var bullet_scene: PackedScene
 @onready var global = get_node("/root/Global")
 var loaded = true
+var target_position = Vector2(0,0)
 var direction = Vector2(0,0)
 
 func _ready():
-	pass # Replace with function body.
+	target_position = position + Vector2(1,0)
+	direction = position + Vector2(1,0)
 
 func _shoot():
 	var bullet = bullet_scene.instantiate()
@@ -19,8 +21,6 @@ func _cooldown_done():
 	loaded = true
 
 func _process(delta):
-	var target_position = global.p2_position  # Default to Player 2's position
-
 	if global.game_mode == 1:
 		# Search for both players when game_mode is 1
 		if $Detection.overlaps_area(get_node("/root/Level/Player1").get_child(0)) or $Detection.overlaps_area(get_node("/root/Level/Player2").get_child(0)):
@@ -28,7 +28,7 @@ func _process(delta):
 				target_position = global.p1_position
 			else:
 				target_position = global.p2_position
-	else:
+	if global.game_mode == 0:
 		# Only look for Player 2 when game_mode is 0
 		if $Detection.overlaps_area(get_node("/root/Level/Player2").get_child(0)):
 			target_position = global.p2_position
