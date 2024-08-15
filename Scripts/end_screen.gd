@@ -8,7 +8,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if global.p1_score > global.p2_score:
+		if global.game_mode == 1:
+			$Label2.text = "Player 1 wins!"
+		elif  global.game_mode == 0:
+			$Label2.text = "AI wins!"
+	elif global.p1_score < global.p2_score:
+		$Label2.text = "Player 2 wins!"
 
 func _restart():
 	get_tree().change_scene_to_file(global.selected_level)

@@ -36,6 +36,7 @@ func _hit(bullet, bullet_vel):
 		
 func die():
 	global.ai_health = 100
+	global.p2_score += 1
 	position = Vector2(120, 150)
 
 func _physics_process(delta):
