@@ -20,3 +20,7 @@ func _restart():
 	get_tree().change_scene_to_file(global.selected_level)
 	global.p1_score = 0
 	global.p2_score = 0
+
+
+func _on_button_2_pressed():
+	get_tree().change_scene_to_file("res://Scenes/mainmenu.tscn")
