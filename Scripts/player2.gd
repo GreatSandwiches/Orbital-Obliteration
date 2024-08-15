@@ -136,13 +136,13 @@ func _physics_process(delta):
 	
 
 	if shipvector.x >= 0:
-		shipvectorbackward.x = 0.01 * (pow((shipvector.x + 1), 3) - 1)
+		shipvectorbackward.x = 0.01 * (pow((shipvector.x + 1.2), 3) - 1.728)
 	if shipvector.x <= 0:
-		shipvectorbackward.x = 0.01 * (pow((shipvector.x - 1), 3) + 1)
+		shipvectorbackward.x = 0.01 * (pow((shipvector.x - 1.2), 3) + 1.728)
 	if shipvector.y >= 0:
-		shipvectorbackward.y = 0.01 * (pow((shipvector.y + 1), 3) - 1)
+		shipvectorbackward.y = 0.01 * (pow((shipvector.y + 1.2), 3) - 1.728)
 	if shipvector.y <= 0:
-		shipvectorbackward.y = 0.01 * (pow((shipvector.y - 1), 3) + 1)
+		shipvectorbackward.y = 0.01 * (pow((shipvector.y - 1.2), 3) + 1.728)
 		
 	velocity = 400 * shipvector
 	#old
@@ -181,9 +181,9 @@ func _physics_process(delta):
 		acceleration = 0
 	# Rotation input
 	if Input.is_action_pressed("ui_a"):
-		target_rotation -= 0.1
+		target_rotation -= 0.075
 	elif Input.is_action_pressed("ui_d"):
-		target_rotation += 0.1
+		target_rotation += 0.075
 
 	# Smooth rotation using lerp_angle
 	rotation = lerp_angle(rotation, target_rotation, 0.25)
@@ -206,7 +206,7 @@ func _physics_process(delta):
 			is_overheated = true
 			global.p2_gunheat = 10
 			can_shoot = false
-			$OverheatTimer.start(2)
+			$OverheatTimer.start(1)
 			
 			
 	if cancool == false:
