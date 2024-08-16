@@ -52,6 +52,13 @@ func _physics_process(delta):
 
 	global.ai_position = position
 	
+	
+	if global.ai_health < 30:
+		$SmokeTrail.emitting = true
+		
+	else:
+		$SmokeTrail.emitting = false
+		
 	# Set the target position to the player's position
 	nav.target_position = global.p2_position
 	

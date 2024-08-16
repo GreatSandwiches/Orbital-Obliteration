@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl4whrci2amdr"]
+[gd_scene load_steps=11 format=3 uid="uid://bl4whrci2amdr"]
 
 [ext_resource type="Script" path="res://Scripts/enemyai.gd" id="1_2hp62"]
 [ext_resource type="Texture2D" uid="uid://cpwml6am2nstv" path="res://Assets/simple p1 ship.png" id="2_d4dgi"]
@@ -9,6 +9,38 @@ radius = 14.0357
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w31cf"]
 radius = 14.0
+
+[sub_resource type="Gradient" id="Gradient_rs80m"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k3bch"]
+gradient = SubResource("Gradient_rs80m")
+
+[sub_resource type="Curve" id="Curve_4jgvy"]
+_data = [Vector2(0.00809717, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.593468), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iuaxn"]
+curve = SubResource("Curve_4jgvy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ef6pp"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 2.08165e-12, 2.08165e-12)
+spread = 38.27
+initial_velocity_min = 60.0
+initial_velocity_max = 60.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_iuaxn")
+color = Color(1, 0.658824, 0.603922, 1)
+color_ramp = SubResource("GradientTexture1D_k3bch")
+hue_variation_min = 2.08167e-17
+hue_variation_max = 0.2
+collision_mode = 1
+collision_friction = 0.07
+collision_bounce = 1.0
+collision_use_scale = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["ai"]]
 motion_mode = 1
@@ -61,5 +93,12 @@ visible = false
 [node name="raycast_back" type="RayCast2D" parent="."]
 visible = false
 target_position = Vector2(-50, 0)
+
+[node name="SmokeTrail" type="GPUParticles2D" parent="."]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_ef6pp")
+trail_lifetime = 1.0
+trail_sections = 21
+trail_section_subdivisions = 20
 
 [connection signal="timeout" from="Timer" to="." method="_cooldown_done"]
