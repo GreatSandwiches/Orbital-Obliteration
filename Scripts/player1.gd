@@ -132,6 +132,7 @@ func _process(delta):
 	if global.game_mode == 0:
 		visible = false
 		velocity = Vector2.ZERO
+		position = Vector2(-101, 151)
 		queue_free()
 		return
 	
@@ -201,7 +202,7 @@ func _process(delta):
 	rotation = lerp_angle(rotation, target_rotation, 1)
 	
 	# detecting for if player can shoot when key is pressed - added proper overheat detection 7/8
-	if Input.is_action_pressed("ui_spacebar") and can_shoot and not is_overheated:
+	if Input.is_action_pressed("ui_shift") and can_shoot and not is_overheated:
 		if global.p1_gunheat < global.p1_maxgunheat:
 			# Code for generating shotgun bullets
 			if shotgun == true:

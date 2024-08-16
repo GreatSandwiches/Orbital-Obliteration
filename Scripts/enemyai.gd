@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 var speed = 180
 var accel = 2
-var min_distance = 150
+var min_distance = 50
 var loaded = true
 
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
@@ -44,7 +44,8 @@ func _physics_process(delta):
 	if global.game_mode == 1:
 		
 		velocity = Vector2.ZERO 
-		visible = false         
+		visible = false
+		position = Vector2(-101, 151)        
 		return  # Exit the function early to prevent any further processing
 	else:
 		visible = true          
