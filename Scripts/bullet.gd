@@ -51,5 +51,6 @@ func _on_area_entered(area):
 	if area.is_in_group("wall"):
 		queue_free()
 	if area.is_in_group("ai"):
-		ai_hit.emit(self, velocity)
-		queue_free()
+		if not self.is_in_group("enemy_bullet"):
+			ai_hit.emit(self, velocity)
+			queue_free()
