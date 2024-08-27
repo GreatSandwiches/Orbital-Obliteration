@@ -17,9 +17,13 @@ var is_overheated = false
 var shotgun = false
 var base_gundamage = 20
 var big_bullet = false
+var shield = true
+var immunity = true
+signal shield_animation
 
 func _ready():
-	print(rotation_degrees)
+	$Shieldframes.stop()
+	$Shieldframes.set_frame_and_progress(0,0.0)
 	global.p2_gundamagepowerup = false
 	global.p2_health = 100
 	global.p2_gunheat = 0
@@ -30,18 +34,31 @@ func _ready():
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
 	$Area2D/SmokeTrail.emitting = false
+	shield_animation.connect(self._shield_animate)
 
 # damage detection
 func _hit(bullet, bullet_vel):
-	if bullet.is_in_group("p1_bullet"):
-		take_damage(global.p1_gundamage)
-		shipvector += (bullet_vel * 0.0005 * bullet.get_scale())	
-	if bullet.is_in_group("enemy_bullet"):
-		take_damage(20)
-		shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
+	if shield == true:
+		shield = false
+		shield_animation.emit()
+	if immunity == false:
+		if bullet.is_in_group("p1_bullet"):
+			take_damage(global.p2_gundamage)
+			shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
+		if bullet.is_in_group("enemy_bullet"):
+			take_damage(20)
+			shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
 		
-# Powerup detections
+func _shield_animate():
+	$Shieldframes.play()
+	$ShieldTimer.start(6/7)
 
+func _shield_down():
+	$Shieldframes.stop()
+	$Shieldframes.set_frame_and_progress(1,0.0)
+	immunity = false
+
+# Powerup detections
 func _shotgun_powerup_collected():
 	base_gundamage = 5
 	shotgun = true
@@ -86,9 +103,12 @@ func take_damage(amount):
 		
 func _mine_collision():
 	knockback = (position - global.spacemine_collision_pos_p2)
-	print(knockback)
 	shipvector += knockback * 0.07
-	take_damage(30)
+	if immunity == false:
+		take_damage(30)
+	else:
+		$Shieldframes.play()
+		$ShieldTimer.start(6/7)
 
 func die():
 	$Area2D/SmokeTrail.emitting = false

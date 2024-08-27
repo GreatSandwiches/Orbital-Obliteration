@@ -76,7 +76,7 @@ func _physics_process(delta):
 	# Smooth rotation towards the movement direction
 	if direction != Vector2.ZERO:
 		var target_rotation = direction.angle()
-		rotation = lerp_angle(rotation, target_rotation, accel * delta)
+		rotation = lerp_angle(rotation, target_rotation, accel * delta * 2)
 
 	# Adjust the velocity based on the distance to the player and the direction
 	velocity = velocity.lerp(direction * speed * speed_factor, accel * delta)
