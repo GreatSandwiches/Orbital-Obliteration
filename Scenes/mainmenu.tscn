@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://yrm8t0y7iduu"]
+[gd_scene load_steps=5 format=3 uid="uid://yrm8t0y7iduu"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_g2rkn"]
 [ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_x6lkf"]
 [ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="3_hwt44"]
+[ext_resource type="AudioStream" uid="uid://b3huo5b0idfiy" path="res://Sound effects/Equatorial Complex.mp3" id="4_65amo"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -64,6 +65,10 @@ grow_horizontal = 2
 theme = ExtResource("3_hwt44")
 text = "Orbital Obliteration
 "
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_65amo")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]

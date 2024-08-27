@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/optionsmenu.gd" id="1_qr04s"]
 [ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_0x6y1"]
-[ext_resource type="AudioStream" uid="uid://c8hjoxap2n3fn" path="res://Music loops/Stream Loops 2023-11-29.ogg" id="2_dyxuu"]
+[ext_resource type="PackedScene" uid="uid://bperdycqkw1e8" path="res://Scenes/bg_music.tscn" id="3_1f5sn"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -83,9 +83,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Back"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_dyxuu")
-autoplay = true
+[node name="AudioStreamPlayer" parent="." instance=ExtResource("3_1f5sn")]
 
 [node name="SettingsText" type="Label" parent="."]
 layout_mode = 1

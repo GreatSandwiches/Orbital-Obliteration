@@ -1,10 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://bpx6cd8of6vhd"]
+[gd_scene load_steps=23 format=3 uid="uid://bpx6cd8of6vhd"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_xs5nu"]
-[ext_resource type="AudioStream" uid="uid://c8hjoxap2n3fn" path="res://Music loops/Stream Loops 2023-11-29.ogg" id="2_egdec"]
-[ext_resource type="AudioStream" uid="uid://dk6udut40x37p" path="res://Music loops/Stream Loops 2024-01-24_01.ogg" id="3_86vho"]
-[ext_resource type="AudioStream" uid="uid://deei24y4j673t" path="res://Music loops/Stream Loops 2024-01-24_02.ogg" id="4_drt8j"]
-[ext_resource type="AudioStream" uid="uid://b245lu8265ftg" path="res://Music loops/Stream Loops 2024-02-07.ogg" id="5_5mfxm"]
+[ext_resource type="AudioStream" uid="uid://bqcglyjtvfgaa" path="res://Sound effects/Newer Wave.mp3" id="2_lpmae"]
 [ext_resource type="PackedScene" uid="uid://b07vwngjvg1ef" path="res://Scenes/p1_trail.tscn" id="6_dmcv7"]
 [ext_resource type="PackedScene" uid="uid://xwfny7na0w5h" path="res://Scenes/p2_trail.tscn" id="7_qs6pl"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="8_j8hlo"]
@@ -23,17 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://ykxdmm4l6arj" path="res://Scenes/ai_health.tscn" id="21_aei0x"]
 [ext_resource type="PackedScene" uid="uid://dlwto10cqkuhd" path="res://Scenes/p2_health.tscn" id="22_aegef"]
 [ext_resource type="PackedScene" uid="uid://bl4whrci2amdr" path="res://Scenes/enemyai.tscn" id="22_y1k4k"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ltrh0"]
-streams_count = 4
-stream_0/stream = ExtResource("2_egdec")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("3_86vho")
-stream_1/weight = 1.0
-stream_2/stream = ExtResource("4_drt8j")
-stream_2/weight = 1.0
-stream_3/stream = ExtResource("5_5mfxm")
-stream_3/weight = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
 shader = ExtResource("10_ulefn")
@@ -63,7 +49,7 @@ metadata/_edit_horizontal_guides_ = [650.0, 3.0]
 metadata/_edit_vertical_guides_ = [1140.0, 1150.0]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_ltrh0")
+stream = ExtResource("2_lpmae")
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

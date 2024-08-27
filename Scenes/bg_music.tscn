@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bperdycqkw1e8"]
+
+[ext_resource type="AudioStream" uid="uid://b3huo5b0idfiy" path="res://Sound effects/Equatorial Complex.mp3" id="1_aewc6"]
+[ext_resource type="Script" path="res://Scripts/bg_music.gd" id="2_k8t8t"]
+
+[node name="BgMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_aewc6")
+autoplay = true
+script = ExtResource("2_k8t8t")
