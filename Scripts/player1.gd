@@ -35,13 +35,12 @@ func _ready():
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
-	shield_animation.connect(self._shield_animate)
 
 # Bullet dmg and knockback code
 func _hit(bullet, bullet_vel):
-	if shield == true:
+	if shield == true and $Shieldframes.is_playing() == false:
 		shield = false
-		shield_animation.emit()
+		$Shieldframes.play()
 	if immunity == false:
 		if bullet.is_in_group("p2_bullet"):
 			take_damage(global.p2_gundamage)
@@ -51,14 +50,14 @@ func _hit(bullet, bullet_vel):
 			shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
 
 
-func _shield_animate():
-	$Shieldframes.play()
-	$ShieldTimer.start(6/7)
-
 func _shield_down():
-	$Shieldframes.stop()
-	$Shieldframes.set_frame_and_progress(1,0.0)
 	immunity = false
+
+func _shield_powerup_collected():
+	$Shieldframes.stop()
+	$Shieldframes.set_frame_and_progress(0,0.0)
+	shield = true
+	immunity = true
 
 func take_damage(amount):
 	global.p1_health -= amount
@@ -72,7 +71,7 @@ func _mine_collision():
 		take_damage(30)
 	else:
 		$Shieldframes.play()
-		$ShieldTimer.start(6/7)
+		shield = false
 
 func die():
 	global.p1_health = 100

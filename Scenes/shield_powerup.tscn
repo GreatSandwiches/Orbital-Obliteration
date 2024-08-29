@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b10ba6wtk3jog"]
+
+[ext_resource type="Texture2D" uid="uid://cyncgvxdgq2iq" path="res://Assets/simple shield powerup.png" id="1_82ta0"]
+[ext_resource type="Script" path="res://Scripts/shield_powerup.gd" id="1_rjpx2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_savkp"]
+size = Vector2(40, 40)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_rjpx2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(1, 0, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_savkp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.039, 0.039)
+texture = ExtResource("1_82ta0")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_collected"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_duration_end"]

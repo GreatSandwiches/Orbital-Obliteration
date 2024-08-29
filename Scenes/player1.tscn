@@ -52,10 +52,22 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_aiyja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ajsu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_aiyja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ajsu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_aiyja")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 7.0
+"speed": 9.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -92,8 +104,8 @@ position = Vector2(-5.96046e-08, 5.96046e-08)
 rotation = 1.57049
 scale = Vector2(0.056, 0.056)
 sprite_frames = SubResource("SpriteFrames_hefrp")
-frame = 1
-frame_progress = 0.850133
+frame = 5
+frame_progress = 1.0
 
 [node name="Blue" type="Sprite2D" parent="."]
 visible = false
@@ -117,13 +129,10 @@ texture = ExtResource("4_lptye")
 
 [node name="ShotgunTimer" type="Timer" parent="."]
 
-[node name="ShieldTimer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
+[connection signal="animation_finished" from="Shieldframes" to="." method="_shield_down"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
 [connection signal="timeout" from="DamageBoostTimer" to="." method="_on_DamagePowerupTimer_timeout"]
 [connection signal="timeout" from="OverheatTimer" to="." method="_on_overheat_timer_timeout"]
 [connection signal="timeout" from="ShotgunTimer" to="." method="_on_shotgun_timer_timeout"]
-[connection signal="timeout" from="ShieldTimer" to="." method="_shield_down"]
