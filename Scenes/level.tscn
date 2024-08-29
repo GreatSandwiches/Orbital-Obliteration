@@ -48,6 +48,24 @@ script = ExtResource("1_ny81s")
 metadata/_edit_horizontal_guides_ = [650.0, 3.0]
 metadata/_edit_vertical_guides_ = [1140.0, 1150.0]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_dhv0k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause" type="Node2D" parent="CanvasLayer"]
+process_mode = 3
+script = ExtResource("7_jsaq6")
+
+[node name="PauseMenu" parent="CanvasLayer/Pause" instance=ExtResource("7_jbmpc")]
+process_mode = 3
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7flku")
 autoplay = true
@@ -85,17 +103,6 @@ position = Vector2(120, 151)
 [node name="Player2" parent="." instance=ExtResource("2_dt80m")]
 position = Vector2(1000, 530)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_dhv0k")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="P1_UI" parent="." instance=ExtResource("21_de81g")]
 z_index = 100
 position = Vector2(0, -94)
@@ -105,13 +112,6 @@ position = Vector2(78, -94)
 
 [node name="AI_UI" parent="." instance=ExtResource("13_q3lq5")]
 position = Vector2(144, -88)
-
-[node name="Pause" type="Node2D" parent="."]
-process_mode = 3
-script = ExtResource("7_jsaq6")
-
-[node name="PauseMenu" parent="Pause" instance=ExtResource("7_jbmpc")]
-visible = false
 
 [node name="Area2D" parent="." instance=ExtResource("10_wd516")]
 position = Vector2(469, 279)
