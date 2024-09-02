@@ -1,5 +1,5 @@
 extends Node2D
-
+@onready var global = get_node("/root/Global")
 var paused = false
 
 
@@ -9,6 +9,7 @@ var paused = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$PauseMenu.hide()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,13 +17,14 @@ func _process(delta):
 	
 	#Pause detection
 	if Input.is_action_just_pressed("ui_cancel"):
-		if paused == false:
+		if global.paused == false:
 			print("paused")
-			paused = true
+			global.paused = true
 			get_tree().paused = true
 			$PauseMenu.show()
+			
 		else:
 			get_tree().paused = false
 			print("unpaused")
-			paused = false
+			global.paused = false
 			$PauseMenu.hide()

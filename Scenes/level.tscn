@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=22 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bi0oghkdlwk23" path="res://Scenes/player2.tscn" id="2_dt80m"]
 [ext_resource type="PackedScene" uid="uid://b07vwngjvg1ef" path="res://Scenes/p1_trail.tscn" id="4_52232"]
 [ext_resource type="PackedScene" uid="uid://xwfny7na0w5h" path="res://Scenes/p2_trail.tscn" id="5_vrpef"]
-[ext_resource type="Shader" path="res://Scenes/level.gdshader" id="6_2dmde"]
 [ext_resource type="PackedScene" uid="uid://d2sr2tferkxir" path="res://Scenes/pausemenu.tscn" id="7_jbmpc"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="7_jsaq6"]
 [ext_resource type="PackedScene" uid="uid://cx3536rcka2kg" path="res://Scenes/space_mine.tscn" id="10_wd516"]
@@ -18,25 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://qi2wm5f32xuy" path="res://Scenes/spacemine_outline.tscn" id="18_7l753"]
 [ext_resource type="PackedScene" uid="uid://uh01kkk767px" path="res://Scenes/turret.tscn" id="19_kngww"]
 [ext_resource type="PackedScene" uid="uid://pj8s42scki05" path="res://Scenes/shotgun_powerup.tscn" id="20_jgln8"]
-[ext_resource type="PackedScene" uid="uid://b10ba6wtk3jog" path="res://Scenes/shield_powerup.tscn" id="20_nrns7"]
+[ext_resource type="PackedScene" path="res://Scenes/shield_powerup.tscn" id="20_nrns7"]
 [ext_resource type="PackedScene" uid="uid://chsbwbba2hmj6" path="res://Scenes/p1_health.tscn" id="21_de81g"]
 [ext_resource type="PackedScene" uid="uid://bl4whrci2amdr" path="res://Scenes/enemyai.tscn" id="22_u2vi0"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
-shader = ExtResource("6_2dmde")
-shader_parameter/vhs_resolution = Vector2(320, 240)
-shader_parameter/samples = 2
-shader_parameter/crease_noise = 1.0
-shader_parameter/crease_opacity = 0.5
-shader_parameter/filter_intensity = 0.1
-shader_parameter/tape_crease_smear = 0.2
-shader_parameter/tape_crease_intensity = 0.2
-shader_parameter/tape_crease_jitter = 0.1
-shader_parameter/tape_crease_speed = 0.5
-shader_parameter/tape_crease_discoloration = 1.0
-shader_parameter/bottom_border_thickness = 6.0
-shader_parameter/bottom_border_jitter = 6.0
-shader_parameter/noise_intensity = 0.5
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mh6hb"]
 vertices = PackedVector2Array(632, 188, 615, 187, 615, 171, 632, 171, 733, 198, 1035, 187, 1090, 186, 908, 246, 853, 247, 908, 302, 1039, 440, 911, 441, 751, 433, 126, 345, 853, 303, 10, 9, 1139, 10, 827, 66, 771, 65, 1138, 640, 1090, 130, 1034, 495, 696, 434, 121, 402, 1035, 131, 826, 123, 725, 260, 510, 191, 397, 236, 398, 177, 512, 131, 521, 255, 208, 112, 528, 90, 341, 182, 207, 273, 341, 235, 261, 568, 509, 532, 509, 585, 260, 626, 911, 600, 564, 584, 750, 489, 695, 489, 564, 528, 968, 604, 968, 495, 10, 637, 154, 112, 153, 215, 83, 215, 770, 122, 727, 132, 205, 569, 70, 397, 684, 87, 641, 87, 600, 83, 544, 90, 84, 271, 70, 346, 206, 625, 671, 273, 589, 275)
@@ -51,21 +34,15 @@ metadata/_edit_vertical_guides_ = [1140.0, 1150.0]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_dhv0k")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Pause" type="Node2D" parent="CanvasLayer"]
 process_mode = 3
 script = ExtResource("7_jsaq6")
 
 [node name="PauseMenu" parent="CanvasLayer/Pause" instance=ExtResource("7_jbmpc")]
-process_mode = 3
+offset_left = 140.0
+offset_top = 66.0
+offset_right = 140.0
+offset_bottom = 66.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7flku")

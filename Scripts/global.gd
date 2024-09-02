@@ -44,6 +44,7 @@ var selected_level = "res://Scenes/level.tscn"
 var level_1 = "res://Scenes/level.tscn"
 var level_2 = "res://Scenes/level2.tscn"
 var game_mode = 0  # 0 for singleplayer 1 for multiplayer
+var paused = false
 
 
 # Called when the node enters the scene tree for the first time.
