@@ -21,3 +21,9 @@ func _on_menu_button_pressed():
 	hide()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/mainmenu.tscn")
+
+
+func _on_options_pressed():
+	hide()
+	get_tree().paused = false #need to add fix back button
+	get_tree().change_scene_to_file("res://Scenes/optionsmenu.tscn")
