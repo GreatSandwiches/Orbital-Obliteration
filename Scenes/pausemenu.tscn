@@ -41,27 +41,27 @@ text = "Paused"
 
 [node name="MainMenu" type="Button" parent="."]
 layout_mode = 0
-offset_left = -140.0
+offset_left = -132.0
 offset_top = 300.0
-offset_right = 260.0
+offset_right = 268.0
 offset_bottom = 375.0
 text = "Main Menu"
 alignment = 0
 
 [node name="Options" type="Button" parent="."]
 layout_mode = 0
-offset_left = -140.0
+offset_left = -132.0
 offset_top = 382.0
-offset_right = 310.0
+offset_right = 318.0
 offset_bottom = 457.0
 text = "Options"
 alignment = 0
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 0
-offset_left = -140.0
+offset_left = -132.0
 offset_top = 465.0
-offset_right = 360.0
+offset_right = 368.0
 offset_bottom = 540.0
 text = "Close"
 alignment = 0
