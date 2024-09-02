@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdjm8gve4gq20"]
+
+[ext_resource type="Script" path="res://Scripts/missile_powerup.gd" id="1_er2le"]
+[ext_resource type="Texture2D" uid="uid://7qjsvlhm6bug" path="res://Assets/simple missile.png" id="2_t1kjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgf16"]
+size = Vector2(40, 40)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_er2le")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(1, 0, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mgf16")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, -4.76837e-07)
+scale = Vector2(0.0527031, 0.0527031)
+texture = ExtResource("2_t1kjc")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_collected"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_duration_end"]

@@ -8,6 +8,7 @@ var shipvector = Vector2(0,0)
 var shipvectorforward = Vector2(0,0)
 var shipvectorbackward = Vector2(0,0)
 @export var bullet_p2_scene: PackedScene
+@export var missile_p2_scene: PackedScene
 var can_shoot = true
 @onready var p2 = $Player2
 var knockback = Vector2(0,0)
@@ -19,6 +20,8 @@ var base_gundamage = 20
 var big_bullet = false
 var shield = true
 var immunity = true
+var missile = 0
+var angle_list = []
 signal shield_animation
 
 func _ready():
@@ -36,17 +39,20 @@ func _ready():
 	$Area2D/SmokeTrail.emitting = false
 
 # damage detection
-func _hit(bullet, bullet_vel):
-	if shield == true:
+func _hit(projectile, bullet_vel):
+	if shield == true and $Shieldframes.is_playing() == false:
 		shield = false
 		$Shieldframes.play()
 	if immunity == false:
-		if bullet.is_in_group("p1_bullet"):
-			take_damage(global.p2_gundamage)
-			shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
-		if bullet.is_in_group("enemy_bullet"):
+		if projectile.is_in_group("p1_bullet"):
+			take_damage(global.p1_gundamage)
+			shipvector += (bullet_vel * 0.0005 * projectile.get_scale())
+		if projectile.is_in_group("p1_missile"):
+			take_damage(global.p1_gundamage * 2.5)
+			shipvector += (bullet_vel * 0.0005 * projectile.get_scale())
+		if projectile.is_in_group("enemy_bullet"):
 			take_damage(20)
-			shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
+			shipvector += (bullet_vel * 0.0005 * projectile.get_scale())
 
 
 func _shield_down():
@@ -59,6 +65,9 @@ func _shield_powerup_collected():
 	$Shieldframes.set_frame_and_progress(0,0.0)
 	shield = true
 	immunity = true
+
+func _missile_powerup_collected():
+	missile = 1
 
 # Powerup detections
 func _shotgun_powerup_collected():
@@ -120,17 +129,39 @@ func die():
 	print(global.p1_score)
 	#get_tree().reload_current_scene()
 	position = Vector2(1020, 500)
+	$Shieldframes.stop()
+	$Shieldframes.set_frame_and_progress(0,0.0)
+	shield = true
+	immunity = true
+	shipvector = Vector2(0,0)
 	
-func _shoot(deviation):
+
+func _shoot(deviation, type):
 	var bullet = bullet_p2_scene.instantiate()
+	var missile = missile_p2_scene.instantiate()
 	bullet.position = $ProjectileSpawn.global_position
 	bullet.rotation = rotation + deviation
+	missile.position = $ProjectileSpawn.global_position
+	missile.rotation = rotation + deviation
 	if big_bullet == true:
-		bullet.set_scale(Vector2(2,2))
-		global.p2_gundamage = base_gundamage * 2
+		if shotgun == true:
+			bullet.set_scale(Vector2(1.4,1.4))
+			missile.set_scale(Vector2(1.4,1.4))
+		else:
+			bullet.set_scale(Vector2(2,2))
+			missile.set_scale(Vector2(2,2))
+		global.p1_gundamage = base_gundamage * 2
+		global.p1_bulletspeed = 0.7
 	else:
-		global.p2_gundamage = base_gundamage
-	get_parent().add_child(bullet)
+		if shotgun == true:
+			bullet.set_scale(Vector2(0.7,0.7))
+			missile.set_scale(Vector2(0.7,0.7))
+		global.p1_bulletspeed = 1
+		global.p1_gundamage = base_gundamage
+	if type == "missile":
+		get_parent().add_child(missile)
+	if type == "bullet":
+		get_parent().add_child(bullet)
 
 func _on_timer_timeout():
 	can_shoot = true
@@ -214,13 +245,24 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_spacebar") and can_shoot and not is_overheated:
 		if global.p2_gunheat < global.p2_maxgunheat:
 			if shotgun == true:
-				for deviation in [(-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36)]:
+				angle_list = [(-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36)]
+				if missile == 1:
+					angle_list = [(-2*PI/7), (-1*PI/7), 0, (1*PI/7), (2*PI/7)]
+				for deviation in angle_list:
 					#var rng = RandomNumberGenerator.new()
-					global.p2_bulletspeed = 1 #+ rng.randf_range(-0.2, 0)
-					_shoot(deviation)
-					global.p2_gunheat += 0.1
+					#global.p1_bulletspeed = 1 + rng.randf_range(-0.2, 0)
+					if missile == 1:
+						_shoot(deviation, "missile")
+						global.p1_gunheat += 2
+					else:
+						_shoot(deviation, "bullet")
+						global.p1_gunheat += 0.1
 			else:	
-				_shoot(0)
+				if missile == 1:
+					_shoot(0, "missile")
+				else:
+					_shoot(0, "bullet")
+			missile = 0
 			global.p2_gunheat += 2
 			can_shoot = false
 			$Timer.start(global.p2_firerate)

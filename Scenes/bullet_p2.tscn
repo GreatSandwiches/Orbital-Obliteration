@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_f1vmn"]
 radius = 7.0
 
-[node name="P2_bullet" type="Area2D" groups=["p2_bullet"]]
+[node name="P2_bullet" type="Area2D" groups=["bullet", "p2_bullet"]]
 script = ExtResource("1_hwef5")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
