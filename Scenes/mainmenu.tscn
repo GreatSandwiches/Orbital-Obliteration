@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://yrm8t0y7iduu"]
+[gd_scene load_steps=6 format=3 uid="uid://yrm8t0y7iduu"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_g2rkn"]
 [ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_x6lkf"]
 [ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="3_hwt44"]
 [ext_resource type="AudioStream" uid="uid://b3huo5b0idfiy" path="res://Sound effects/Equatorial Complex.mp3" id="4_65amo"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7pidk"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -18,50 +25,58 @@ script = ExtResource("1_g2rkn")
 layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 650.0
-color = Color(0.313726, 0.384314, 0.447059, 1)
+color = Color(0.509804, 0.639216, 1, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -247.0
-offset_top = -287.0
-offset_right = 247.0
-offset_bottom = -144.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 357.0
+offset_right = 268.0
+offset_bottom = 557.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="Play" type="Button" parent="."]
+z_index = 1
 layout_mode = 2
-
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+offset_left = 89.0
+offset_top = 368.0
+offset_right = 289.0
+offset_bottom = 411.0
 theme = ExtResource("2_x6lkf")
-text = "Play"
+text = "    Play"
+alignment = 0
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Options" type="Button" parent="."]
+z_index = 1
 layout_mode = 2
+offset_left = 89.0
+offset_top = 433.0
+offset_right = 289.0
+offset_bottom = 476.0
 theme = ExtResource("2_x6lkf")
-text = "Options"
+text = "    Options"
+alignment = 0
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="."]
+z_index = 1
 layout_mode = 2
+offset_left = 89.0
+offset_top = 498.0
+offset_right = 289.0
+offset_bottom = 541.0
 theme = ExtResource("2_x6lkf")
-text = "Quit"
+text = "    Quit"
+alignment = 0
 
 [node name="GameTitle" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -491.5
-offset_top = 64.0
-offset_right = 491.5
-offset_bottom = 204.0
-grow_horizontal = 2
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -238.0
+offset_right = 1063.0
+offset_bottom = -98.0
+grow_vertical = 2
 theme = ExtResource("3_hwt44")
 text = "Orbital Obliteration
 "
@@ -70,6 +85,14 @@ text = "Orbital Obliteration
 stream = ExtResource("4_65amo")
 autoplay = true
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(556, 351)
+scale = Vector2(100, 100)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_7pidk")
+lifetime = 2.0
+trail_enabled = true
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
