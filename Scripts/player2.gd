@@ -262,7 +262,6 @@ func _physics_process(delta):
 					_shoot(0, "missile")
 				else:
 					_shoot(0, "bullet")
-			missile = 1
 			global.p2_gunheat += 2
 			can_shoot = false
 			$Timer.start(global.p2_firerate)
