@@ -1,10 +1,12 @@
 extends Control
 @onready var global = get_node("/root/Global")
+@onready var menuparticles = get_node("/root/MenuParticles")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	global.ismainmenu = true
+	menuparticles.show() #ach this doesnt work yet
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,11 +15,11 @@ func _process(delta):
 
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Scenes/levelselect.tscn")
+	get_tree().change_scene_to_file("res://Scenes/modeselect.tscn")
 	
 
 func _on_options_pressed():
-	get_tree().change_scene_to_file("res://Scenes/optionsmenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/settingsmenu.tscn")
 	
 
 func _on_quit_pressed():

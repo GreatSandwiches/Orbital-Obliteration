@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://0vf64pw2cblj"]
+
+[ext_resource type="Script" path="res://Scripts/menu_particles.gd" id="1_tljcf"]
+
+[sub_resource type="Curve" id="Curve_wh3yg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rj83y"]
+curve = SubResource("Curve_wh3yg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7pidk"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+linear_accel_min = -100.0
+scale_min = 0.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_rj83y")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+z_index = 1
+position = Vector2(588, 343)
+scale = Vector2(100, 100)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_7pidk")
+preprocess = 2.0
+fixed_fps = 60
+trail_enabled = true
+script = ExtResource("1_tljcf")
