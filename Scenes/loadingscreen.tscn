@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmaaxtty713j"]
+[gd_scene load_steps=6 format=3 uid="uid://cmaaxtty713j"]
 
 [ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="1_k5w0o"]
 [ext_resource type="Script" path="res://Scripts/loadingscreen.gd" id="1_mvh5p"]
+[ext_resource type="Shader" path="res://Scenes/mainmenu.gdshader" id="2_0chby"]
 [ext_resource type="FontFile" uid="uid://1xykuakl613o" path="res://Themes/Poppins-Regular.ttf" id="2_nh78s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjiun"]
+shader = ExtResource("2_0chby")
+shader_parameter/height = 10.0
+shader_parameter/frequency = 50.0
+shader_parameter/speed = 3.0
 
 [node name="Control" type="Control" node_paths=PackedStringArray("loading_bar", "percentage_label")]
 layout_mode = 3
@@ -15,7 +22,15 @@ script = ExtResource("1_mvh5p")
 loading_bar = NodePath("ProgressBar")
 percentage_label = NodePath("Percentage_label")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1170.0
+offset_bottom = 652.0
+color = Color(0.509804, 0.639216, 1, 1)
+
 [node name="Loading" type="Label" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_xjiun")
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -28,6 +43,7 @@ theme = ExtResource("1_k5w0o")
 text = "Loading..."
 
 [node name="Percentage_label" type="Label" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -46,6 +62,7 @@ theme_override_font_sizes/font_size = 80
 text = "0%"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

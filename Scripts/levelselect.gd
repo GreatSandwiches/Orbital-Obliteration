@@ -18,12 +18,12 @@ func _on_back_pressed():
 
 func _on_level_1_pressed():
 	global.selected_level = global.level_1
-	global.ismainmenu = false 
+	
 	get_tree().change_scene_to_file("res://Scenes/loadingscreen.tscn") 
 
 
 func _on_level_2_pressed():
 	global.selected_level = global.level_2
-	global.ismainmenu = false 
+	 
 	get_tree().change_scene_to_file("res://Scenes/loadingscreen.tscn")
 	

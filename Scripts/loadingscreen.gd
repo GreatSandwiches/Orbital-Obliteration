@@ -23,6 +23,7 @@ func _process(delta):
 	
 	if loading_bar.value >= 1.0:
 		if update >= 1.0:
+			global.ismainmenu = false
 			get_tree().change_scene_to_packed(
 				ResourceLoader.load_threaded_get(scene_path)
 			)
