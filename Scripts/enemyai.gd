@@ -5,6 +5,7 @@ var speed = 180
 var accel = 2
 var min_distance = 50
 var loaded = true
+var ko_scale
 
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 
@@ -29,9 +30,17 @@ func take_damage(amount):
 	if global.ai_health <= 0:
 		die()
 		
-func _hit(bullet, bullet_vel):
-	if bullet.is_in_group("p2_bullet"):
+func _hit(projectile, bullet_vel):
+	if projectile.is_in_group("p2_bullet"):
 		take_damage(global.p2_gundamage)
+		velocity += bullet_vel * 0.5 * projectile.get_scale()
+	if projectile.is_in_group("p2_missile"):
+		take_damage(global.p2_gundamage * 2.5)
+		if projectile.get_scale() == Vector2(0.7,0.7):
+			ko_scale = 0.06
+		else:
+			ko_scale = 0.15
+		velocity += bullet_vel * ko_scale * projectile.get_scale()
 		#shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
 		
 func die():

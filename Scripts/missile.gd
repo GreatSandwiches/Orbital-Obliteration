@@ -26,10 +26,13 @@ func _ready():
 		speedscale = global.p2_bulletspeed
 
 func _process(delta):
-	if self.is_in_group("p1_missile"):
-		target_position = global.p2_position
-	if self.is_in_group("p2_missile"):
-		target_position = global.p1_position
+	if global.game_mode == 1:
+		if self.is_in_group("p1_missile"):
+			target_position = global.p2_position
+		if self.is_in_group("p2_missile"):
+			target_position = global.p1_position
+	else:
+		target_position = global.ai_position
 	
 	direction = target_position - position
 	var angle = self.transform.x.angle_to(direction)
@@ -54,6 +57,7 @@ func _on_area_entered(area):
 		queue_free()
 	if area.is_in_group("ai"):
 		if not self.is_in_group("enemy_missile"):
+			print(self.get_scale())
 			ai_hit.emit(self, velocity * 16)
 			queue_free()
 

@@ -150,14 +150,14 @@ func _shoot(deviation, type):
 		else:
 			bullet.set_scale(Vector2(2,2))
 			missile.set_scale(Vector2(2,2))
-		global.p1_gundamage = base_gundamage * 2
-		global.p1_bulletspeed = 0.7
+		global.p2_gundamage = base_gundamage * 2
+		global.p2_bulletspeed = 0.7
 	else:
 		if shotgun == true:
 			bullet.set_scale(Vector2(0.7,0.7))
 			missile.set_scale(Vector2(0.7,0.7))
-		global.p1_bulletspeed = 1
-		global.p1_gundamage = base_gundamage
+		global.p2_bulletspeed = 1
+		global.p2_gundamage = base_gundamage
 	if type == "missile":
 		get_parent().add_child(missile)
 	if type == "bullet":
@@ -262,7 +262,7 @@ func _physics_process(delta):
 					_shoot(0, "missile")
 				else:
 					_shoot(0, "bullet")
-			missile = 0
+			missile = 1
 			global.p2_gunheat += 2
 			can_shoot = false
 			$Timer.start(global.p2_firerate)
