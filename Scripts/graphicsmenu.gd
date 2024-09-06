@@ -9,7 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene_to_file("res://Scenes/settingsmenu.tscn")
+		get_tree().change_scene_to_file("res://Scenes/pausesettings.tscn")
 
 
 func _on_resolution_item_selected(index):
@@ -29,4 +29,4 @@ func _on_fullscreen_toggled(button_pressed):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://Scenes/settingsmenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/pausesettings.tscn")

@@ -40,11 +40,10 @@ process_mode = 3
 script = ExtResource("7_jsaq6")
 
 [node name="PauseMenu" parent="CanvasLayer/Pause" instance=ExtResource("7_jbmpc")]
-visible = false
-offset_left = 140.0
-offset_top = 66.0
-offset_right = 140.0
-offset_bottom = 66.0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 4.0
+offset_bottom = 2.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7flku")
@@ -194,7 +193,7 @@ position = Vector2(798, 94)
 z_index = -100
 offset_right = 1148.0
 offset_bottom = 648.0
-color = Color(0.509804, 0.639216, 1, 1)
+color = Color(0.286275, 0.396078, 0.701961, 1)
 metadata/_edit_lock_ = true
 
 [node name="outline" parent="." instance=ExtResource("18_7l753")]

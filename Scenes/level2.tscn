@@ -48,6 +48,24 @@ script = ExtResource("1_xs5nu")
 metadata/_edit_horizontal_guides_ = [650.0, 3.0]
 metadata/_edit_vertical_guides_ = [1140.0, 1150.0]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Node2D" parent="CanvasLayer"]
+process_mode = 3
+script = ExtResource("11_gaxb6")
+
+[node name="PauseMenu" parent="CanvasLayer/Pause" instance=ExtResource("12_07fax")]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_dhv0k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_lpmae")
 autoplay = true
@@ -84,24 +102,6 @@ position = Vector2(120, 150)
 
 [node name="Player2" parent="." instance=ExtResource("9_rmuwc")]
 position = Vector2(1000, 530)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_dhv0k")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Pause" type="Node2D" parent="."]
-process_mode = 3
-script = ExtResource("11_gaxb6")
-
-[node name="PauseMenu" parent="Pause" instance=ExtResource("12_07fax")]
-visible = false
 
 [node name="Area2D" parent="." instance=ExtResource("13_68u10")]
 position = Vector2(384, 323)
