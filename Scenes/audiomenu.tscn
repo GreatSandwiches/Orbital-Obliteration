@@ -91,6 +91,7 @@ autoplay = true
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = 1
+layout_mode = 0
 offset_left = 112.0
 offset_top = 488.0
 offset_right = 258.0
@@ -99,6 +100,7 @@ color = Color(0.501961, 0.501961, 0.501961, 1)
 
 [node name="Volume" type="HSlider" parent="."]
 z_index = 1
+layout_mode = 0
 offset_left = 112.0
 offset_top = 416.0
 offset_right = 255.0
@@ -116,6 +118,7 @@ offset_bottom = 390.0
 theme = SubResource("Theme_jxgdr")
 text = "Volume:"
 
-[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
+[connection signal="drag_ended" from="Volume" to="." method="_on_volume_drag_ended"]
 [connection signal="value_changed" from="Volume" to="." method="_on_volume_value_changed"]
