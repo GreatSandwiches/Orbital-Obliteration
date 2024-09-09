@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://yrm8t0y7iduu"]
+[gd_scene load_steps=10 format=3 uid="uid://yrm8t0y7iduu"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_g2rkn"]
 [ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_x6lkf"]
 [ext_resource type="Shader" path="res://Scenes/mainmenu.gdshader" id="3_hexul"]
 [ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="3_hwt44"]
 [ext_resource type="AudioStream" uid="uid://b3huo5b0idfiy" path="res://Sound effects/Equatorial Complex.mp3" id="4_65amo"]
+[ext_resource type="Texture2D" uid="uid://cfmytjsf8cfpu" path="res://Assets/menu ship design 1.png" id="6_ibe6q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjx0o"]
 bg_color = Color(1, 1, 1, 1)
@@ -104,6 +105,13 @@ text = "Orbital Obliteration
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_65amo")
 autoplay = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+z_index = 1000
+position = Vector2(578, 482)
+scale = Vector2(0.515137, 0.515137)
+texture = ExtResource("6_ibe6q")
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Options" to="." method="_on_options_pressed"]

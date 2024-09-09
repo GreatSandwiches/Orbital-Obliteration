@@ -54,3 +54,5 @@ func _on_area_entered(area):
 		if not self.is_in_group("enemy_bullet"):
 			ai_hit.emit(self, velocity)
 			queue_free()
+	if area.is_in_group("space_mine") or area.is_in_group("missile"):
+		queue_free()

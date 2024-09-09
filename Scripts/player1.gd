@@ -147,45 +147,29 @@ func _on_RapidFireTimer_timeout():
 	global.p1_coolingrate = 3  # Reset to default 
 	print("Power-up ended")
 	print(global.p1_firerate)
-	
-	
+
 func _on_damagepowerup_entered(area):
 	if area.has_meta("damageincrease"):
 		$DamageBoostTimer.start(10)
 		big_bullet = true
 
-
 func _on_DamagePowerupTimer_timeout():
 	big_bullet = false
-	
-
 
 func _on_timer_timeout():
 	can_shoot = true
 
-
-func _ast_vel_transfer(amount, angle):
-	shipvector -= amount / 500
-	var rotate = angle + PI - shipvector.angle()
-	shipvector = shipvector.rotated(rotate)
-	
-	
 func _on_overheat_timer_timeout():
 	is_overheated = false
 	can_shoot = true
-	
 
 func _process(delta):
-	
 	if global.game_mode == 0:
 		visible = false
 		velocity = Vector2.ZERO
 		position = Vector2(-101, 151)
 		queue_free()
 		return
-	
-	
-	
 	
 	global.p1_position = position
 	global.p1_velocity = velocity
@@ -206,10 +190,6 @@ func _process(delta):
 		shipvectorbackward.y = 0.01 * (pow((shipvector.y + 1.2), 3) - 1.728)
 	if shipvector.y <= 0:
 		shipvectorbackward.y = 0.01 * (pow((shipvector.y - 1.2), 3) + 1.728)
-		
-	#old
-	#shipvectorbackward.x = 0.00001 * (pow((shipvector.x), 3))
-	#shipvectorbackward.y = 0.00001 * (pow((shipvector.y), 3))
 	
 	#current position identifier for use with trail
 	global.p1_location = -10 * transform.x + position
@@ -281,7 +261,6 @@ func _process(delta):
 			can_shoot = false
 			$OverheatTimer.start(1)
 			
-		
 	# Apply velocity and move the character
 	move_and_slide()
 
