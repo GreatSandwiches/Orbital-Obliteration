@@ -25,14 +25,14 @@ animations = [{
 offsets = PackedFloat32Array(0.031746, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_b13rc"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1q81f"]
 gradient = SubResource("Gradient_kqsf6")
 
 [sub_resource type="Curve" id="Curve_mgvtj"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_wn2v6"]
+[sub_resource type="CurveTexture" id="CurveTexture_gnaow"]
 curve = SubResource("Curve_mgvtj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_15n8y"]
@@ -45,9 +45,9 @@ initial_velocity_max = 35.57
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 scale_min = 7.66
 scale_max = 10.0
-scale_curve = SubResource("CurveTexture_wn2v6")
+scale_curve = SubResource("CurveTexture_gnaow")
 color = Color(1, 0, 0, 1)
-color_ramp = SubResource("GradientTexture1D_b13rc")
+color_ramp = SubResource("GradientTexture1D_1q81f")
 hue_variation_min = 0.08
 hue_variation_max = 0.13
 

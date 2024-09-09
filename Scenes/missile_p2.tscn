@@ -7,7 +7,7 @@
 radius = 7.0
 height = 38.0
 
-[node name="Area2D" type="Area2D" groups=["p2_missile"]]
+[node name="Area2D" type="Area2D" groups=["missile", "p2_missile"]]
 script = ExtResource("1_7vrec")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

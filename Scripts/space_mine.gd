@@ -18,8 +18,7 @@ func _process(delta):
 
 
 func _player_collision(area):
-	if area.is_in_group("player"):
-		print(hitbox)
+	if area.is_in_group("player") or area.is_in_group("bullet") or area.is_in_group("missile"):
 		hitbox.set_deferred("disabled", true)
 		$GPUParticles2D.emitting = true
 		$AnimatedSprite2D.hide()

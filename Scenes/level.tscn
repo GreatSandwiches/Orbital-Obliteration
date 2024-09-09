@@ -194,7 +194,7 @@ position = Vector2(798, 94)
 z_index = -100
 offset_right = 1148.0
 offset_bottom = 648.0
-color = Color(0.509804, 0.639216, 1, 1)
+color = Color(0.278431, 0.317647, 0.419608, 1)
 metadata/_edit_lock_ = true
 
 [node name="outline" parent="." instance=ExtResource("18_7l753")]
