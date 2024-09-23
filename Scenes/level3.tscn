@@ -1,0 +1,234 @@
+[gd_scene load_steps=23 format=3 uid="uid://bu41gxdt7is7t"]
+
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_rew7o"]
+[ext_resource type="Script" path="res://Scripts/Pause.gd" id="2_k0lb0"]
+[ext_resource type="PackedScene" uid="uid://d2sr2tferkxir" path="res://Scenes/pausemenu.tscn" id="3_louet"]
+[ext_resource type="AudioStream" uid="uid://bqcglyjtvfgaa" path="res://Sound effects/Newer Wave.mp3" id="4_jbkos"]
+[ext_resource type="PackedScene" uid="uid://b07vwngjvg1ef" path="res://Scenes/p1_trail.tscn" id="5_q1017"]
+[ext_resource type="PackedScene" uid="uid://xwfny7na0w5h" path="res://Scenes/p2_trail.tscn" id="6_caofi"]
+[ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="7_4qxh3"]
+[ext_resource type="PackedScene" uid="uid://bi0oghkdlwk23" path="res://Scenes/player2.tscn" id="8_l2oym"]
+[ext_resource type="PackedScene" uid="uid://chsbwbba2hmj6" path="res://Scenes/p1_health.tscn" id="9_6cyjq"]
+[ext_resource type="PackedScene" uid="uid://dlwto10cqkuhd" path="res://Scenes/p2_health.tscn" id="10_p6wb3"]
+[ext_resource type="PackedScene" uid="uid://ykxdmm4l6arj" path="res://Scenes/ai_health.tscn" id="11_q2nc3"]
+[ext_resource type="PackedScene" uid="uid://dyrshme8bcxd0" path="res://Scenes/damagepowerup.tscn" id="12_8cq54"]
+[ext_resource type="PackedScene" uid="uid://cgig2m158mu6n" path="res://Scenes/rapidfire_powerup.tscn" id="13_38bb1"]
+[ext_resource type="PackedScene" uid="uid://bx5vstpo8eqeh" path="res://Scenes/wall_tile.tscn" id="14_qf46r"]
+[ext_resource type="PackedScene" uid="uid://pj8s42scki05" path="res://Scenes/shotgun_powerup.tscn" id="15_e53yo"]
+[ext_resource type="PackedScene" uid="uid://cx3536rcka2kg" path="res://Scenes/space_mine.tscn" id="16_mw8j3"]
+[ext_resource type="PackedScene" uid="uid://qi2wm5f32xuy" path="res://Scenes/spacemine_outline.tscn" id="17_21ixf"]
+[ext_resource type="PackedScene" uid="uid://uh01kkk767px" path="res://Scenes/turret.tscn" id="18_q7rs5"]
+[ext_resource type="PackedScene" uid="uid://b10ba6wtk3jog" path="res://Scenes/shield_powerup.tscn" id="19_2oyfj"]
+[ext_resource type="PackedScene" uid="uid://bl4whrci2amdr" path="res://Scenes/enemyai.tscn" id="20_hmcvo"]
+[ext_resource type="PackedScene" uid="uid://bdjm8gve4gq20" path="res://Scenes/missile_powerup.tscn" id="21_w4yh4"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mh6hb"]
+vertices = PackedVector2Array(632, 188, 615, 187, 615, 171, 632, 171, 733, 198, 1035, 187, 1090, 186, 908, 246, 853, 247, 908, 302, 1039, 440, 911, 441, 751, 433, 126, 345, 853, 303, 10, 9, 1139, 10, 827, 66, 771, 65, 1138, 640, 1090, 130, 1034, 495, 696, 434, 121, 402, 1035, 131, 826, 123, 725, 260, 510, 191, 397, 236, 398, 177, 512, 131, 521, 255, 208, 112, 528, 90, 341, 182, 207, 273, 341, 235, 261, 568, 509, 532, 509, 585, 260, 626, 911, 600, 564, 584, 750, 489, 695, 489, 564, 528, 968, 604, 968, 495, 10, 637, 154, 112, 153, 215, 83, 215, 770, 122, 727, 132, 205, 569, 70, 397, 684, 87, 641, 87, 600, 83, 544, 90, 84, 271, 70, 346, 206, 625, 671, 273, 589, 275)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13, 14), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(16, 19, 6, 20), PackedInt32Array(10, 6, 19, 21), PackedInt32Array(6, 10, 9, 7), PackedInt32Array(13, 12, 22, 23), PackedInt32Array(17, 16, 20, 24, 25), PackedInt32Array(26, 4, 8, 14), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(28, 27, 31, 13), PackedInt32Array(30, 29, 32, 15, 33), PackedInt32Array(32, 29, 34), PackedInt32Array(35, 32, 34, 36), PackedInt32Array(37, 38, 39, 40), PackedInt32Array(11, 41, 42, 43), PackedInt32Array(43, 12, 11), PackedInt32Array(44, 43, 42, 45), PackedInt32Array(46, 47, 21, 19), PackedInt32Array(41, 46, 19, 48, 40), PackedInt32Array(49, 50, 51, 15), PackedInt32Array(52, 25, 24, 5, 4, 53), PackedInt32Array(23, 22, 44, 45, 38), PackedInt32Array(23, 38, 37, 54, 55), PackedInt32Array(18, 52, 53, 56), PackedInt32Array(15, 18, 56, 57, 58), PackedInt32Array(15, 58, 59, 33), PackedInt32Array(15, 32, 49), PackedInt32Array(48, 15, 51, 60, 61), PackedInt32Array(55, 54, 62, 48), PackedInt32Array(63, 26, 14), PackedInt32Array(63, 14, 13, 64), PackedInt32Array(31, 64, 13), PackedInt32Array(36, 28, 13, 35), PackedInt32Array(60, 35, 13, 61), PackedInt32Array(48, 61, 55), PackedInt32Array(40, 39, 42, 41), PackedInt32Array(48, 62, 40)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -1, 1150, 1, 1148, 651, 0, 647), PackedVector2Array(164, 122, 163, 226, 93, 225, 94, 261, 197, 263, 198, 122), PackedVector2Array(80, 356, 80, 388, 112, 391, 115, 355), PackedVector2Array(355, 425, 390, 424, 391, 458, 355, 461), PackedVector2Array(215, 579, 216, 615, 250, 616, 251, 578), PackedVector2Array(519, 541, 519, 575, 554, 574, 554, 539), PackedVector2Array(706, 444, 705, 479, 740, 479, 741, 443), PackedVector2Array(863, 257, 863, 293, 898, 292, 898, 256), PackedVector2Array(781, 75, 780, 112, 816, 113, 817, 76), PackedVector2Array(1045, 141, 1045, 177, 1080, 176, 1080, 140), PackedVector2Array(351, 191, 351, 225, 387, 226, 388, 188), PackedVector2Array(606, 162, 605, 197, 642, 199, 642, 161), PackedVector2Array(921, 451, 921, 591, 958, 593, 958, 486, 1025, 485, 1028, 450), PackedVector2Array(535, 100, 522, 133, 520, 190, 530, 247, 590, 265, 670, 263, 716, 252, 723, 198, 717, 136, 680, 97, 640, 97, 600, 93, 545, 100)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_rew7o")
+metadata/_edit_horizontal_guides_ = [650.0, 3.0]
+metadata/_edit_vertical_guides_ = [1140.0, 1150.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Pause" type="Node2D" parent="CanvasLayer"]
+process_mode = 3
+script = ExtResource("2_k0lb0")
+
+[node name="PauseMenu" parent="CanvasLayer/Pause" instance=ExtResource("3_louet")]
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 4.0
+offset_bottom = 2.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jbkos")
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 325)
+limit_left = 0
+limit_top = 0
+limit_right = 1150
+limit_bottom = 650
+
+[node name="P2_score" type="Label" parent="."]
+offset_left = 601.0
+offset_top = 13.0
+offset_right = 839.0
+offset_bottom = 74.0
+text = "P2:"
+
+[node name="P1_score" type="Label" parent="."]
+offset_left = 527.0
+offset_top = 13.0
+offset_right = 703.0
+offset_bottom = 63.0
+text = "P1:"
+
+[node name="Node2D" parent="." instance=ExtResource("5_q1017")]
+position = Vector2(190, 306)
+
+[node name="Node2D2" parent="." instance=ExtResource("6_caofi")]
+position = Vector2(922, 321)
+
+[node name="Player1" parent="." instance=ExtResource("7_4qxh3")]
+position = Vector2(120, 151)
+
+[node name="Player2" parent="." instance=ExtResource("8_l2oym")]
+position = Vector2(1000, 530)
+
+[node name="P1_UI" parent="." instance=ExtResource("9_6cyjq")]
+z_index = 100
+position = Vector2(0, -94)
+
+[node name="P2_UI" parent="." instance=ExtResource("10_p6wb3")]
+position = Vector2(78, -94)
+
+[node name="AI_UI" parent="." instance=ExtResource("11_q2nc3")]
+position = Vector2(144, -88)
+
+[node name="Rapidfire" parent="." instance=ExtResource("13_38bb1")]
+position = Vector2(568, 54)
+
+[node name="Border2" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(1170, 310)
+scale = Vector2(1, 16.96)
+
+[node name="Border1" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(570, -19)
+scale = Vector2(29.029, 1)
+
+[node name="Border4" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(-22, 341)
+scale = Vector2(1, 17.12)
+
+[node name="Border3" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(578, 670)
+scale = Vector2(29, 1)
+
+[node name="wall13" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(102, 588)
+
+[node name="wall14" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(568, 117)
+
+[node name="wall16" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(1079, 96)
+
+[node name="wall19" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(67, 588)
+
+[node name="wall20" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(67, 553)
+
+[node name="wall21" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(1044, 61)
+
+[node name="wall22" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(1079, 61)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -100
+offset_right = 1148.0
+offset_bottom = 648.0
+color = Color(0.286275, 0.396078, 0.701961, 1)
+metadata/_edit_lock_ = true
+
+[node name="Area2D2" parent="." instance=ExtResource("16_mw8j3")]
+position = Vector2(569, 217)
+
+[node name="Area2D3" parent="." instance=ExtResource("16_mw8j3")]
+position = Vector2(568, 425)
+
+[node name="Damagepowerup" parent="." instance=ExtResource("12_8cq54")]
+position = Vector2(569, 217)
+
+[node name="Shotgun_pwrp" parent="." instance=ExtResource("15_e53yo")]
+position = Vector2(568, 425)
+
+[node name="outline" parent="." instance=ExtResource("17_21ixf")]
+z_index = -1
+position = Vector2(994, 374)
+
+[node name="outline2" parent="." instance=ExtResource("17_21ixf")]
+z_index = -1
+position = Vector2(569, 217)
+
+[node name="outline3" parent="." instance=ExtResource("17_21ixf")]
+z_index = -1
+position = Vector2(568, 425)
+
+[node name="Turret" parent="." instance=ExtResource("18_q7rs5")]
+position = Vector2(568, 117)
+
+[node name="ShieldPow" parent="." instance=ExtResource("19_2oyfj")]
+position = Vector2(645, 321)
+
+[node name="ShieldPow2" parent="." instance=ExtResource("19_2oyfj")]
+position = Vector2(491, 321)
+
+[node name="EnemyAi" parent="." instance=ExtResource("20_hmcvo")]
+position = Vector2(119, 150)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_mh6hb")
+
+[node name="Missileprwp" parent="." instance=ExtResource("21_w4yh4")]
+position = Vector2(567, 598)
+
+[node name="wall23" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(568, 525)
+
+[node name="Turret2" parent="." instance=ExtResource("18_q7rs5")]
+position = Vector2(568, 525)
+
+[node name="wall24" parent="." instance=ExtResource("14_qf46r")]
+position = Vector2(568, 322)
+
+[node name="Turret3" parent="." instance=ExtResource("18_q7rs5")]
+position = Vector2(568, 322)
+
+[node name="Area2D" parent="." instance=ExtResource("16_mw8j3")]
+position = Vector2(271, 475)
+
+[node name="Area2D4" parent="." instance=ExtResource("16_mw8j3")]
+position = Vector2(137, 306)
+
+[node name="Area2D5" parent="." instance=ExtResource("16_mw8j3")]
+position = Vector2(338, 100)
+
+[node name="Area2D6" parent="." instance=ExtResource("16_mw8j3")]
+position = Vector2(818, 554)
+
+[node name="Area2D7" parent="." instance=ExtResource("16_mw8j3")]
+position = Vector2(994, 374)
+
+[node name="Area2D8" parent="." instance=ExtResource("16_mw8j3")]
+position = Vector2(888, 159)
+
+[node name="outline4" parent="." instance=ExtResource("17_21ixf")]
+z_index = -1
+position = Vector2(818, 554)
+
+[node name="outline5" parent="." instance=ExtResource("17_21ixf")]
+z_index = -1
+position = Vector2(888, 159)
+
+[node name="outline6" parent="." instance=ExtResource("17_21ixf")]
+z_index = -1
+position = Vector2(338, 99.9999)
+
+[node name="outline7" parent="." instance=ExtResource("17_21ixf")]
+z_index = -1
+position = Vector2(137, 306)
+
+[node name="outline8" parent="." instance=ExtResource("17_21ixf")]
+z_index = -1
+position = Vector2(271, 475)

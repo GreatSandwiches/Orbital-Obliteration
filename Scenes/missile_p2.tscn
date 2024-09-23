@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds13h30qb8721"]
+[gd_scene load_steps=14 format=3 uid="uid://ds13h30qb8721"]
 
 [ext_resource type="Script" path="res://Scripts/missile.gd" id="1_7vrec"]
 [ext_resource type="Texture2D" uid="uid://7qjsvlhm6bug" path="res://Assets/simple missile.png" id="1_idqrm"]
@@ -7,6 +7,69 @@
 radius = 7.0
 height = 38.0
 
+[sub_resource type="Gradient" id="Gradient_6nhft"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_62vc4"]
+gradient = SubResource("Gradient_6nhft")
+
+[sub_resource type="Curve" id="Curve_osret"]
+_data = [Vector2(0.00809717, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.593468), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8b3eu"]
+curve = SubResource("Curve_osret")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_go0sg"]
+lifetime_randomness = 0.52
+particle_flag_disable_z = true
+direction = Vector3(-1, 2.08165e-12, 2.08165e-12)
+spread = 83.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_8b3eu")
+color = Color(1, 0.658824, 0.603922, 1)
+color_ramp = SubResource("GradientTexture1D_62vc4")
+hue_variation_min = 2.08167e-17
+hue_variation_max = 0.2
+collision_mode = 1
+collision_friction = 0.07
+collision_bounce = 1.0
+collision_use_scale = true
+
+[sub_resource type="Gradient" id="Gradient_uc0sq"]
+offsets = PackedFloat32Array(0.031746, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b13rc"]
+gradient = SubResource("Gradient_uc0sq")
+
+[sub_resource type="Curve" id="Curve_e36ne"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wn2v6"]
+curve = SubResource("Curve_e36ne")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ec18"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+spread = 180.0
+initial_velocity_min = 22.24
+initial_velocity_max = 35.57
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 7.66
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_wn2v6")
+color = Color(1, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_b13rc")
+hue_variation_min = 0.08
+hue_variation_max = 0.13
+
 [node name="Area2D" type="Area2D" groups=["missile", "p2_missile"]]
 script = ExtResource("1_7vrec")
 
@@ -14,8 +77,28 @@ script = ExtResource("1_7vrec")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_451hc")
 
+[node name="Trail" type="GPUParticles2D" parent="."]
+position = Vector2(-16, 0)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_go0sg")
+lifetime = 0.2
+trail_lifetime = 1.0
+trail_sections = 21
+trail_section_subdivisions = 20
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("1_idqrm")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 70
+process_material = SubResource("ParticleProcessMaterial_2ec18")
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+
+[node name="Lifetime" type="Timer" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

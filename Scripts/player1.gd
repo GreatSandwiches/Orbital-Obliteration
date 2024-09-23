@@ -24,6 +24,7 @@ var immunity = true
 var missile = 0
 var angle_list = []
 signal shield_animation
+signal powered_up
 
 func _ready():
 	$Shieldframes.stop()
@@ -38,6 +39,7 @@ func _ready():
 	$Timer.wait_time = shoot_cooldown
 	$Timer.one_shot = true
 	$Timer.connect("timeout", Callable(self, "_on_timer_timeout"))
+	powered_up.connect(get_node("/root/Level/P1_UI")._powered_up)
 
 # Bullet dmg and knockback code
 func _hit(projectile, bullet_vel):
@@ -125,6 +127,7 @@ func _shotgun_powerup_collected():
 	base_gundamage = 5
 	shotgun = true
 	$ShotgunTimer.start(10)
+	powered_up.emit()
 
 func _on_shotgun_timer_timeout():
 	base_gundamage = 20
@@ -140,6 +143,7 @@ func _on_rapidfire_entered(area):
 		
 		# Start the RapidFireTimer
 		$RapidFireTimer.start(10)  # 10 seconds duration
+		powered_up.emit()
 
 # Function to reset the fire rate and cooling rate
 func _on_RapidFireTimer_timeout():
@@ -152,6 +156,7 @@ func _on_damagepowerup_entered(area):
 	if area.has_meta("damageincrease"):
 		$DamageBoostTimer.start(10)
 		big_bullet = true
+		powered_up.emit()
 
 func _on_DamagePowerupTimer_timeout():
 	big_bullet = false

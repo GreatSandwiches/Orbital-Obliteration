@@ -32,6 +32,14 @@ func _ready():
 func _lifetime_timeout():
 	print("magic")
 	queue_free()
+	
+func _dissappear():
+	$GPUParticles2D.emitting = true
+	hitbox.set_deferred("disabled", true)
+	$Sprite2D.hide()
+	$Trail.hide()
+	$Lifetime.start(5)
+	#queue_free()
 
 func _process(delta):
 	if global.game_mode == 1:
@@ -54,34 +62,18 @@ func _on_area_entered(area):
 	if area.is_in_group("player1"):
 		if not self.is_in_group("p1_missile"):
 			p1_hit.emit(self, velocity * 16)
-			$GPUParticles2D.emitting = true
-			hitbox.set_deferred("disabled", true)
-			$Sprite2D.hide()
-			$Lifetime.start(5)
-			#queue_free()
+			_dissappear()
 	if area.is_in_group("player2"):
 		if not self.is_in_group("p2_missile"):
 			p2_hit.emit(self, velocity * 16)
-			$GPUParticles2D.emitting = true
-			hitbox.set_deferred("disabled", true)
-			$Sprite2D.hide()
-			$Lifetime.start(5)
-			#queue_free()
+			_dissappear()
 	if area.is_in_group("wall") or area.is_in_group("bullet") or area.is_in_group("space_mine"):
-		$GPUParticles2D.emitting = true
-		hitbox.set_deferred("disabled", true)
-		$Sprite2D.hide()
-		$Lifetime.start(5)
-		#queue_free()
+		_dissappear()
 	if area.is_in_group("ai"):
 		if not self.is_in_group("enemy_missile"):
 			print(self.get_scale())
 			ai_hit.emit(self, velocity * 16)
-			$GPUParticles2D.emitting = true
-			hitbox.set_deferred("disabled", true)
-			$Sprite2D.hide()
-			$Lifetime.start(5)
-			#queue_free()
+			_dissappear()
 
 	
 #Knockback and durability implementation?????????????????
