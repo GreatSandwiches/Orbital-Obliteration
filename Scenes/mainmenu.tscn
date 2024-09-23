@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://yrm8t0y7iduu"]
+[gd_scene load_steps=15 format=3 uid="uid://yrm8t0y7iduu"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_g2rkn"]
 [ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_x6lkf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="3_hwt44"]
 [ext_resource type="AudioStream" uid="uid://b3huo5b0idfiy" path="res://Sound effects/Equatorial Complex.mp3" id="4_65amo"]
 [ext_resource type="Texture2D" uid="uid://cfmytjsf8cfpu" path="res://Assets/menu ship design 1.png" id="6_ibe6q"]
+[ext_resource type="Texture2D" uid="uid://bpe2b453rtnd1" path="res://Assets/icons8-audio-48.png" id="7_d5v8j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjx0o"]
 bg_color = Color(1, 1, 1, 1)
@@ -21,6 +22,17 @@ shader = ExtResource("3_hexul")
 shader_parameter/height = 3.0
 shader_parameter/frequency = 20.0
 shader_parameter/speed = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_er8mv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bffp4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11v25"]
+
+[sub_resource type="Theme" id="Theme_d4p74"]
+Button/styles/hover = SubResource("StyleBoxEmpty_er8mv")
+Button/styles/normal = SubResource("StyleBoxEmpty_bffp4")
+Button/styles/pressed = SubResource("StyleBoxEmpty_11v25")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -113,6 +125,16 @@ position = Vector2(578, 482)
 scale = Vector2(0.515137, 0.515137)
 texture = ExtResource("6_ibe6q")
 
+[node name="MuteButton" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 1038.0
+offset_top = 539.0
+offset_right = 1092.0
+offset_bottom = 594.0
+theme = SubResource("Theme_d4p74")
+icon = ExtResource("7_d5v8j")
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="MuteButton" to="." method="_on_mute_button_toggled"]

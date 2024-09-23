@@ -46,6 +46,7 @@ var level_2 = "res://Scenes/level2.tscn"
 var game_mode = 0  # 0 for singleplayer 1 for multiplayer
 var paused = false
 var ismainmenu = true
+var volume = 1
 
 
 # Called when the node enters the scene tree for the first time.

@@ -27,3 +27,15 @@ func _on_quit_pressed():
 
 
 
+
+
+
+
+
+
+func _on_mute_button_toggled(toggled_on):
+	if toggled_on == true:
+		AudioServer.set_bus_volume_db(0, 0)
+	else:
+		AudioServer.set_bus_volume_db(0, global.volume/5)
+
