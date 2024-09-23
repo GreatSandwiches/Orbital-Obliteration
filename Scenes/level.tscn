@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://qi2wm5f32xuy" path="res://Scenes/spacemine_outline.tscn" id="18_7l753"]
 [ext_resource type="PackedScene" uid="uid://uh01kkk767px" path="res://Scenes/turret.tscn" id="19_kngww"]
 [ext_resource type="PackedScene" uid="uid://pj8s42scki05" path="res://Scenes/shotgun_powerup.tscn" id="20_jgln8"]
-[ext_resource type="PackedScene" uid="uid://b10ba6wtk3jog" path="res://Scenes/shield_powerup.tscn" id="20_nrns7"]
+[ext_resource type="PackedScene" path="res://Scenes/shield_powerup.tscn" id="20_nrns7"]
 [ext_resource type="PackedScene" uid="uid://chsbwbba2hmj6" path="res://Scenes/p1_health.tscn" id="21_de81g"]
 [ext_resource type="PackedScene" uid="uid://bdjm8gve4gq20" path="res://Scenes/missile_powerup.tscn" id="22_r4ed2"]
 [ext_resource type="PackedScene" uid="uid://bl4whrci2amdr" path="res://Scenes/enemyai.tscn" id="22_u2vi0"]

@@ -125,16 +125,16 @@ position = Vector2(578, 482)
 scale = Vector2(0.515137, 0.515137)
 texture = ExtResource("6_ibe6q")
 
-[node name="MuteButton" type="CheckButton" parent="."]
+[node name="MuteButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1038.0
-offset_top = 539.0
-offset_right = 1092.0
-offset_bottom = 594.0
+offset_left = 990.0
+offset_top = 531.0
+offset_right = 1044.0
+offset_bottom = 586.0
 theme = SubResource("Theme_d4p74")
 icon = ExtResource("7_d5v8j")
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
-[connection signal="toggled" from="MuteButton" to="." method="_on_mute_button_toggled"]
+[connection signal="pressed" from="MuteButton" to="." method="_on_mute_button_pressed"]
