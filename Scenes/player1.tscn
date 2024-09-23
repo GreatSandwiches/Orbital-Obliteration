@@ -13,14 +13,14 @@ radius = 15.0333
 [sub_resource type="Gradient" id="Gradient_gwf4w"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_62vc4"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t34wa"]
 gradient = SubResource("Gradient_gwf4w")
 
 [sub_resource type="Curve" id="Curve_fcb8u"]
 _data = [Vector2(0.00809717, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.593468), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_8b3eu"]
+[sub_resource type="CurveTexture" id="CurveTexture_k8clo"]
 curve = SubResource("Curve_fcb8u")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o58f2"]
@@ -32,9 +32,9 @@ initial_velocity_max = 60.0
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 scale_min = 5.0
 scale_max = 5.0
-scale_curve = SubResource("CurveTexture_8b3eu")
+scale_curve = SubResource("CurveTexture_k8clo")
 color = Color(1, 0.658824, 0.603922, 1)
-color_ramp = SubResource("GradientTexture1D_62vc4")
+color_ramp = SubResource("GradientTexture1D_t34wa")
 hue_variation_min = 2.08167e-17
 hue_variation_max = 0.2
 collision_mode = 1
@@ -131,8 +131,8 @@ texture = ExtResource("4_lptye")
 
 [node name="ShotgunTimer" type="Timer" parent="."]
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
 [connection signal="animation_finished" from="Shieldframes" to="." method="_shield_down"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
 [connection signal="timeout" from="DamageBoostTimer" to="." method="_on_DamagePowerupTimer_timeout"]
