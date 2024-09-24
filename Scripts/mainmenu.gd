@@ -35,7 +35,7 @@ func _on_quit_pressed():
 
 
 
-
+	
 
 
 
@@ -45,7 +45,8 @@ func _on_mute_button_pressed():
 	is_muted = !is_muted  # Toggle mute state
 	if is_muted:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
-		mute_button.text = "Unmute"  
+		mute_button.text = "Unmute" 
+	#ARGHHHHH	#mute_button.icon = "res://Assets/icons8-mute-button-48.png"
 	else:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 		mute_button.text = "Mute"
