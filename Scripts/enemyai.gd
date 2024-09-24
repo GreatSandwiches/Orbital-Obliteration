@@ -69,13 +69,13 @@ func _physics_process(delta):
 	else:
 		$SmokeTrail.emitting = false
 		
-	# Set the target position to the player's position
+	
 	nav.target_position = global.p2_position
 	
-	# Get the next path position from the NavigationAgent2D
+	# Get the next path position 
 	var direction = nav.get_next_path_position() - global_position
 	
-	# Normalize the direction vector
+	
 	direction = direction.normalized()
 	
 	# Calculate the speed reduction factor based on the distance to the player
@@ -98,5 +98,5 @@ func _physics_process(delta):
 				loaded = false
 				$Timer.start(0.5)
 				
-	# Move the character and handle collisions
+	
 	move_and_slide()
