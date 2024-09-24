@@ -11,6 +11,10 @@ func _powered_up():
 	$Powbartimer.start(1)
 
 func _process(delta):
+	if $Powerup_bar.value > 0:
+		$Powerup_bar.show()
+	else:
+		$Powerup_bar.hide()
 	$Powerup_bar.value = pow_bar_value
 	$P2_Healthbar.value = global.p2_health
 	$P2_Heat.value = global.p2_gunheat

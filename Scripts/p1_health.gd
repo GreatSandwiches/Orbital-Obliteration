@@ -14,6 +14,10 @@ func _powered_up():
 func _process(delta):
 	if global.game_mode == 0:
 		visible = false
+	if $Powerup_bar.value > 0:
+		$Powerup_bar.show()
+	else:
+		$Powerup_bar.hide()
 	$Powerup_bar.value = pow_bar_value
 	$P1_Healthbar.value = global.p1_health
 	$P1_Heat.value = global.p1_gunheat
