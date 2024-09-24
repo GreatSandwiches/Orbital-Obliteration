@@ -35,6 +35,10 @@ var p2_gundamagepowerup = false
 #AI variables
 var ai_health = 100
 var ai_position = Vector2(0,0)
+var enemy_rapid = false
+var enemy_shotgun = false
+var enemy_damage = false
+
 
 
 #Variables
