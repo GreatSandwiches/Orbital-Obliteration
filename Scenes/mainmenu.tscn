@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://yrm8t0y7iduu"]
+[gd_scene load_steps=17 format=3 uid="uid://yrm8t0y7iduu"]
 
 [ext_resource type="Script" path="res://Scripts/mainmenu.gd" id="1_g2rkn"]
 [ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_x6lkf"]
@@ -23,6 +23,10 @@ shader_parameter/height = 3.0
 shader_parameter/frequency = 20.0
 shader_parameter/speed = 3.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hmpb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_22fk8"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_er8mv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bffp4"]
@@ -30,6 +34,8 @@ shader_parameter/speed = 3.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11v25"]
 
 [sub_resource type="Theme" id="Theme_d4p74"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_0hmpb")
+Button/styles/focus = SubResource("StyleBoxEmpty_22fk8")
 Button/styles/hover = SubResource("StyleBoxEmpty_er8mv")
 Button/styles/normal = SubResource("StyleBoxEmpty_bffp4")
 Button/styles/pressed = SubResource("StyleBoxEmpty_11v25")
@@ -127,10 +133,10 @@ texture = ExtResource("6_ibe6q")
 
 [node name="MuteButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 990.0
-offset_top = 531.0
-offset_right = 1044.0
-offset_bottom = 586.0
+offset_left = 975.0
+offset_top = 570.0
+offset_right = 1029.0
+offset_bottom = 625.0
 theme = SubResource("Theme_d4p74")
 icon = ExtResource("7_d5v8j")
 
