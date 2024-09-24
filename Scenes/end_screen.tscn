@@ -40,6 +40,7 @@ script = ExtResource("1_f45ix")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 650.0
 color = Color(0.509804, 0.639216, 1, 1)
@@ -75,6 +76,7 @@ text = "Game Over
 "
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 78.0
 offset_top = 358.0
 offset_right = 279.0
@@ -83,6 +85,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5q2t3")
 
 [node name="Replay" type="Button" parent="."]
 z_index = 1
+layout_mode = 0
 offset_left = 67.0
 offset_top = 383.0
 offset_right = 290.0
@@ -93,6 +96,7 @@ alignment = 0
 
 [node name="Menu" type="Button" parent="."]
 z_index = 1
+layout_mode = 0
 offset_left = 67.0
 offset_top = 438.0
 offset_right = 290.0
@@ -104,6 +108,7 @@ alignment = 0
 
 [node name="Quit" type="Button" parent="."]
 z_index = 1
+layout_mode = 0
 offset_left = 67.0
 offset_top = 500.0
 offset_right = 290.0
@@ -114,6 +119,7 @@ alignment = 0
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = 1
+layout_mode = 0
 offset_left = 98.0
 offset_top = 495.0
 offset_right = 258.0
@@ -123,8 +129,7 @@ color = Color(0.501961, 0.501961, 0.501961, 1)
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 position = Vector2(1160, 644)
 rotation = -0.698132
-scale = Vector2(1, 1)
-amount = 2000
+amount = 300
 lifetime = 8.0
 explosiveness = 1.0
 direction = Vector2(2.08165e-12, -1)
@@ -141,7 +146,7 @@ hue_variation_curve = SubResource("Curve_gqsld")
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(1, 649)
 rotation = 0.698132
-amount = 2000
+amount = 300
 lifetime = 8.0
 explosiveness = 1.0
 direction = Vector2(2.08165e-12, -1)
