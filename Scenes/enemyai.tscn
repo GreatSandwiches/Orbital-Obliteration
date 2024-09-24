@@ -101,4 +101,13 @@ trail_lifetime = 1.0
 trail_sections = 21
 trail_section_subdivisions = 20
 
+[node name="Rapidtimer" type="Timer" parent="."]
+
+[node name="Damagetimer" type="Timer" parent="."]
+
+[node name="Shotguntimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_cooldown_done"]
+[connection signal="timeout" from="Rapidtimer" to="." method="_on_rapidtimer_timeout"]
+[connection signal="timeout" from="Damagetimer" to="." method="_on_damagetimer_timeout"]
+[connection signal="timeout" from="Shotguntimer" to="." method="_on_shotguntimer_timeout"]

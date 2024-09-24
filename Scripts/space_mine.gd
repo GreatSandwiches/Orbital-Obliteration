@@ -7,10 +7,12 @@ extends Area2D
 
 signal p1_exploded
 signal p2_exploded
+signal ai_exploded
 
 func _ready():
 	p1_exploded.connect(get_node("/root/Level/Player1")._mine_collision)
 	p2_exploded.connect(get_node("/root/Level/Player2")._mine_collision)
+	ai_exploded.connect(get_node("/root/Level/EnemyAi")._mine_collision)
 	$AnimatedSprite2D.play()
 	
 func _process(delta):

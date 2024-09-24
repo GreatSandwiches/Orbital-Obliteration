@@ -22,6 +22,16 @@ func _ready():
 		velocity = velocity * global.p1_bulletspeed
 	if self.is_in_group("p2_bullet"):
 		velocity = velocity * global.p2_bulletspeed
+	if self.is_in_group("enemy_bullet"):
+		if global.enemy_damage == true:
+			if global.enemy_shotgun == true:
+				self.set_scale(Vector2(1.4,1.4))
+			else:
+				self.set_scale(Vector2(2,2))
+			velocity = velocity * 0.7
+		if global.enemy_shotgun == true:
+			if global.enemy_damage == false:
+				self.set_scale(Vector2(0.7,0.7))
 		
 	# Create a timer to handle the bullet's lifetime
 	var timer = Timer.new()

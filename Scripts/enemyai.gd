@@ -6,10 +6,13 @@ var accel = 2
 var min_distance = 50
 var loaded = true
 var ko_scale
+var reload_period = 0.5
+var missile = 0
+var angle_list = []
 
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 
-func _shoot():
+func _shoot(deviation, type):
 	print(bullet_scene)
 	if bullet_scene == null:
 		print("Error: bullet_scene is not assigned!")
@@ -17,7 +20,7 @@ func _shoot():
 		
 	var bullet = bullet_scene.instantiate()
 	bullet.position = $ProjectileSpawn.global_position
-	bullet.rotation = rotation
+	bullet.rotation = rotation + deviation
 	get_parent().add_child(bullet)
 
 func _cooldown_done():
@@ -30,6 +33,32 @@ func take_damage(amount):
 	if global.ai_health <= 0:
 		die()
 		
+func _mine_collision():
+	pass
+
+func _damage_up():
+	global.enemy_damage = true
+	$Damagetimer.start(10)
+
+func _rapid_fire():
+	global.enemy_rapid = true
+	reload_period = 0.2
+	$Rapidtimer.start(10)
+
+func _shotgun():
+	global.enemy_shotgun = true
+	$Shotguntimer.start(10)
+	
+func _on_rapidtimer_timeout():
+	global.enemy_rapid = false
+	reload_period = 0.5
+
+func _on_damagetimer_timeout():
+	global.enemy_damage = false
+
+func _on_shotguntimer_timeout():
+	global.enemy_shotgun = false
+	
 func _hit(projectile, bullet_vel):
 	if projectile.is_in_group("p2_bullet"):
 		take_damage(global.p2_gundamage)
@@ -94,9 +123,29 @@ func _physics_process(delta):
 	if $Ray.get_collider() != null:
 		if $Ray.get_collider().is_in_group("player"):
 			if loaded == true:
-				_shoot()
+				if global.enemy_shotgun == true:
+					angle_list = [(-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36)]
+					if missile == 1:
+						angle_list = [(-2*PI/7), (-1*PI/7), 0, (1*PI/7), (2*PI/7)]
+					for deviation in angle_list:
+						#var rng = RandomNumberGenerator.new()
+						#global.p1_bulletspeed = 1 + rng.randf_range(-0.2, 0)
+						if missile == 1:
+							_shoot(deviation, "missile")
+							global.p1_gunheat += 2
+						else:
+							_shoot(deviation, "bullet")
+							global.p1_gunheat += 0.1
+				else:	
+					if missile == 1:
+						_shoot(0, "missile")
+					else:
+						_shoot(0, "bullet")
 				loaded = false
-				$Timer.start(0.5)
+				$Timer.start(reload_period)
 				
 	
 	move_and_slide()
+
+
+
