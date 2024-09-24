@@ -46,7 +46,8 @@ func _on_mute_button_pressed():
 	if is_muted:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 		mute_button.text = "Unmute" 
-	#ARGHHHHH	#mute_button.icon = "res://Assets/icons8-mute-button-48.png"
+		mute_button.icon = load("res://Assets/icons8-mute-button-48.png")
 	else:
+		mute_button.icon = load("res://Assets/icons8-audio-48.png")
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 		mute_button.text = "Mute"
