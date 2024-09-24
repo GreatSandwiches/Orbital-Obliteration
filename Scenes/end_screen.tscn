@@ -1,6 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6nya08ap8q3i"]
+[gd_scene load_steps=9 format=3 uid="uid://c6nya08ap8q3i"]
 
 [ext_resource type="Script" path="res://Scripts/end_screen.gd" id="1_f45ix"]
+[ext_resource type="Shader" path="res://Scenes/mainmenu.gdshader" id="2_6hkk4"]
+[ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="3_d8e2t"]
+[ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="4_3angh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ae1uv"]
+shader = ExtResource("2_6hkk4")
+shader_parameter/height = 1.0
+shader_parameter/frequency = 20.0
+shader_parameter/speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h3oah"]
+shader = ExtResource("2_6hkk4")
+shader_parameter/height = 3.0
+shader_parameter/frequency = 20.0
+shader_parameter/speed = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5q2t3"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Curve" id="Curve_gqsld"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,55 +37,124 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f45ix")
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -314.5
-offset_right = 314.5
-offset_bottom = 137.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 100
-text = "Game Over!!!"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -314.5
-offset_top = -109.0
-offset_right = 314.5
-offset_bottom = 109.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Button" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Replay"
-
-[node name="Button2" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Main menu"
+[node name="TextureRect" type="ColorRect" parent="."]
+offset_right = 1154.0
+offset_bottom = 650.0
+color = Color(0.509804, 0.639216, 1, 1)
 
 [node name="Label2" type="Label" parent="."]
+material = SubResource("ShaderMaterial_ae1uv")
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -98.5
-offset_top = 136.0
-offset_right = 98.5
-offset_bottom = 178.0
+offset_left = -538.0
+offset_top = 206.0
+offset_right = -203.0
+offset_bottom = 277.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("3_d8e2t")
+theme_override_font_sizes/font_size = 50
 text = "Player 1 wins!"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_restart"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[node name="GameTitle" type="Label" parent="."]
+material = SubResource("ShaderMaterial_h3oah")
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -303.0
+offset_right = 1008.0
+offset_bottom = -163.0
+grow_vertical = 2
+theme = ExtResource("3_d8e2t")
+text = "Game Over
+"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 78.0
+offset_top = 358.0
+offset_right = 279.0
+offset_bottom = 556.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5q2t3")
+
+[node name="Replay" type="Button" parent="."]
+z_index = 1
+offset_left = 67.0
+offset_top = 383.0
+offset_right = 290.0
+offset_bottom = 426.0
+theme = ExtResource("4_3angh")
+text = "    Rematch"
+alignment = 0
+
+[node name="Menu" type="Button" parent="."]
+z_index = 1
+offset_left = 67.0
+offset_top = 438.0
+offset_right = 290.0
+offset_bottom = 481.0
+theme = ExtResource("4_3angh")
+text = "    Main Menu
+"
+alignment = 0
+
+[node name="Quit" type="Button" parent="."]
+z_index = 1
+offset_left = 67.0
+offset_top = 500.0
+offset_right = 290.0
+offset_bottom = 543.0
+theme = ExtResource("4_3angh")
+text = "    Quit Game"
+alignment = 0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 1
+offset_left = 98.0
+offset_top = 495.0
+offset_right = 258.0
+offset_bottom = 499.0
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(1160, 644)
+rotation = -0.698132
+scale = Vector2(1, 1)
+amount = 2000
+lifetime = 8.0
+explosiveness = 1.0
+direction = Vector2(2.08165e-12, -1)
+spread = 60.0
+initial_velocity_min = 800.0
+initial_velocity_max = 1200.0
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color = Color(0.235294, 0.862745, 0.764706, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_gqsld")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(1, 649)
+rotation = 0.698132
+amount = 2000
+lifetime = 8.0
+explosiveness = 1.0
+direction = Vector2(2.08165e-12, -1)
+spread = 60.0
+initial_velocity_min = 800.0
+initial_velocity_max = 1200.0
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color = Color(0.235294, 0.862745, 0.764706, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_gqsld")
+
+[connection signal="pressed" from="Replay" to="." method="_restart"]
+[connection signal="pressed" from="Menu" to="." method="_menu"]
+[connection signal="pressed" from="Quit" to="." method="_quit"]

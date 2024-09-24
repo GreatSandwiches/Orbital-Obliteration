@@ -3,7 +3,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$CPUParticles2D.emitting = true
+	$CPUParticles2D2.emitting = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,7 +18,7 @@ func _process(delta):
 		if global.game_mode == 1:
 			$Label2.text = "Player 2 wins!"
 		elif  global.game_mode == 0:
-			$Label2.text = "Player wins!"
+			$Label2.text = "You Win!"
 			
 		
 
@@ -27,7 +28,11 @@ func _restart():
 	global.p2_score = 0
 
 
-func _on_button_2_pressed():
+func _menu():
 	global.p1_score = 0
 	global.p2_score = 0
 	get_tree().change_scene_to_file("res://Scenes/mainmenu.tscn")
+
+
+func _quit():
+	get_tree().quit()

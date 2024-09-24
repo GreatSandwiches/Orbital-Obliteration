@@ -63,15 +63,6 @@ offset_right = 266.0
 offset_bottom = 557.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qjx0o")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 107.0
-offset_top = 357.0
-offset_right = 268.0
-offset_bottom = 557.0
-theme = SubResource("Theme_xyh8k")
-
 [node name="Play" type="Button" parent="."]
 z_index = 1
 layout_mode = 2
@@ -104,6 +95,15 @@ offset_bottom = 541.0
 theme = ExtResource("2_x6lkf")
 text = "    Quit"
 alignment = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 107.0
+offset_top = 357.0
+offset_right = 268.0
+offset_bottom = 557.0
+theme = SubResource("Theme_xyh8k")
 
 [node name="GameTitle" type="Label" parent="."]
 material = SubResource("ShaderMaterial_7ebs0")
