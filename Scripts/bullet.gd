@@ -3,6 +3,7 @@ extends Area2D
 @export var lifetime = 2.0
 @onready var global = get_node("/root/Global")
 var velocity = Vector2.ZERO
+var damage = 20
 signal p1_hit
 signal p2_hit
 signal ai_hit
@@ -19,19 +20,24 @@ func _ready():
 	velocity = Vector2(cos(rotation), sin(rotation)) * speed
 	# Multiplies velocity by desired bullet speed (for shotgun powerup)
 	if self.is_in_group("p1_bullet"):
+		damage = global.p1_gundamage
 		velocity = velocity * global.p1_bulletspeed
 	if self.is_in_group("p2_bullet"):
+		damage = global.p2_gundamage
 		velocity = velocity * global.p2_bulletspeed
 	if self.is_in_group("enemy_bullet"):
 		if global.enemy_damage == true:
 			if global.enemy_shotgun == true:
 				self.set_scale(Vector2(1.4,1.4))
+				damage = 10
 			else:
 				self.set_scale(Vector2(2,2))
+				damage = 40
 			velocity = velocity * 0.7
 		if global.enemy_shotgun == true:
 			if global.enemy_damage == false:
 				self.set_scale(Vector2(0.7,0.7))
+				damage = 5
 		
 	# Create a timer to handle the bullet's lifetime
 	var timer = Timer.new()
@@ -52,17 +58,17 @@ func _process(delta):
 func _on_area_entered(area):
 	if area.is_in_group("player1"):
 		if not self.is_in_group("p1_bullet"):
-			p1_hit.emit(self, velocity)
+			p1_hit.emit(self, velocity, damage)
 			queue_free()
 	if area.is_in_group("player2"):
 		if not self.is_in_group("p2_bullet"):
-			p2_hit.emit(self, velocity)
+			p2_hit.emit(self, velocity, damage)
 			queue_free()
 	if area.is_in_group("wall"):
 		queue_free()
 	if area.is_in_group("ai"):
 		if not self.is_in_group("enemy_bullet"):
-			ai_hit.emit(self, velocity)
+			ai_hit.emit(self, velocity, damage)
 			queue_free()
 	if area.is_in_group("space_mine") or area.is_in_group("missile"):
 		queue_free()

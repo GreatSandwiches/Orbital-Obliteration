@@ -59,12 +59,12 @@ func _on_damagetimer_timeout():
 func _on_shotguntimer_timeout():
 	global.enemy_shotgun = false
 	
-func _hit(projectile, bullet_vel):
+func _hit(projectile, bullet_vel, damage):
 	if projectile.is_in_group("p2_bullet"):
-		take_damage(global.p2_gundamage)
+		take_damage(damage)
 		velocity += bullet_vel * 0.3 * projectile.get_scale()
 	if projectile.is_in_group("p2_missile"):
-		take_damage(global.p2_gundamage * 2.5)
+		take_damage(damage * 2.5)
 		if projectile.get_scale() == Vector2(0.7,0.7):
 			ko_scale = 0.06
 		else:
