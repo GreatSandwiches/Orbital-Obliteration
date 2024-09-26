@@ -9,8 +9,18 @@ var ko_scale
 var reload_period = 0.5
 var missile = 0
 var angle_list = []
+var knockback = Vector2(0,0)
+var shield = true
+var immunity = true
 
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
+
+func _ready():
+	$Shieldframes.stop()
+	$Shieldframes.set_frame_and_progress(0,0.0)
+	global.enemy_rapid = false
+	global.enemy_shotgun = false
+	global.enemy_damage = false
 
 func _shoot(deviation, type):
 	print(bullet_scene)
@@ -25,16 +35,24 @@ func _shoot(deviation, type):
 
 func _cooldown_done():
 	loaded = true
-	
-	
+
 func take_damage(amount):
 	global.ai_health -= amount
 	print("takingdamage")
 	if global.ai_health <= 0:
 		die()
-		
+
+func _shield_down():
+	immunity = false
+
 func _mine_collision():
-	pass
+	if immunity == false:
+		take_damage(30)
+	else:
+		$Shieldframes.play()
+		shield = false
+	knockback = (position - global.spacemine_collision_pos_p1)
+	velocity += knockback * 15
 
 func _damage_up():
 	global.enemy_damage = true
@@ -60,22 +78,30 @@ func _on_shotguntimer_timeout():
 	global.enemy_shotgun = false
 	
 func _hit(projectile, bullet_vel, damage):
-	if projectile.is_in_group("p2_bullet"):
-		take_damage(damage)
-		velocity += bullet_vel * 0.3 * projectile.get_scale()
-	if projectile.is_in_group("p2_missile"):
-		take_damage(damage * 2.5)
-		if projectile.get_scale() == Vector2(0.7,0.7):
-			ko_scale = 0.06
-		else:
-			ko_scale = 0.15
-		velocity += bullet_vel * ko_scale * projectile.get_scale()
-		#shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
+	if shield == true and $Shieldframes.is_playing() == false:
+		shield = false
+		$Shieldframes.play()
+	if immunity == false:
+		if projectile.is_in_group("p2_bullet"):
+			take_damage(damage)
+			velocity += bullet_vel * 0.3 * projectile.get_scale()
+		if projectile.is_in_group("p2_missile"):
+			take_damage(damage * 2.5)
+			if projectile.get_scale() == Vector2(0.7,0.7):
+				ko_scale = 0.06
+			else:
+				ko_scale = 0.15
+			velocity += bullet_vel * ko_scale * projectile.get_scale()
+			#shipvector += (bullet_vel * 0.0005 * bullet.get_scale())
 		
 func die():
 	global.ai_health = 100
 	global.p2_score += 1
 	position = Vector2(120, 150)
+	$Shieldframes.stop()
+	$Shieldframes.set_frame_and_progress(0,0.0)
+	shield = true
+	immunity = true
 
 func _physics_process(delta):
 	# Check the game mode

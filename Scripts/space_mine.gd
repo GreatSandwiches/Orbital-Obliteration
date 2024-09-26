@@ -20,7 +20,7 @@ func _process(delta):
 
 
 func _player_collision(area):
-	if area.is_in_group("player") or area.is_in_group("bullet") or area.is_in_group("missile"):
+	if area.is_in_group("player") or area.is_in_group("bullet") or area.is_in_group("missile") or area.is_in_group("ai"):
 		hitbox.set_deferred("disabled", true)
 		$GPUParticles2D.emitting = true
 		$AnimatedSprite2D.hide()
@@ -37,6 +37,11 @@ func _player_collision(area):
 		global.spacemine_collision_pos_p2 = position
 		print(global.spacemine_collision_pos_p2)
 		p2_exploded.emit()
+		
+	if area.is_in_group("ai"):
+		global.spacemine_collision_pos_p1 = position
+		print(global.spacemine_collision_pos_p1)
+		ai_exploded.emit()
 
 
 func _on_respawn_timer_timeout():

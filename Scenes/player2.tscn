@@ -140,8 +140,8 @@ one_shot = true
 
 [node name="ShieldTimer" type="Timer" parent="."]
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_rapidfire_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_damagepowerup_entered"]
 [connection signal="animation_finished" from="Shieldframes" to="." method="_shield_down"]
 [connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]
 [connection signal="timeout" from="DamageBoostTimer" to="." method="_on_DamagePowerupTimer_timeout"]

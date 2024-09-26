@@ -1,11 +1,38 @@
-[gd_scene load_steps=11 format=3 uid="uid://bl4whrci2amdr"]
+[gd_scene load_steps=13 format=3 uid="uid://bl4whrci2amdr"]
 
 [ext_resource type="Script" path="res://Scripts/enemyai.gd" id="1_2hp62"]
 [ext_resource type="Texture2D" uid="uid://cpwml6am2nstv" path="res://Assets/simple p1 ship.png" id="2_d4dgi"]
 [ext_resource type="PackedScene" uid="uid://sl5rp7y1cepm" path="res://Scenes/enemy_bullet.tscn" id="3_01cva"]
+[ext_resource type="Texture2D" uid="uid://uxyc5knwsfix" path="res://Assets/p1 shielded.png" id="3_8tvbm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_llli1"]
 radius = 14.0357
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3rh5m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8tvbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d4dgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8tvbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d4dgi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8tvbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d4dgi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w31cf"]
 radius = 14.0
@@ -57,7 +84,14 @@ debug_path_custom_color = Color(1, 0, 0, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_llli1")
 
+[node name="Shieldframes" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5.96046e-08, 5.96046e-08)
+rotation = 1.57049
+scale = Vector2(0.056, 0.056)
+sprite_frames = SubResource("SpriteFrames_3rh5m")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(2.38419e-07, 0)
 rotation = 1.56921
 scale = Vector2(0.0559562, 0.058754)
@@ -107,6 +141,7 @@ trail_section_subdivisions = 20
 
 [node name="Shotguntimer" type="Timer" parent="."]
 
+[connection signal="animation_finished" from="Shieldframes" to="." method="_shield_down"]
 [connection signal="timeout" from="Timer" to="." method="_cooldown_done"]
 [connection signal="timeout" from="Rapidtimer" to="." method="_on_rapidtimer_timeout"]
 [connection signal="timeout" from="Damagetimer" to="." method="_on_damagetimer_timeout"]
