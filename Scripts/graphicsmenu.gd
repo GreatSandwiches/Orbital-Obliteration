@@ -1,4 +1,5 @@
 extends Control
+@onready var global = get_node("/root/Global")
 @onready var Config = get_node("/root/ConfigFileHandler")
 @onready var Fullscreen = $Fullscreen
 
@@ -7,12 +8,15 @@ extends Control
 	#var video_settings = ConfigFileHandler.load_video_settings()
 	#Fullscreen.button_pressed = video_settings.fullscreen
 	
-
+func _ready():
+	global.isgraphicsmenushowing = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene_to_file("res://Scenes/pausesettings.tscn")
+	if global.isgraphicsmenushowing == false:
+		hide()
+	elif global.isgraphicsmenushowing == true:
+		show()
 
 
 func _on_resolution_item_selected(index):
@@ -34,4 +38,5 @@ func _on_fullscreen_toggled(toggled_on):
 		
 		
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://Scenes/pausesettings.tscn")
+	global.isgraphicsmenushowing = false
+	global.ispausesettings_showing = true

@@ -1,4 +1,5 @@
 extends Control
+@onready var global = get_node("/root/Global")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,8 +9,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene_to_file("res://Scenes/pausesettings.tscn")
+	if global.isaudiomenushowing == false:
+		hide()
+	elif global.isaudiomenushowing == true:
+		show()
+	
 	
 	
 func _on_volume_value_changed(value):
@@ -17,4 +21,6 @@ func _on_volume_value_changed(value):
 
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://Scenes/pausesettings.tscn")
+	global.isaudiomenushowing = false
+	global.ispausesettings_showing = true
+	

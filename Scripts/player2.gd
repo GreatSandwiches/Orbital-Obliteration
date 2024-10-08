@@ -283,5 +283,3 @@ func _physics_process(delta):
 
 	# Apply velocity and move the character
 	move_and_slide()
-
-

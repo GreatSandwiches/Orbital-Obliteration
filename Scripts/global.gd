@@ -51,6 +51,10 @@ var game_mode = 0  # 0 for singleplayer 1 for multiplayer
 var paused = false
 var ismainmenu = true
 var volume = 1
+var isaudiomenushowing = false
+var ispausesettings_showing = false
+var isgraphicsmenushowing = false
+var ispausemenushowing = false
 
 
 # Called when the node enters the scene tree for the first time.

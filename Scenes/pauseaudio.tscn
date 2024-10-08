@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjxok3n0yel21"]
+[gd_scene load_steps=13 format=3 uid="uid://bjxok3n0yel21"]
 
 [ext_resource type="Script" path="res://Scripts/pauseaudio.gd" id="1_ox6l0"]
+[ext_resource type="Shader" path="res://Scenes/pausemenu.gdshader" id="2_clpvn"]
 [ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_ypjjb"]
 [ext_resource type="Shader" path="res://Scenes/mainmenu.gdshader" id="3_e7n7o"]
 [ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="4_cwpvk"]
 [ext_resource type="AudioStream" uid="uid://b3huo5b0idfiy" path="res://Sound effects/Equatorial Complex.mp3" id="5_fm3m1"]
 [ext_resource type="FontFile" uid="uid://bgmecac7llk31" path="res://Themes/Poppins-SemiBold.ttf" id="6_dyasg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xhhw"]
+shader = ExtResource("2_clpvn")
+shader_parameter/lod = 2.82
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjx0o"]
 bg_color = Color(1, 1, 1, 1)
@@ -37,13 +42,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ox6l0")
 
+[node name="ColorRect3" type="ColorRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_7xhhw")
+offset_right = 1153.0
+offset_bottom = 646.0
+
 [node name="TextureRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 650.0
 color = Color(0.509804, 0.639216, 1, 1)
 
 [node name="Panel" type="Panel" parent="."]
+z_index = 1
 layout_mode = 0
 offset_left = 106.0
 offset_top = 357.0
@@ -72,6 +85,7 @@ text = "    Back"
 alignment = 0
 
 [node name="GameTitle" type="Label" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_7ebs0")
 layout_mode = 1
 anchors_preset = 4
@@ -119,6 +133,6 @@ offset_bottom = 390.0
 theme = SubResource("Theme_jxgdr")
 text = "Volume:"
 
-[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="Volume" to="." method="_on_volume_value_changed"]
