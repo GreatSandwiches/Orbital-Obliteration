@@ -42,19 +42,19 @@ func _ready():
 	powered_up.connect(get_node("/root/Level/P1_UI")._powered_up)
 
 # Bullet dmg and knockback code
-func _hit(projectile, bullet_vel):
+func _hit(projectile, bullet_vel, damage):
 	if shield == true and $Shieldframes.is_playing() == false:
 		shield = false
 		$Shieldframes.play()
 	if immunity == false:
 		if projectile.is_in_group("p2_bullet"):
-			take_damage(global.p2_gundamage)
+			take_damage(damage)
 			shipvector += (bullet_vel * 0.0005 * projectile.get_scale())
 		if projectile.is_in_group("p2_missile"):
-			take_damage(global.p2_gundamage * 2.5)
+			take_damage(damage * 2.5)
 			shipvector += (bullet_vel * 0.0005 * projectile.get_scale())
 		if projectile.is_in_group("enemy_bullet"):
-			take_damage(20)
+			take_damage(damage)
 			shipvector += (bullet_vel * 0.0005 * projectile.get_scale())
 
 

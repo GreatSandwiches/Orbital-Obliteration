@@ -18,7 +18,7 @@ scale = Vector2(0.0742187, 0.0742187)
 texture = ExtResource("1_1owqo")
 
 [node name="ProjectileSpawn" type="Node2D" parent="."]
-position = Vector2(39, 0)
+position = Vector2(45, 0)
 
 [node name="Ray" type="RayCast2D" parent="."]
 exclude_parent = false
