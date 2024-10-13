@@ -44,6 +44,12 @@ func take_damage(amount):
 
 func _shield_down():
 	immunity = false
+	
+func _shield_powerup_collected():
+	$Shieldframes.stop()
+	$Shieldframes.set_frame_and_progress(0,0.0)
+	shield = true
+	immunity = true
 
 func _mine_collision():
 	if immunity == false:
