@@ -22,6 +22,7 @@ func _process(delta):
 			global.paused = true
 			get_tree().paused = true
 			$PauseMenu.show()
+			$GameTitle.show()
 			global.ispausemenushowing = true
 			
 		else:
@@ -29,4 +30,5 @@ func _process(delta):
 			print("unpaused")
 			global.paused = false
 			$PauseMenu.hide()
+			$GameTitle.hide()
 			global.ispausemenushowing = false

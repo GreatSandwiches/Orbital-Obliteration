@@ -1,10 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpx6cd8of6vhd"]
+[gd_scene load_steps=29 format=3 uid="uid://bpx6cd8of6vhd"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_xs5nu"]
 [ext_resource type="AudioStream" uid="uid://bqcglyjtvfgaa" path="res://Sound effects/Newer Wave.mp3" id="2_lpmae"]
+[ext_resource type="PackedScene" uid="uid://bjxok3n0yel21" path="res://Scenes/pauseaudio.tscn" id="4_vh64y"]
+[ext_resource type="PackedScene" uid="uid://dlrld2tp3w1lq" path="res://Scenes/pausesettings.tscn" id="6_0osaw"]
 [ext_resource type="PackedScene" uid="uid://b07vwngjvg1ef" path="res://Scenes/p1_trail.tscn" id="6_dmcv7"]
+[ext_resource type="PackedScene" uid="uid://crq6sspjxffty" path="res://Scenes/pausegraphics.tscn" id="7_my5dh"]
 [ext_resource type="PackedScene" uid="uid://xwfny7na0w5h" path="res://Scenes/p2_trail.tscn" id="7_qs6pl"]
+[ext_resource type="Shader" path="res://Scenes/mainmenu.gdshader" id="7_u1dec"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="8_j8hlo"]
+[ext_resource type="Theme" uid="uid://dw5g2qeyh1v1e" path="res://Themes/labeltheme.tres" id="8_tdd3g"]
 [ext_resource type="PackedScene" uid="uid://bi0oghkdlwk23" path="res://Scenes/player2.tscn" id="9_rmuwc"]
 [ext_resource type="Shader" path="res://Scenes/level.gdshader" id="10_ulefn"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="11_gaxb6"]
@@ -20,6 +25,12 @@
 [ext_resource type="PackedScene" uid="uid://ykxdmm4l6arj" path="res://Scenes/ai_health.tscn" id="21_aei0x"]
 [ext_resource type="PackedScene" uid="uid://dlwto10cqkuhd" path="res://Scenes/p2_health.tscn" id="22_aegef"]
 [ext_resource type="PackedScene" uid="uid://bl4whrci2amdr" path="res://Scenes/enemyai.tscn" id="22_y1k4k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pw3jq"]
+shader = ExtResource("7_u1dec")
+shader_parameter/height = 3.0
+shader_parameter/frequency = 20.0
+shader_parameter/speed = 3.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhv0k"]
 shader = ExtResource("10_ulefn")
@@ -54,8 +65,37 @@ metadata/_edit_vertical_guides_ = [1140.0, 1150.0]
 process_mode = 3
 script = ExtResource("11_gaxb6")
 
+[node name="AudioMenu" parent="CanvasLayer/Pause" instance=ExtResource("4_vh64y")]
+visible = false
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 4.0
+offset_bottom = 2.0
+
 [node name="PauseMenu" parent="CanvasLayer/Pause" instance=ExtResource("12_07fax")]
 visible = false
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 4.0
+offset_bottom = 2.0
+
+[node name="PauseSettings" parent="CanvasLayer/Pause" instance=ExtResource("6_0osaw")]
+visible = false
+
+[node name="PauseGraphics" parent="CanvasLayer/Pause" instance=ExtResource("7_my5dh")]
+visible = false
+
+[node name="GameTitle" type="Label" parent="CanvasLayer/Pause"]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_pw3jq")
+offset_left = 52.0
+offset_top = 35.0
+offset_right = 1035.0
+offset_bottom = 175.0
+theme = ExtResource("8_tdd3g")
+text = "Game Paused
+"
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 visible = false

@@ -102,6 +102,7 @@ text = "    Quit"
 alignment = 0
 
 [node name="GameTitle" type="Label" parent="."]
+visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_7ebs0")
 layout_mode = 1
