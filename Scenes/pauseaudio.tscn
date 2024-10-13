@@ -45,6 +45,7 @@ script = ExtResource("1_ox6l0")
 [node name="ColorRect3" type="ColorRect" parent="."]
 z_index = 1
 material = SubResource("ShaderMaterial_7xhhw")
+layout_mode = 0
 offset_right = 1153.0
 offset_bottom = 646.0
 
