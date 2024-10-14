@@ -2,6 +2,7 @@ extends Control
 @onready var global = get_node("/root/Global")
 @onready var Config = get_node("/root/ConfigFileHandler")
 @onready var Fullscreen = $Fullscreen
+@onready var current_scene = get_tree().current_scene
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -13,6 +14,7 @@ func _ready():
 		$Fullscreen.set_pressed(true)
 		
 	$Resolution.selected = global.selected_resolution
+	$Quality.selected = global.quality
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -47,3 +49,24 @@ func _on_fullscreen_toggled(toggled_on):
 		
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Scenes/settingsmenu.tscn")
+
+
+func _on_quality_item_selected(index):
+	match index:
+		
+		0:
+			get_viewport().msaa_2d = Viewport.MSAA_8X
+			global.quality = 0
+			#ProjectSettings.save()
+		1:
+			get_viewport().msaa_2d = Viewport.MSAA_2X
+			global.quality = 1
+			#ProjectSettings.save()
+		2:
+			get_viewport().msaa_2d = Viewport.MSAA_DISABLED
+			global.quality = 2
+			#ProjectSettings.save()
+
+
+func _on_quality_value_changed(value):
+	get_viewport().set_msaa2d(value)

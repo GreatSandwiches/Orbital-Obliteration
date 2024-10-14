@@ -62,6 +62,7 @@ var rapidpowerhidden = false
 var is_muted: bool = false
 var fullscreen = false
 var selected_resolution = 1
+var quality = 0
 
 
 # Called when the node enters the scene tree for the first time.

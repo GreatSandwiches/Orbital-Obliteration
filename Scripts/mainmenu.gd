@@ -11,6 +11,10 @@ func _ready():
 	menuparticles.show() #ach this doesnt work yet
 	mute_button.text = "Mute"
 	
+	if global.selected_resolution == 1:
+		DisplayServer.window_set_size(Vector2i(1920,1080 ))
+	
+	
 	if global.is_muted:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 		mute_button.text = "Unmute" 
