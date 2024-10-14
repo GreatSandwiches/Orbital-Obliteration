@@ -2,9 +2,7 @@ extends Control
 @onready var global = get_node("/root/Global")
 
 
-func _on_close_button_pressed():
-	hide()
-	get_tree().paused = false
+
 
 
 ''
@@ -19,6 +17,8 @@ func _process(delta):
 		hide()
 	elif global.ispausemenushowing == true:
 		show()
+		
+	
 
 
 func _on_options_pressed():
