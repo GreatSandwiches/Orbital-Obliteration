@@ -55,7 +55,7 @@ var isaudiomenushowing = false
 var ispausesettings_showing = false
 var isgraphicsmenushowing = false
 var ispausemenushowing = false
-
+var is_muted: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
