@@ -29,7 +29,7 @@ func _save_settings(volume):
 	var file = FileAccess.open("user://audio_settings.save", FileAccess.WRITE)
 	if file:
 		print("Saving volume:", volume)
-		file.store_32(volume)
+		file.store_32(int(volume))
 		file.close()
 	else:
 		print("Failed to open file for writing")
