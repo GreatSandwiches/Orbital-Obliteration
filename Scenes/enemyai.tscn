@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bl4whrci2amdr"]
+[gd_scene load_steps=14 format=3 uid="uid://bl4whrci2amdr"]
 
 [ext_resource type="Script" path="res://Scripts/enemyai.gd" id="1_2hp62"]
 [ext_resource type="Texture2D" uid="uid://cpwml6am2nstv" path="res://Assets/simple p1 ship.png" id="2_d4dgi"]
 [ext_resource type="PackedScene" uid="uid://sl5rp7y1cepm" path="res://Scenes/enemy_bullet.tscn" id="3_01cva"]
 [ext_resource type="Texture2D" uid="uid://uxyc5knwsfix" path="res://Assets/p1 shielded.png" id="3_8tvbm"]
+[ext_resource type="PackedScene" uid="uid://chl2j5ecxjvac" path="res://Scenes/missileai.tscn" id="3_snyjv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_llli1"]
 radius = 14.0357
@@ -74,6 +75,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_2hp62")
 bullet_scene = ExtResource("3_01cva")
+missile_scene = ExtResource("3_snyjv")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 radius = 50.0

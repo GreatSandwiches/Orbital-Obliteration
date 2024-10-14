@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @onready var global = get_node("/root/Global")
 @export var bullet_scene: PackedScene
+@export var missile_scene: PackedScene
 var speed = 180
 var accel = 2
 var min_distance = 50
@@ -12,9 +13,11 @@ var angle_list = []
 var knockback = Vector2(0,0)
 var shield = true
 var immunity = true
+var projectile = null
 var powerup_locations = []
 var target = Vector2(0,0)
 var target_check = 0
+var missilepwrlocation = Vector2(0,0)
 var shotgunpwrlocation = Vector2(0,0)
 var dmguppwrlocation = Vector2(0,0)
 var shieldpwrlocation = Vector2(0,0)
@@ -30,7 +33,8 @@ func _ready():
 	global.enemy_shotgun = false
 	global.enemy_damage = false
 	if global.selected_level == "res://Scenes/level.tscn":
-		powerup_locations = [Vector2(210,455), Vector2(392,556), Vector2(594,315), Vector2(751,204)]
+		powerup_locations = [Vector2(194,327), Vector2(210,455), Vector2(392,556), Vector2(594,315), Vector2(751,204)]
+		missilepwrlocation = Vector2(194,327)
 		shotgunpwrlocation = Vector2(210,455)
 		dmguppwrlocation = Vector2(392,556)
 		shieldpwrlocation = Vector2(594,315)
@@ -43,11 +47,13 @@ func _shoot(deviation, type):
 	if bullet_scene == null:
 		print("Error: bullet_scene is not assigned!")
 		return
-		
-	var bullet = bullet_scene.instantiate()
-	bullet.position = $ProjectileSpawn.global_position
-	bullet.rotation = rotation + deviation
-	get_parent().add_child(bullet)
+	if missile == 1:
+		projectile = missile_scene.instantiate()
+	else:
+		projectile = bullet_scene.instantiate()
+	projectile.position = $ProjectileSpawn.global_position
+	projectile.rotation = rotation + deviation
+	get_parent().add_child(projectile)
 
 func _cooldown_done():
 	loaded = true
@@ -66,6 +72,9 @@ func _shield_powerup_collected():
 	$Shieldframes.set_frame_and_progress(0,0.0)
 	shield = true
 	immunity = true
+	
+func _missile_powerup_collected():
+	missile = 1
 
 func _mine_collision():
 	if immunity == false:
@@ -150,7 +159,9 @@ func _physics_process(delta):
 	
 	for location in powerup_locations:
 		processed_location = location
-		
+		if global.missilepowerhidden == true:
+			if location == missilepwrlocation:
+				processed_location = global.p2_position
 		if global.shotgunpowerhidden == true:
 			if location == shotgunpwrlocation:
 				processed_location = global.p2_position
@@ -211,6 +222,7 @@ func _physics_process(delta):
 					else:
 						_shoot(0, "bullet")
 				loaded = false
+				missile = 0
 				$Timer.start(reload_period)
 				
 	
