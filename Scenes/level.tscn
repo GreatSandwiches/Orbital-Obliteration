@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://djh2642nqf640"]
+[gd_scene load_steps=27 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
 [ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dlrld2tp3w1lq" path="res://Scenes/pausesettings.tscn" id="5_huxhw"]
 [ext_resource type="PackedScene" uid="uid://xwfny7na0w5h" path="res://Scenes/p2_trail.tscn" id="5_vrpef"]
 [ext_resource type="PackedScene" uid="uid://crq6sspjxffty" path="res://Scenes/pausegraphics.tscn" id="6_wkjvc"]
+[ext_resource type="PackedScene" uid="uid://bhnkixn76fjn2" path="res://Scenes/game_title.tscn" id="7_exsii"]
 [ext_resource type="PackedScene" uid="uid://d2sr2tferkxir" path="res://Scenes/pausemenu.tscn" id="7_jbmpc"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="7_jsaq6"]
 [ext_resource type="PackedScene" uid="uid://cx3536rcka2kg" path="res://Scenes/space_mine.tscn" id="10_wd516"]
@@ -61,6 +62,8 @@ visible = false
 
 [node name="PauseGraphics" parent="CanvasLayer/Pause" instance=ExtResource("6_wkjvc")]
 visible = false
+
+[node name="GameTitle" parent="CanvasLayer/Pause" instance=ExtResource("7_exsii")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7flku")

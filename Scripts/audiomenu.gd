@@ -3,10 +3,8 @@ extends Control
 @onready var global = get_node("/root/Global")
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-	#var audio_settings = ConfigFileHandler.load_audio_settings()
-	#master_volume_slider.value = min(audio_settings.master_volume, 1.0) * 100
-
+func _ready():
+	$Volume.value = global.volume
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
