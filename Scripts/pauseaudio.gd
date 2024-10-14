@@ -13,6 +13,12 @@ func _process(delta):
 		hide()
 	elif global.isaudiomenushowing == true:
 		show()
+		
+	if Input.is_action_just_pressed("ui_cancel"):
+		if global.isaudiomenushowing == true:
+			global.isaudiomenushowing = false
+			global.ispausesettings_showing = true
+			
 	
 	
 	

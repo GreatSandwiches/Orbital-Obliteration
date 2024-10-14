@@ -17,6 +17,12 @@ func _process(delta):
 		hide()
 	elif global.isgraphicsmenushowing == true:
 		show()
+		
+	if Input.is_action_just_pressed("ui_cancel"):
+		if global.isgraphicsmenushowing == true:
+			global.isgraphicsmenushowing = false
+			global.ispausesettings_showing = true
+		
 
 
 func _on_resolution_item_selected(index):
