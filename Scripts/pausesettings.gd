@@ -9,8 +9,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#if Input.is_action_just_pressed("ui_cancel"):
-		#get_tree().change_scene_to_file("res://Scenes/level.tscn")
+	if Input.is_action_just_pressed("ui_cancel"):
+		if global.ispausesettings_showing == true:
+			global.ispausesettings_showing = false
+			global.ispausemenushowing = true
+		
 		
 	if global.ispausesettings_showing == false:
 		hide()
