@@ -40,5 +40,6 @@ func _on_quit_pressed():
 func _on_continue_pressed():
 	global.ispausemenushowing = false
 	hide()
+	$GameTitle.hide()
 	global.paused = false
 	get_tree().paused = false
