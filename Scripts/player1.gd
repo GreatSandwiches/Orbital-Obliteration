@@ -56,6 +56,9 @@ func _hit(projectile, bullet_vel, damage):
 		if projectile.is_in_group("enemy_bullet"):
 			take_damage(damage)
 			shipvector += (bullet_vel * 0.0005 * projectile.get_scale())
+		if projectile.is_in_group("enemy_missile"):
+			take_damage(damage * 2.5)
+			shipvector += (bullet_vel * 0.0005 * projectile.get_scale())
 
 
 func _shield_down():

@@ -59,6 +59,7 @@ var shieldpowerhidden = false
 var shotgunpowerhidden = false
 var dmgpowerhidden = false
 var rapidpowerhidden = false
+var missilepowerhidden = false
 var is_muted: bool = false
 
 
