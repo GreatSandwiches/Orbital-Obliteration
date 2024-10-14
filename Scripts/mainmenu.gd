@@ -11,8 +11,10 @@ func _ready():
 	menuparticles.show() #ach this doesnt work yet
 	mute_button.text = "Mute"
 	
-	if global.selected_resolution == 1:
-		DisplayServer.window_set_size(Vector2i(1920,1080 ))
+	if global.settings_loaded == false:
+		_load_settings()
+		global.settings_loaded = true
+	
 	
 	
 	if global.is_muted:
@@ -54,3 +56,36 @@ func _on_mute_button_pressed():
 		mute_button.icon = load("res://Assets/icons8-audio-48.png")
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
 		mute_button.text = "Mute"
+		
+		
+		
+# load the settings from a file when the project starts
+func _load_settings():
+	var file = FileAccess.open("user://video_settings.save", FileAccess.READ)
+	if file:  # Check if the file exists
+		var quality = file.get_32()
+		var fullscreen_str = file.get_line()
+		file.close()
+		
+		# Convert the fullscreen string to bool
+		var fullscreen = fullscreen_str == "true"
+
+		# Set the MSAA based on the saved quality
+		match quality:
+			0:
+				get_viewport().msaa_2d = Viewport.MSAA_8X
+				global.quality = 0
+			1:
+				get_viewport().msaa_2d = Viewport.MSAA_2X
+				global.quality = 1
+			2:
+				get_viewport().msaa_2d = Viewport.MSAA_DISABLED
+				global.quality = 2
+
+		# Set the fullscreen mode based on the saved value
+		if fullscreen:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			global.fullscreen = true
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			global.fullscreen = false

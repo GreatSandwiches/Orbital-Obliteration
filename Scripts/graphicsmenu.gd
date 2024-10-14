@@ -15,6 +15,7 @@ func _ready():
 		
 	$Resolution.selected = global.selected_resolution
 	$Quality.selected = global.quality
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -38,35 +39,47 @@ func _on_resolution_item_selected(index):
 			DisplayServer.window_set_size(Vector2i(1280,720 ))
 			global.selected_resolution = 2
 			
-func _on_fullscreen_toggled(toggled_on):
-	if toggled_on == true:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		ConfigFileHandler.save_video_setting("fullscreen", toggled_on)
-		global.fullscreen = true
-	else: 
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		global.fullscreen = false
+
 		
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Scenes/settingsmenu.tscn")
 
 
+# Save the quality setting to a file when the user selects a setting
 func _on_quality_item_selected(index):
 	match index:
-		
 		0:
 			get_viewport().msaa_2d = Viewport.MSAA_8X
 			global.quality = 0
-			#ProjectSettings.save()
 		1:
 			get_viewport().msaa_2d = Viewport.MSAA_2X
 			global.quality = 1
-			#ProjectSettings.save()
 		2:
 			get_viewport().msaa_2d = Viewport.MSAA_DISABLED
 			global.quality = 2
-			#ProjectSettings.save()
+	
+	
+	_save_settings(global.quality, global.fullscreen)
 
+# Save the fullscreen setting when toggled
+func _on_fullscreen_toggled(toggled_on):
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		global.fullscreen = true
+		
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		global.fullscreen = false
+		
+	
+	
+	_save_settings(global.quality, global.fullscreen)
 
-func _on_quality_value_changed(value):
-	get_viewport().set_msaa2d(value)
+# save the settings to a file
+func _save_settings(quality, fullscreen):
+	var file = FileAccess.open("user://video_settings.save", FileAccess.WRITE)
+	if file:
+		file.store_32(quality)
+		file.store_line(str(fullscreen))
+		file.close()
+
