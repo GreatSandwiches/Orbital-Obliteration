@@ -12,6 +12,14 @@ var angle_list = []
 var knockback = Vector2(0,0)
 var shield = true
 var immunity = true
+var powerup_locations = []
+var target = Vector2(0,0)
+var target_check = 0
+var shotgunpwrlocation = Vector2(0,0)
+var dmguppwrlocation = Vector2(0,0)
+var shieldpwrlocation = Vector2(0,0)
+var rapidfirepwrlocation = Vector2(0,0)
+var processed_location = Vector2(0,0)
 
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 
@@ -21,6 +29,14 @@ func _ready():
 	global.enemy_rapid = false
 	global.enemy_shotgun = false
 	global.enemy_damage = false
+	if global.selected_level == "res://Scenes/level.tscn":
+		powerup_locations = [Vector2(210,455), Vector2(392,556), Vector2(594,315), Vector2(751,204)]
+		shotgunpwrlocation = Vector2(210,455)
+		dmguppwrlocation = Vector2(392,556)
+		shieldpwrlocation = Vector2(594,315)
+		rapidfirepwrlocation = Vector2(751,204)
+	elif global.selected_level == "res://Scenes/level2.tscn":
+		pass
 
 func _shoot(deviation, type):
 	print(bullet_scene)
@@ -130,8 +146,29 @@ func _physics_process(delta):
 	else:
 		$SmokeTrail.emitting = false
 		
+	target = global.p2_position
 	
-	nav.target_position = global.p2_position
+	for location in powerup_locations:
+		processed_location = location
+		
+		if global.shotgunpowerhidden == true:
+			if location == shotgunpwrlocation:
+				processed_location = global.p2_position
+		if global.dmgpowerhidden == true:
+			if location == dmguppwrlocation:
+				processed_location = global.p2_position
+		if global.shieldpowerhidden == true:
+			if location == shieldpwrlocation:
+				processed_location = global.p2_position
+		if global.rapidpowerhidden == true:
+			if location == rapidfirepwrlocation:
+				processed_location = global.p2_position
+				
+		target_check = position.distance_to(processed_location)
+		if target_check < (position.distance_to(target)):
+			target = processed_location
+	
+	nav.target_position = target
 	
 	# Get the next path position 
 	var direction = nav.get_next_path_position() - global_position

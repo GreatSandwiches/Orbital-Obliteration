@@ -22,15 +22,18 @@ func _rapidfire_collect(area):
 		hitbox.set_deferred("disabled", true)
 		hide()
 		respawn_timer.start(10)
+		global.rapidpowerhidden = true
 	
 	if area.is_in_group("ai"):
 		ai_rapid.emit()
 		hitbox.set_deferred("disabled", true)
 		hide()
 		respawn_timer.start(10)
+		global.rapidpowerhidden = true
 
 
 
 func _on_respawn_timer_timeout():
 	hitbox.disabled = false
 	show()
+	global.rapidpowerhidden = false

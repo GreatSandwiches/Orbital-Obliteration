@@ -21,13 +21,16 @@ func _on_damage_collect(area):
 		hitbox.set_deferred("disabled", true)
 		hide()
 		respawn_timer.start(10)
+		global.dmgpowerhidden = true
 	
 	if area.is_in_group("ai"):
 		ai_damageup.emit()
 		hitbox.set_deferred("disabled", true)
 		hide()
 		respawn_timer.start(10)
+		global.dmgpowerhidden = true
 
 func _on_respawn_timer_timeout():
 	hitbox.disabled = false
 	show()
+	global.dmgpowerhidden = false
