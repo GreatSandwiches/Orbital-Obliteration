@@ -297,6 +297,7 @@ position = Vector2(-176, 426)
 position = Vector2(-165, 545)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_q4djc")
 
 [node name="EnemyAi" parent="." instance=ExtResource("22_y1k4k")]

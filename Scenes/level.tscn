@@ -242,6 +242,7 @@ position = Vector2(594, 315)
 position = Vector2(119, 150)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_mh6hb")
 
 [node name="Missileprwp" parent="." instance=ExtResource("22_r4ed2")]
