@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://crq6sspjxffty"]
 
-[ext_resource type="Script" path="res://Scripts/graphicsmenu.gd" id="1_81bpl"]
+[ext_resource type="Script" path="res://Scripts/pausegraphics.gd" id="1_jmuq7"]
 [ext_resource type="Shader" path="res://Scenes/pausemenu.gdshader" id="2_h0fjc"]
 [ext_resource type="Theme" uid="uid://bi3bwqv4kgpoq" path="res://Themes/BasicButton.tres" id="2_rcnbv"]
 [ext_resource type="Shader" path="res://Scenes/mainmenu.gdshader" id="3_a672s"]
@@ -42,7 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_81bpl")
+script = ExtResource("1_jmuq7")
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 z_index = 1
@@ -161,7 +161,7 @@ offset_right = 152.0
 offset_bottom = 518.0
 theme = SubResource("Theme_4v76g")
 
-[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
 [connection signal="item_selected" from="Resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="toggled" from="Fullscreen" to="." method="_on_fullscreen_toggled"]

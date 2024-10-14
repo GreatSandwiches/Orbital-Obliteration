@@ -91,11 +91,11 @@ text = "Resolution"
 
 [node name="Resolution" type="OptionButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-selected = 0
 item_count = 3
 popup/item_0/text = "1152x648"
 popup/item_0/id = 1
 popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
 popup/item_2/text = "1280x720"
 popup/item_2/id = 2
 

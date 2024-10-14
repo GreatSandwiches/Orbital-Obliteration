@@ -302,3 +302,10 @@ navigation_polygon = SubResource("NavigationPolygon_q4djc")
 
 [node name="EnemyAi" parent="." instance=ExtResource("22_y1k4k")]
 position = Vector2(192, 131)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -100
+offset_right = 1148.0
+offset_bottom = 648.0
+color = Color(0.286275, 0.396078, 0.701961, 1)
+metadata/_edit_lock_ = true

@@ -9,14 +9,19 @@ extends Control
 	#Fullscreen.button_pressed = video_settings.fullscreen
 	
 func _ready():
-	pass
+	global.isgraphicsmenushowing = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	if global.isgraphicsmenushowing == false:
+		hide()
+	elif global.isgraphicsmenushowing == true:
+		show()
 		
 	if Input.is_action_just_pressed("ui_cancel"):
-		pass
+		if global.isgraphicsmenushowing == true:
+			global.isgraphicsmenushowing = false
+			global.ispausesettings_showing = true
 		
 
 
@@ -39,4 +44,5 @@ func _on_fullscreen_toggled(toggled_on):
 		
 		
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://Scenes/settingsmenu.tscn")
+	global.isgraphicsmenushowing = false
+	global.ispausesettings_showing = true
