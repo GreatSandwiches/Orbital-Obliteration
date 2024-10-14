@@ -10,6 +10,10 @@ extends Control
 	
 func _ready():
 	global.isgraphicsmenushowing = false
+	if global.fullscreen == true:
+		$Fullscreen.set_pressed(true)
+		
+	$Resolution.selected = global.selected_resolution
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -30,18 +34,22 @@ func _on_resolution_item_selected(index):
 		
 		0:
 			DisplayServer.window_set_size(Vector2i(1152,648 ))
+			global.selected_resolution = 0
 		1:
 			DisplayServer.window_set_size(Vector2i(1920,1080 ))
+			global.selected_resolution = 1
 		2:
 			DisplayServer.window_set_size(Vector2i(1280,720 ))
+			global.selected_resolution = 2
 			
 func _on_fullscreen_toggled(toggled_on):
 	if toggled_on == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		ConfigFileHandler.save_video_setting("fullscreen", toggled_on)
+		global.fullscreen = true
 	else: 
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		
+		global.fullscreen = false
 		
 func _on_back_pressed():
 	global.isgraphicsmenushowing = false

@@ -118,7 +118,7 @@ offset_bottom = 390.0
 theme = SubResource("Theme_jxgdr")
 text = "Volume:"
 
-[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
 [connection signal="drag_ended" from="Volume" to="." method="_on_volume_drag_ended"]
 [connection signal="value_changed" from="Volume" to="." method="_on_volume_value_changed"]

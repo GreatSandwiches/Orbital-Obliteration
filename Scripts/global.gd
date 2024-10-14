@@ -60,6 +60,8 @@ var shotgunpowerhidden = false
 var dmgpowerhidden = false
 var rapidpowerhidden = false
 var is_muted: bool = false
+var fullscreen = false
+var selected_resolution = 1
 
 
 # Called when the node enters the scene tree for the first time.
