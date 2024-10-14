@@ -21,17 +21,21 @@ func _collected(area):
 		hitbox.set_deferred("disabled", true)
 		hide()
 		respawn_timer.start(10)
+		global.shotgunpowerhidden = true
 	if area.is_in_group("player2"):
 		collect2.emit()
 		hitbox.set_deferred("disabled", true)
 		hide()
 		respawn_timer.start(10)
+		global.shotgunpowerhidden = true
 	if area.is_in_group("ai"):
 		ai_collect.emit()
 		hitbox.set_deferred("disabled", true)
 		hide()
 		respawn_timer.start(10)
+		global.shotgunpowerhidden = true
 
 func _duration_end():
 	hitbox.disabled = false
 	show()
+	global.shotgunpowerhidden = false
