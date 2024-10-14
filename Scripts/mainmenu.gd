@@ -89,3 +89,15 @@ func _load_settings():
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			global.fullscreen = false
+		
+	if FileAccess.file_exists("user://audio_settings.save"):
+		var audiofile = FileAccess.open("user://audio_settings.save", FileAccess.READ)
+		if audiofile:  # Check if the file exists
+			var volume = audiofile.get_32()
+			print(volume)
+			audiofile.close()
+		
+			AudioServer.set_bus_volume_db(0, volume/5)
+			global.volume = volume
+	else: 
+		print("audio file does not exist")

@@ -106,7 +106,8 @@ offset_top = 416.0
 offset_right = 255.0
 offset_bottom = 432.0
 theme = ExtResource("2_1at66")
-min_value = -100.0
+min_value = -200.0
+max_value = 50.0
 
 [node name="Label" type="Label" parent="."]
 z_index = 1
@@ -118,7 +119,6 @@ offset_bottom = 390.0
 theme = SubResource("Theme_jxgdr")
 text = "Volume:"
 
-[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
-[connection signal="drag_ended" from="Volume" to="." method="_on_volume_drag_ended"]
+[connection signal="pressed" from="Back" to="." method="_on_quit_pressed"]
 [connection signal="value_changed" from="Volume" to="." method="_on_volume_value_changed"]
