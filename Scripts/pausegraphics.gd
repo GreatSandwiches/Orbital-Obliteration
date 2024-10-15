@@ -16,7 +16,7 @@ func _ready():
 	$Resolution.selected = global.selected_resolution
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if global.isgraphicsmenushowing == false:
 		hide()
 	elif global.isgraphicsmenushowing == true:
@@ -42,6 +42,9 @@ func _on_resolution_item_selected(index):
 			DisplayServer.window_set_size(Vector2i(1280,720 ))
 			global.selected_resolution = 2
 			
+
+
+			
 func _on_fullscreen_toggled(toggled_on):
 	if toggled_on == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -51,6 +54,18 @@ func _on_fullscreen_toggled(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		global.fullscreen = false
 		
+		
+	_save_settings(global.quality, global.fullscreen)
+		
 func _on_back_pressed():
 	global.isgraphicsmenushowing = false
 	global.ispausesettings_showing = true
+	
+	
+# save the settings to a file
+func _save_settings(quality, fullscreen):
+	var file = FileAccess.open("user://video_settings.save", FileAccess.WRITE)
+	if file:
+		file.store_32(quality)
+		file.store_line(str(fullscreen))
+		file.close()

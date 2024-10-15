@@ -208,13 +208,13 @@ func _process(delta):
 	else:
 		$Area2D/SmokeTrail.emitting = false
 	
-	#heat cooldown functionality
+	# Heat cooldown functionality
 	if global.p1_gunheat > 0 and cancool:
 		global.p1_gunheat -= global.p1_coolingrate * delta
 		if global.p1_gunheat < 0:
 			global.p1_gunheat = 0
 	
-	# Jank but it works ig // shot detection for guncooldown
+	# Shot detection for guncooldown
 	if Input.is_action_pressed("ui_shift"):
 		cancool = true
 	else:
@@ -234,7 +234,7 @@ func _process(delta):
 	# Smooth rotation using lerp_angle
 	rotation = lerp_angle(rotation, target_rotation, 1)
 	
-	# detecting for if player can shoot when key is pressed - added proper overheat detection 7/8
+	# detecting for if player can shoot when key is pressed
 	if Input.is_action_pressed("ui_shift") and can_shoot and not is_overheated:
 		if global.p1_gunheat < global.p1_maxgunheat:
 			# Code for generating shotgun bullets

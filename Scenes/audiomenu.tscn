@@ -106,6 +106,7 @@ offset_top = 416.0
 offset_right = 255.0
 offset_bottom = 432.0
 theme = ExtResource("2_1at66")
+min_value = -200.0
 max_value = 50.0
 
 [node name="Label" type="Label" parent="."]

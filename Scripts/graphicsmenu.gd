@@ -82,4 +82,6 @@ func _save_settings(quality, fullscreen):
 		file.store_32(quality)
 		file.store_line(str(fullscreen))
 		file.close()
+	else: 
+		print("File not found")
 
