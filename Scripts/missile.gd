@@ -7,6 +7,7 @@ var target_position = Vector2(0,0)
 var direction = Vector2(0,0)
 var speedscale = 1
 var turnscale = 1
+var damage = 0
 signal p1_hit
 signal p2_hit
 signal ai_hit
@@ -23,9 +24,24 @@ func _ready():
 	velocity = Vector2(cos(rotation), sin(rotation)) * speed
 	# Multiplies velocity by desired bullet speed (for shotgun powerup)
 	if self.is_in_group("p1_missile"):
+		damage = global.p1_gundamage
 		speedscale = global.p1_bulletspeed
 	if self.is_in_group("p2_missile"):
+		damage = global.p2_gundamage
 		speedscale = global.p2_bulletspeed
+	if self.is_in_group("enemy_missile"):
+		if global.enemy_damage == true:
+			if global.enemy_shotgun == true:
+				self.set_scale(Vector2(1.4,1.4))
+				damage = 10
+			else:
+				self.set_scale(Vector2(2,2))
+				damage = 40
+			velocity = velocity * 0.7
+		if global.enemy_shotgun == true:
+			if global.enemy_damage == false:
+				self.set_scale(Vector2(0.7,0.7))
+				damage = 5
 	if self.get_scale() == Vector2(2,2):
 		turnscale = 0.7
 
@@ -48,7 +64,10 @@ func _process(delta):
 		if self.is_in_group("p2_missile"):
 			target_position = global.p1_position
 	else:
-		target_position = global.ai_position
+		if self.is_in_group("enemy_missile"):
+			target_position = global.p2_position
+		else:
+			target_position = global.ai_position
 	
 	direction = target_position - position
 	var angle = self.transform.x.angle_to(direction)
@@ -61,18 +80,24 @@ func _process(delta):
 func _on_area_entered(area):
 	if area.is_in_group("player1"):
 		if not self.is_in_group("p1_missile"):
-			p1_hit.emit(self, velocity * 16)
+			p1_hit.emit(self, velocity * 16, damage)
 			_dissappear()
 	if area.is_in_group("player2"):
 		if not self.is_in_group("p2_missile"):
-			p2_hit.emit(self, velocity * 16)
+			p2_hit.emit(self, velocity * 16, damage)
 			_dissappear()
-	if area.is_in_group("wall") or area.is_in_group("bullet") or area.is_in_group("space_mine"):
+	if area.is_in_group("wall") or area.is_in_group("space_mine"): 
 		_dissappear()
+	if area.is_in_group("bullet"):
+		if area.is_in_group("enemy_bullet"):
+			if not self.is_in_group("enemy_missile"):
+				_dissappear()
+		else:
+			_dissappear()
 	if area.is_in_group("ai"):
 		if not self.is_in_group("enemy_missile"):
 			print(self.get_scale())
-			ai_hit.emit(self, velocity * 16)
+			ai_hit.emit(self, velocity * 16, damage)
 			_dissappear()
 
 	
