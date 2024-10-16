@@ -9,8 +9,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	
+	# Shows title when game is paused, hides it when game is not paused
 	if global.paused == false:
 		hide()
 	elif global.paused == true:
