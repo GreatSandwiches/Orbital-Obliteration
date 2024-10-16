@@ -23,13 +23,16 @@ var shield = true
 var immunity = true
 var missile = 0
 var angle_list = []
+var max_health = 100
+var default_firerate = 0.3
+var default_coolingrate = 3
 signal shield_animation
 signal powered_up
 
 func _ready():
 	$Shieldframes.stop()
 	$Shieldframes.set_frame_and_progress(0,0.0)
-	global.p1_health = 100
+	global.p1_health = max_health
 	global.p1_gunheat = 0
 	global.p1_firerate = 0.3
 	global.p1_gundamage = base_gundamage
@@ -88,7 +91,7 @@ func _mine_collision():
 		shield = false
 
 func die():
-	global.p1_health = 100
+	global.p1_health = max_health
 	global.p2_score +=1
 	global.p1_gunheat = 0
 	position = Vector2(120, 150)
@@ -150,8 +153,8 @@ func _on_rapidfire_entered(area):
 
 # Function to reset the fire rate and cooling rate
 func _on_RapidFireTimer_timeout():
-	global.p1_firerate = 0.3  # Reset to default 
-	global.p1_coolingrate = 3  # Reset to default 
+	global.p1_firerate = default_firerate  # Reset to default 
+	global.p1_coolingrate = default_coolingrate # Reset to default 
 	print("Power-up ended")
 	print(global.p1_firerate)
 
