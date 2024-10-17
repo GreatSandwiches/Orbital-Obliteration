@@ -39,7 +39,7 @@ func _ready():
 		if global.enemy_damage == true:
 			if global.enemy_shotgun == true:
 				self.set_scale(enhanced_shotgun_size)
-				damage = enhanced_shotgun_size
+				damage = enhanced_shotgun_dmg
 			else:
 				self.set_scale(enhanced_bullet_size)
 				damage = enhanced_bullet_dmg

@@ -4,7 +4,6 @@ extends Control
 @onready var mute_button: Button = $MuteButton
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global.ismainmenu = true
@@ -94,12 +93,12 @@ func _load_settings():
 	if FileAccess.file_exists("user://audio_settings.save"):
 		
 		var audiofile = FileAccess.open("user://audio_settings.save", FileAccess.READ)
-		if audiofile:  # Check if the file exists
+		if audiofile != null:  # Check if the file exists
 			var volume = audiofile.get_var()
 			print(volume)
 			audiofile.close()
-		
-			AudioServer.set_bus_volume_db(0, volume/5)
-			global.volume = volume
+			if volume != null:
+				AudioServer.set_bus_volume_db(0, volume/5)
+				global.volume = volume
 	else: 
 		print("audio file does not exist")
