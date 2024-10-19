@@ -1,15 +1,19 @@
 extends Control
+
+# Variables
 @onready var global = get_node("/root/Global")
 @onready var Config = get_node("/root/ConfigFileHandler")
 @onready var Fullscreen = $Fullscreen
 @onready var current_scene = get_tree().current_scene
+const HIGH_QUALITY = 0
+const MEDIUM_QUALITY = 1
+const LOW_QUALITY = 2
+
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-	#var video_settings = ConfigFileHandler.load_video_settings()
-	#Fullscreen.button_pressed = video_settings.fullscreen
-	
 func _ready():
+	
+	# Updating state of buttons/dropdowns
 	if global.fullscreen == true:
 		$Fullscreen.set_pressed(true)
 		
@@ -18,14 +22,11 @@ func _ready():
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
+	pass
 	
-		
-	if Input.is_action_just_pressed("ui_cancel"):
-		pass
-		
-
-
+	
+# Function to set game resolution	
 func _on_resolution_item_selected(index):
 	match index:
 		
@@ -40,7 +41,7 @@ func _on_resolution_item_selected(index):
 			global.selected_resolution = 2
 			
 
-		
+# Go back to menu when back button pressed
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Scenes/settingsmenu.tscn")
 
@@ -50,16 +51,16 @@ func _on_quality_item_selected(index):
 	match index:
 		0:
 			get_viewport().msaa_2d = Viewport.MSAA_8X
-			global.quality = 0
+			global.quality = HIGH_QUALITY
 		1:
 			get_viewport().msaa_2d = Viewport.MSAA_2X
-			global.quality = 1
+			global.quality = MEDIUM_QUALITY
 		2:
 			get_viewport().msaa_2d = Viewport.MSAA_DISABLED
-			global.quality = 2
-	
+			global.quality = LOW_QUALITY
 	
 	_save_settings(global.quality, global.fullscreen)
+
 
 # Save the fullscreen setting when toggled
 func _on_fullscreen_toggled(toggled_on):
@@ -71,16 +72,15 @@ func _on_fullscreen_toggled(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		global.fullscreen = false
 		
-	
-	
 	_save_settings(global.quality, global.fullscreen)
 
-# save the settings to a file
+
+# Save the settings to a file
 func _save_settings(quality, fullscreen):
 	var file = FileAccess.open("user://video_settings.save", FileAccess.WRITE)
 	if file:
-		file.store_32(quality)
-		file.store_line(str(fullscreen))
+		file.store_32(quality) # Store the quality setting	
+		file.store_line(str(fullscreen)) # Store the fullscreen value
 		file.close()
 	else: 
 		print("File not found")

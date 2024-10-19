@@ -1,5 +1,6 @@
 extends Node
-# p1 variables
+
+# P1 Variables
 var p1_score = 0
 var p1_location = Vector2(0,0)
 var p1_health = 100
@@ -15,7 +16,8 @@ var p1_position = Vector2(0,0)
 var p1_velocity = Vector2(0,0)
 var p1_gundamagepowerup = false
 
-#p2 variables
+
+# P2 Variables
 var p2_score = 0
 var p2_location = Vector2(0,0)
 var p2_health = 100
@@ -32,16 +34,15 @@ var p2_velocity = Vector2(0,0)
 var p2_gundamagepowerup = false
 
 
-#AI variables
-var ai_health = 100
+#AI Variables
+var ai_health = 100 # Max health for AI
 var ai_position = Vector2(0,0)
 var enemy_rapid = false
 var enemy_shotgun = false
 var enemy_damage = false
 
 
-
-#Variables
+# General Variables
 var asteroid1_pos = Vector2(0,0)
 var wall_pos1 = Vector2(0,0)
 var selected_level = "res://Scenes/level.tscn"
@@ -62,16 +63,7 @@ var rapidpowerhidden = false
 var missilepowerhidden = false
 var is_muted: bool = false
 var fullscreen = false
-var selected_resolution = 1
+var selected_resolution = 1 
 var quality = 0
 var settings_loaded = false
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
