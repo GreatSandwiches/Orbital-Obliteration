@@ -210,7 +210,7 @@ func _on_overheat_timer_timeout():
 	can_shoot = true
 
 
-func _process(_delta):
+func _process(delta):
 	if global.game_mode == 0:
 		visible = false
 		velocity = Vector2.ZERO
@@ -226,7 +226,7 @@ func _process(_delta):
 	position.y = clamp(position.y, CameraLimits.limit_top, CameraLimits.limit_bottom)
 
 	# Outputs ship velocity by adding acceleration subtracted by friction
-	shipvectorforward = Vector2(transform.x * acceleration * _delta)
+	shipvectorforward = Vector2(transform.x * acceleration * delta)
 	shipvector += shipvectorforward - shipvectorbackward
 	# Calculates friction vector
 	
@@ -253,7 +253,7 @@ func _process(_delta):
 	
 	# Heat cooldown functionality
 	if global.p1_gunheat > 0 and cancool:
-		global.p1_gunheat -= global.p1_coolingrate * _delta
+		global.p1_gunheat -= global.p1_coolingrate * delta
 		if global.p1_gunheat < 0:
 			global.p1_gunheat = 0
 	

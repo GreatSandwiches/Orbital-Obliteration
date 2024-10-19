@@ -1,15 +1,16 @@
 extends Control
+
+# Variables
 @onready var global = get_node("/root/Global")
 @onready var Config = get_node("/root/ConfigFileHandler")
 @onready var Fullscreen = $Fullscreen
 @onready var current_scene = get_tree().current_scene
 
+
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-	#var video_settings = ConfigFileHandler.load_video_settings()
-	#Fullscreen.button_pressed = video_settings.fullscreen
-	
 func _ready():
+	
+	# Updating state of buttons/dropdowns
 	if global.fullscreen == true:
 		$Fullscreen.set_pressed(true)
 		
@@ -19,13 +20,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+	
 	
 		
-	if Input.is_action_just_pressed("ui_cancel"):
-		pass
-		
-
-
 func _on_resolution_item_selected(index):
 	match index:
 		
