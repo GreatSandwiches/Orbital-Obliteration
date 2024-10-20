@@ -21,7 +21,6 @@ CameraLimits="*res://Scripts/CameraLimits.gd"
 Global="*res://Scripts/global.gd"
 BgMusic="*res://Scenes/bg_music.tscn"
 MenuParticles="*res://Scenes/menu_particles.tscn"
-ConfigFileHandler="*res://Scripts/ConfigFileHandler.gd"
 
 [display]
 
