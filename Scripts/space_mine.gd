@@ -3,7 +3,9 @@ extends Area2D
 @onready var global = get_node("/root/Global")
 @onready var respawn_timer = $RespawnTimer
 @onready var hitbox = $CollisionShape2D
+
 var respawn_delay = 8
+
 signal p1_exploded
 signal p2_exploded
 signal ai_exploded
@@ -17,7 +19,7 @@ func _ready():
 	$AnimatedSprite2D.play()
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -33,6 +35,7 @@ func _player_collision(area):
 		$GPUParticles2D.emitting = true
 		$AnimatedSprite2D.hide()
 		respawn_timer.start(respawn_delay)
+	
 	# Emits damage signal when players/ai hit it
 	if area.is_in_group("player1"):
 		global.spacemine_collision_pos_p1 = position

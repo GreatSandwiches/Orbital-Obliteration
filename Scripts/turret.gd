@@ -2,6 +2,7 @@ extends Node2D
 
 @export var bullet_scene: PackedScene
 @onready var global = get_node("/root/Global")
+
 var loaded = true
 var target_position = Vector2(0, 0)
 var direction = Vector2(0, 0)
@@ -11,8 +12,8 @@ var reload_period = 0.5
 var base_reload_period = 0.5
 var increment = Vector2(1, 0)
 var rotation_speed = PI / 70
-var bullet_shotgun_angles = [(-2*PI/36), (-1*PI/36), 0, (1*PI/36), (2*PI/36)]
-var missile_shotgun_angles = [(-2*PI/7), (-1*PI/7), 0, (1*PI/7), (2*PI/7)]
+var bullet_shotgun_angles = [(-2 * PI / 36), (-1 * PI / 36), 0, (1 * PI / 36), (2 * PI / 36)]
+var missile_shotgun_angles = [(-2 * PI / 7), (-1 * PI / 7), 0, (1 * PI / 7), (2 * PI / 7)]
 
 
 func _ready():
@@ -70,9 +71,6 @@ func _process(_delta):
 						angle_list = missile_shotgun_angles
 					# Cycles through an angle list to shoot 5 bullets with spread for shotgun	
 					for deviation in angle_list:
-						# Old random number generation code
-						#var rng = RandomNumberGenerator.new()
-						#global.p1_bulletspeed = 1 + rng.randf_range(-0.2, 0)
 						if missile == 1:
 							_shoot(deviation, "missile")
 						else:

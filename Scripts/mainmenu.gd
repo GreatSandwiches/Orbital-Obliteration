@@ -1,66 +1,74 @@
 extends Control
+
 @onready var global = get_node("/root/Global")
-@onready var menuparticles = get_node("/root/MenuParticles")
+@onready var menu_particles = get_node("/root/MenuParticles")
 @onready var mute_button: Button = $MuteButton
 
+# Constants
+const AUDIO_BUS_NAME = "Master"
+const MUTE_ICON_PATH = "res://Assets/icons8-mute-button-48.png"
+const AUDIO_ICON_PATH = "res://Assets/icons8-audio-48.png"
+const VIDEO_SETTINGS_FILE_PATH = "user://video_settings.save"
+const AUDIO_SETTINGS_FILE_PATH = "user://audio_settings.save"
+const VOLUME_DIVISOR = 5
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	global.ismainmenu = true
-	menuparticles.show() #ach this doesnt work yet
+func _ready() -> void:
+	global.is_main_menu = true
+	menu_particles.show() # Display menu particles (needs further setup to work)
 	mute_button.text = "Mute"
 	
 	if global.settings_loaded == false:
 		_load_settings()
 		global.settings_loaded = true
 	
-	
-	
+	# Set mute button state based on global settings
 	if global.is_muted:
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
-		mute_button.text = "Unmute" 
-		mute_button.icon = load("res://Assets/icons8-mute-button-48.png")
+		AudioServer.set_bus_mute(AudioServer.get_bus_index(AUDIO_BUS_NAME), true)
+		mute_button.text = "Unmute"
+		mute_button.icon = load(MUTE_ICON_PATH)
 	else:
-		mute_button.icon = load("res://Assets/icons8-audio-48.png")
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+		mute_button.icon = load(AUDIO_ICON_PATH)
+		AudioServer.set_bus_mute(AudioServer.get_bus_index(AUDIO_BUS_NAME), false)
 		mute_button.text = "Mute"
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _process(_delta: float) -> void:
+	pass # No per-frame processing needed currently
 
 
-func _on_play_pressed():
+# Handles the play button press, transitioning to mode select
+func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/modeselect.tscn")
-	
 
-func _on_options_pressed():
+
+# Handles the options button press, transitioning to settings menu
+func _on_options_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/settingsmenu.tscn")
-	
 
-func _on_quit_pressed():
+
+# Handles the quit button press, closing the application
+func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 
-
-func _on_mute_button_pressed():
+# Toggles mute state when the mute button is pressed
+func _on_mute_button_pressed() -> void:
 	global.is_muted = !global.is_muted  # Toggle mute state
 	if global.is_muted:
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
-		mute_button.text = "Unmute" 
-		mute_button.icon = load("res://Assets/icons8-mute-button-48.png")
+		AudioServer.set_bus_mute(AudioServer.get_bus_index(AUDIO_BUS_NAME), true)
+		mute_button.text = "Unmute"
+		mute_button.icon = load(MUTE_ICON_PATH)
 	else:
-		mute_button.icon = load("res://Assets/icons8-audio-48.png")
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+		mute_button.icon = load(AUDIO_ICON_PATH)
+		AudioServer.set_bus_mute(AudioServer.get_bus_index(AUDIO_BUS_NAME), false)
 		mute_button.text = "Mute"
-		
-		
-		
-# load the settings from a file when the project starts
-func _load_settings():
-	var file = FileAccess.open("user://video_settings.save", FileAccess.READ)
+
+
+# Loads settings from a file when the project starts
+func _load_settings() -> void:
+	var file = FileAccess.open(VIDEO_SETTINGS_FILE_PATH, FileAccess.READ)
 	if file:  # Check if the file exists
 		var quality = file.get_32()
 		var fullscreen_str = file.get_line()
@@ -88,17 +96,16 @@ func _load_settings():
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			global.fullscreen = false
-			
-		
-	if FileAccess.file_exists("user://audio_settings.save"):
-		
-		var audiofile = FileAccess.open("user://audio_settings.save", FileAccess.READ)
+
+	# Load audio settings if they exist
+	if FileAccess.file_exists(AUDIO_SETTINGS_FILE_PATH):
+		var audiofile = FileAccess.open(AUDIO_SETTINGS_FILE_PATH, FileAccess.READ)
 		if audiofile != null:  # Check if the file exists
 			var volume = audiofile.get_var()
 			print(volume)
 			audiofile.close()
 			if volume != null:
-				AudioServer.set_bus_volume_db(0, volume/5)
+				AudioServer.set_bus_volume_db(0, volume / VOLUME_DIVISOR)
 				global.volume = volume
-	else: 
-		print("audio file does not exist")
+	else:
+		print("Audio settings file does not exist")

@@ -28,6 +28,7 @@ const HIDING_POSITION = Vector2(-101, 151)
 const MAX_HEALTH = 100
 const MISSILE_HEAT = 2
 const BULLET_HEAT = 0.1
+const MISSILE_SCALE = Vector2(0.7, 0.7)
 
 # Variables
 var speed = SPEED
@@ -51,7 +52,6 @@ var dmg_pwr_location = Vector2(0, 0)
 var shield_pwr_location = Vector2(0, 0)
 var rapidfire_pwr_location = Vector2(0, 0)
 var processed_location = Vector2(0, 0)
-
 
 # Initialize settings and set up powerup locations based on level
 func _ready():
@@ -129,7 +129,7 @@ func _mine_collision():
 	else:
 		$Shieldframes.play()
 		shield = false
-	knockback = position - global.spacemine_collision_pos_p1
+	knockback = position - global.space_mine_collision_pos_p1
 	velocity += knockback * KNOCKBACK_MULTIPLIER
 
 
@@ -179,7 +179,7 @@ func _hit(projectile, bullet_vel, damage):
 			velocity += bullet_vel * 0.3 * projectile.get_scale()
 		if projectile.is_in_group("p2_missile"):
 			take_damage(damage * 2.5)
-			if projectile.get_scale() == Vector2(0.7, 0.7):
+			if projectile.get_scale() == MISSILE_SCALE:
 				ko_scale = KO_SCALE_SMALL
 			else:
 				ko_scale = KO_SCALE_LARGE
@@ -220,15 +220,15 @@ func _physics_process(delta):
 	# Adjust target based on powerup visibility
 	for location in powerup_locations:
 		processed_location = location
-		if global.missilepowerhidden == true and location == missile_pwr_location:
+		if global.missile_power_hidden == true and location == missile_pwr_location:
 			processed_location = global.p2_position
-		if global.shotgunpowerhidden == true and location == shotgun_pwr_location:
+		if global.shotgun_power_hidden == true and location == shotgun_pwr_location:
 			processed_location = global.p2_position
-		if global.dmgpowerhidden == true and location == dmg_pwr_location:
+		if global.dmg_power_hidden == true and location == dmg_pwr_location:
 			processed_location = global.p2_position
-		if global.shieldpowerhidden == true and location == shield_pwr_location:
+		if global.shield_power_hidden == true and location == shield_pwr_location:
 			processed_location = global.p2_position
-		if global.rapidpowerhidden == true and location == rapidfire_pwr_location:
+		if global.rapid_power_hidden == true and location == rapidfire_pwr_location:
 			processed_location = global.p2_position
 
 		target_check = position.distance_to(processed_location)
@@ -262,10 +262,10 @@ func _physics_process(delta):
 					for deviation in angle_list:
 						if missile == 1:
 							_shoot(deviation, "missile")
-							global.p1_gunheat += MISSILE_HEAT
+							global.p1_gun_heat += MISSILE_HEAT
 						else:
 							_shoot(deviation, "bullet")
-							global.p1_gunheat += BULLET_HEAT
+							global.p1_gun_heat += BULLET_HEAT
 				else:
 					if missile == 1:
 						_shoot(0, "missile")

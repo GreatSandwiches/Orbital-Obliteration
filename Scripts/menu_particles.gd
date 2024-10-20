@@ -12,7 +12,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	 # Emits particles when game is in main menu state
-	if global.ismainmenu == true:
+	if global.is_main_menu == true:
 		emitting = true
 		show()
 	else:

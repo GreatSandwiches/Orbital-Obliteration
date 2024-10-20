@@ -2,21 +2,33 @@ extends Line2D
 
 @onready var global = get_node("/root/Global")
 
+# Constants
+const INITIAL_POSITION = Vector2(0, 0)
+const MAX_POINTS = 10
+const LOW_HEALTH_THRESHOLD = 30
+
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	global_position = Vector2(0,0)
-	
+func _ready() -> void:
+	# Initialize the line at the starting position
+	global_position = INITIAL_POSITION
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	global_position = Vector2(0,0)
+func _process(_delta: float) -> void:
+	# Reset the global position and update the line points
+	global_position = INITIAL_POSITION
 	add_point(global.p1_location, -1)
-	if get_point_position(0) == Vector2(0,0):
-		remove_point(0)
-	if get_point_count() > 10:
+
+	# Remove the initial point if it matches the initial position
+	if get_point_position(0) == INITIAL_POSITION:
 		remove_point(0)
 
-	if global.p1_health < 30:
-			hide()
+	# Keep the number of points within the defined maximum
+	if get_point_count() > MAX_POINTS:
+		remove_point(0)
+
+	# Hide or show the line based on player health
+	if global.p1_health < LOW_HEALTH_THRESHOLD:
+		hide()
 	else:
-			show()
+		show()

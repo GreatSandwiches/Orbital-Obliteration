@@ -23,7 +23,7 @@ func _powered_up() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Hide the node if the game mode is 0.
 	if global.game_mode == 0:
 		visible = false
@@ -37,12 +37,12 @@ func _process(delta: float) -> void:
 	# Update UI elements based on global state and power bar value.
 	powerup_bar.value = pow_bar_value
 	p1_healthbar.value = global.p1_health
-	p1_heat.value = global.p1_gunheat
+	p1_heat.value = global.p1_gun_heat
 	position = global.p1_position
 
 
 # Decrease the power bar value and restart the timer if needed.
-func _powbartimer_tick_done() -> void:
+func _pow_bar_timer_tick_done() -> void:
 	pow_bar_value -= 1
 	if pow_bar_value > 0:
 		pow_bar_timer.start(POW_BAR_TIMER_INTERVAL)
