@@ -309,22 +309,32 @@ func _process(delta):
 	ship_vector += ship_vector_forward - ship_vector_backward
 	
 	# Calculates friction vector based on ship velocity
-	if ship_vector.x >= 0:
-		ship_vector_backward.x = SHIP_VELOCITY_COEFFICIENT * (pow((ship_vector.x + SHIP_FRICTION_THRESHOLD),
-		 3) - SHIP_FRICTION_CONSTANT)
+	if ship_vector.x >= 0: 
+		ship_vector_backward.x = (
+				SHIP_VELOCITY_COEFFICIENT 
+				* (pow((ship_vector.x + SHIP_FRICTION_THRESHOLD), 3) 
+				- SHIP_FRICTION_CONSTANT)
+		)
 		
 	if ship_vector.x <= 0:
-		ship_vector_backward.x = SHIP_VELOCITY_COEFFICIENT * (pow((ship_vector.x - SHIP_FRICTION_THRESHOLD),
-		 3) + SHIP_FRICTION_CONSTANT)
+		ship_vector_backward.x = (
+			SHIP_VELOCITY_COEFFICIENT 
+			* (pow((ship_vector.x - SHIP_FRICTION_THRESHOLD), 3) 
+			+ SHIP_FRICTION_CONSTANT)
+		)
 		
 	if ship_vector.y >= 0:
-		ship_vector_backward.y = SHIP_VELOCITY_COEFFICIENT * (pow((ship_vector.y + SHIP_FRICTION_THRESHOLD),
-		 3) - SHIP_FRICTION_CONSTANT)
-		
-	if ship_vector.y <= 0:
-		ship_vector_backward.y = SHIP_VELOCITY_COEFFICIENT * (pow((ship_vector.y - SHIP_FRICTION_THRESHOLD),
-		 3) + SHIP_FRICTION_CONSTANT)
+		ship_vector_backward.y = (SHIP_VELOCITY_COEFFICIENT 
+			* (pow((ship_vector.y + SHIP_FRICTION_THRESHOLD), 3) 
+			- SHIP_FRICTION_CONSTANT)
+		)
 	
+	if ship_vector.y <= 0:
+		ship_vector_backward.y = (SHIP_VELOCITY_COEFFICIENT 
+			* (pow((ship_vector.y - SHIP_FRICTION_THRESHOLD), 3) 
+			+ SHIP_FRICTION_CONSTANT)
+		)
+		
 	# Current position identifier for use with trail
 	global.p1_location = TRAIL_OFFSET * transform.x + position
 	velocity = MINIMIZE_VELOCITY * ship_vector
