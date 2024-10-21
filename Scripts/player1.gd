@@ -192,6 +192,7 @@ func die():
 # Function to handle shooting of bullets
 func _shoot(deviation, type):
 	var bullet = bullet_p1_scene.instantiate()
+	@warning_ignore("shadowed_variable")
 	var missile = missile_p1_scene.instantiate()
 	
 	bullet.position = $ProjectileSpawn.global_position
@@ -294,7 +295,11 @@ func _process(delta):
 		position = HIDDEN_POSITION
 		queue_free()
 		return
-	
+		
+	# Added to prevent the health from exceeding the max health
+	if global.p1_health > MAX_HEALTH:
+		global.p1_health = MAX_HEALTH
+		
 	# Updating global position and velocity constantly
 	global.p1_position = position
 	global.p1_velocity = velocity
