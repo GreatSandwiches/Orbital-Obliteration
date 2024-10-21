@@ -32,20 +32,21 @@ func _process(delta: float) -> void:
 	if progress[0] > update:
 		update = progress[0]
 
-	# Detecting when finished loading - loads into level
+	# Detecting when finished loading, When finished, loads into level.
 	if loading_bar.value >= LOADED and update >= LOADED:
 		global.is_main_menu = false
 		get_tree().change_scene_to_packed(
-			ResourceLoader.load_threaded_get(scene_path)
+			ResourceLoader.load_threaded_get(scene_path) # Changing scene to level
 		)
 
 	# Updates the loading bar if its value is less than the current update
 	if loading_bar.value < update:
 		loading_bar.value = lerp(loading_bar.value, update, delta)
 
-	# Smoothing the progress of the loading bar
+	# Smoothing the visual progress of the loading bar
 	loading_bar.value += delta * SMOOTHNESS * (
-		HALF_PROGRESS if update >= LOADED else clamp(MAX_PROGRESS_BEFORE_LOAD - loading_bar.value, MINIMUM_PROGRESS, MAXIMUM_PROGRESS)
+		HALF_PROGRESS if update >= LOADED else clamp(MAX_PROGRESS_BEFORE_LOAD - loading_bar.value,
+		 MINIMUM_PROGRESS, MAXIMUM_PROGRESS)
 	)
 
 	# Updating the percentage indicator label, converting to a percentage

@@ -45,7 +45,6 @@ const OVERHEAT_DURATION = 1 # 1 Second
 const SHOT_COOLDOWN = 0.5 # 0.5 Seconds
 const TRAIL_OFFSET = -10
 
-
 # Movement variables
 var speed = SPEED
 var acceleration = ACCELERATION
@@ -389,7 +388,8 @@ func _process(delta):
 				for deviation in angle_list:
 					if missile == MISSILE_ACTIVE:
 						_shoot(deviation, "missile")
-						global.p1_gun_heat += MISSILE_HEAT_INCREMENT # Heat buildup when missile is active
+						# Heat buildup when missile is active
+						global.p1_gun_heat += MISSILE_HEAT_INCREMENT 
 					else:
 						_shoot(deviation, "bullet")
 						global.p1_gun_heat += BULLET_HEAT_INCREMENT # Normal heat buildup

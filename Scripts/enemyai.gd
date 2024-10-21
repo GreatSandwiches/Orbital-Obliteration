@@ -256,9 +256,15 @@ func _physics_process(delta):
 		if $Ray.get_collider().is_in_group("player"):
 			if loaded == true:
 				if global.enemy_shotgun == true:
-					angle_list = [(-2 * SHOTGUN_ANGLE_SMALL), (-1 * SHOTGUN_ANGLE_SMALL), 0, (1 * SHOTGUN_ANGLE_SMALL), (2 * SHOTGUN_ANGLE_SMALL)]
+					angle_list = [(-2 * SHOTGUN_ANGLE_SMALL),
+					 (-1 * SHOTGUN_ANGLE_SMALL),
+					 0, (1 * SHOTGUN_ANGLE_SMALL),
+					 (2 * SHOTGUN_ANGLE_SMALL)]
 					if missile == 1:
-						angle_list = [(-2 * SHOTGUN_ANGLE_LARGE), (-1 * SHOTGUN_ANGLE_LARGE), 0, (1 * SHOTGUN_ANGLE_LARGE), (2 * SHOTGUN_ANGLE_LARGE)]
+						angle_list = [(-2 * SHOTGUN_ANGLE_LARGE),
+						 (-1 * SHOTGUN_ANGLE_LARGE),
+						 0, (1 * SHOTGUN_ANGLE_LARGE),
+						 (2 * SHOTGUN_ANGLE_LARGE)]
 					for deviation in angle_list:
 						if missile == 1:
 							_shoot(deviation, "missile")
