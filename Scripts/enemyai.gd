@@ -60,7 +60,8 @@ func _ready():
 	global.enemy_rapid = false
 	global.enemy_shotgun = false
 	global.enemy_damage = false
-
+	global.ai_health = MAX_HEALTH
+	
 	if global.selected_level == "res://Scenes/level.tscn":
 		powerup_locations = [
 			Vector2(194, 327),
