@@ -31,7 +31,7 @@ const SHOTGUN_BULLET_COUNT = 5
 const MISSILE_ACTIVE = 1
 const MISSILE_INACTIVE = 0
 const SHOTGUN_DAMAGE = 5
-const MINE_KNOCKBACK = 0.7
+const MINE_KNOCKBACK = 0.07
 const MISSILE_DAMAGE = 2.5
 const SCORE_INCREMENT = 1
 const HIDDEN_POSITION = Vector2(-101, 151)
@@ -167,7 +167,7 @@ func take_damage(amount):
 
 # Damages and calculates knockback when player hits a space mine
 func _mine_collision():
-	knockback = (position - global.spacemine_collision_pos_p1)
+	knockback = (position - global.space_mine_collision_pos_p1)
 	ship_vector += knockback * mine_knockback
 	
 	if immunity == false:

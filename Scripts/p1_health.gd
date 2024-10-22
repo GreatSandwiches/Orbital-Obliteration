@@ -9,7 +9,8 @@ extends Node2D
 var pow_bar_value: int = 0
 
 const POW_BAR_INITIAL_VALUE: int = 10
-const POW_BAR_TIMER_INTERVAL: float = 1.0
+const POW_BAR_INCREMENT: int = 1
+const POW_BAR_TIMER_INTERVAL: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,6 +21,14 @@ func _ready() -> void:
 func _powered_up() -> void:
 	pow_bar_value = POW_BAR_INITIAL_VALUE
 	pow_bar_timer.start(POW_BAR_TIMER_INTERVAL)
+
+
+# Decrease the power bar value and restart the timer if needed.
+func _pow_bar_timer_tick_done() -> void:
+	pow_bar_value -= POW_BAR_INCREMENT
+	print("tick")
+	if pow_bar_value > 0:
+		pow_bar_timer.start(POW_BAR_TIMER_INTERVAL)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,10 +48,3 @@ func _process(_delta: float) -> void:
 	p1_healthbar.value = global.p1_health
 	p1_heat.value = global.p1_gun_heat
 	position = global.p1_position
-
-
-# Decrease the power bar value and restart the timer if needed.
-func _pow_bar_timer_tick_done() -> void:
-	pow_bar_value -= 1
-	if pow_bar_value > 0:
-		pow_bar_timer.start(POW_BAR_TIMER_INTERVAL)

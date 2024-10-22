@@ -4,6 +4,7 @@ extends Node2D
 
 # Constants
 const POW_BAR_INITIAL_VALUE = 10
+const POW_BAR_INCREMENT = 1
 const POW_BAR_TIMER_INTERVAL = 1
 
 # Variables
@@ -37,6 +38,6 @@ func _process(_delta: float) -> void:
 
 # Reduces the power bar value and restarts the timer if necessary
 func _pow_bar_timer_tick_done() -> void:
-	pow_bar_value -= 1
+	pow_bar_value -= POW_BAR_INCREMENT
 	if pow_bar_value > 0:
 		$Powbartimer.start(POW_BAR_TIMER_INTERVAL)

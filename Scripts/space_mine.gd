@@ -38,13 +38,13 @@ func _player_collision(area):
 	
 	# Emits damage signal when players/ai hit it
 	if area.is_in_group("player1"):
-		global.spacemine_collision_pos_p1 = position
+		global.space_mine_collision_pos_p1 = position
 		p1_exploded.emit()
 	if area.is_in_group("player2"):
-		global.spacemine_collision_pos_p2 = position
+		global.space_mine_collision_pos_p2 = position
 		p2_exploded.emit()
 	if area.is_in_group("ai"):
-		global.spacemine_collision_pos_p1 = position
+		global.space_mine_collision_pos_p1 = position
 		ai_exploded.emit()
 
 

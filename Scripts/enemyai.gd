@@ -35,7 +35,7 @@ var speed = SPEED
 var accel = ACCEL
 var min_distance = MIN_DISTANCE
 var loaded = true
-var ko_scale
+var ko_scale = 0.0
 var reload_period = RELOAD_PERIOD_DEFAULT
 var missile = 0
 var angle_list = []
