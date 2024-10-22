@@ -75,4 +75,4 @@ show_percentage = false
 [node name="Powbartimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="Powbartimer" to="." method="_powbartimer_tick_done"]
+[connection signal="timeout" from="Powbartimer" to="." method="_pow_bar_timer_tick_done"]
