@@ -21,7 +21,7 @@ const RAPID_FIRE_RATE = 0.1
 const RAPID_COOLING_RATE = 8
 const LOW_HEALTH_THRESHOLD = 30
 const BIG_BULLET_DAMAGE_MULTIPLIER = 2
-const SHOTGUN_DURATION = 10  # 10 seconds
+const POWERUP_DURATION = 10  # 10 seconds
 const MINIMIZE_VELOCITY = 400
 const DEFAULT_POSITION = Vector2(120, 150)
 const SHIP_VELOCITY_COEFFICIENT = 0.01
@@ -231,7 +231,7 @@ func _shoot(deviation, type):
 func _shotgun_powerup_collected():
 	base_gun_damage = SHOTGUN_DAMAGE
 	shotgun = true
-	$ShotgunTimer.start(SHOTGUN_DURATION)  
+	$ShotgunTimer.start(POWERUP_DURATION)  
 	powered_up.emit()
 	
 
@@ -250,7 +250,7 @@ func _on_rapidfire_entered(area):
 		print(global.p1_fire_rate)
 		
 		# Start the RapidFireTimer
-		$RapidFireTimer.start(SHOTGUN_DURATION) 
+		$RapidFireTimer.start(POWERUP_DURATION) 
 		powered_up.emit()
 
 
@@ -265,7 +265,7 @@ func _on_RapidFireTimer_timeout():
 # Activates the damage power-up
 func _on_damagepowerup_entered(area):
 	if area.has_meta("damageincrease"):
-		$DamageBoostTimer.start(SHOTGUN_DURATION)
+		$DamageBoostTimer.start(POWERUP_DURATION)
 		big_bullet = true
 		powered_up.emit()
 
