@@ -130,7 +130,7 @@ visible = false
 target_position = Vector2(-50, 0)
 
 [node name="SmokeTrail" type="GPUParticles2D" parent="."]
-amount = 100
+amount = 50
 process_material = SubResource("ParticleProcessMaterial_ef6pp")
 trail_lifetime = 1.0
 trail_sections = 21

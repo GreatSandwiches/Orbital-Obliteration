@@ -7,9 +7,9 @@ extends CharacterBody2D
 @export var missile_scene: PackedScene
 
 # Constants
-const SPEED = 180
+const SPEED = 160
 const ACCEL = 2
-const MIN_DISTANCE = 50
+const MIN_DISTANCE = 60
 const RELOAD_PERIOD_DEFAULT = 0.5
 const RELOAD_PERIOD_RAPID_FIRE = 0.2
 const KNOCKBACK_MULTIPLIER = 15
