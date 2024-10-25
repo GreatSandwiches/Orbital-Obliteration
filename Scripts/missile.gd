@@ -84,7 +84,7 @@ func _lifetime_timeout():
 # Makes the missile disappear, triggering visual effects and hiding elements
 func _dissappear():
 	# Activate particle effects and disable collision
-	$GPUParticles2D.emitting = true
+	$Explosion.emitting = true
 	hitbox.set_deferred("disabled", true)
 	$Sprite2D.hide()
 	$Trail.hide()

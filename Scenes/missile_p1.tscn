@@ -91,7 +91,7 @@ position = Vector2(0, -1.90735e-06)
 scale = Vector2(0.06, 0.059)
 texture = ExtResource("1_qumx0")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="Explosion" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 70
 process_material = SubResource("ParticleProcessMaterial_6asbo")
