@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cx3536rcka2kg"]
 
 [ext_resource type="Script" path="res://Scripts/space_mine.gd" id="1_1tsss"]
-[ext_resource type="Texture2D" uid="uid://b40atbfui1aud" path="res://Assets/simple spacemine.png" id="2_srfb6"]
+[ext_resource type="Texture2D" uid="uid://cos3jdv1uc5wa" path="res://Assets/simple spacemine.png" id="2_srfb6"]
 [ext_resource type="Texture2D" uid="uid://bmcplge7bvamy" path="res://Assets/simple spacemine dim.png" id="3_alw3m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_by0rp"]
@@ -75,9 +75,8 @@ frame_progress = 0.368609
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 100
+amount = 25
 process_material = SubResource("ParticleProcessMaterial_15n8y")
-lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 

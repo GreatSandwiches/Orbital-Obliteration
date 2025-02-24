@@ -34,10 +34,6 @@ color = Color(1, 0.658824, 0.603922, 1)
 color_ramp = SubResource("GradientTexture1D_hg0ui")
 hue_variation_min = 2.08167e-17
 hue_variation_max = 0.2
-collision_mode = 1
-collision_friction = 0.07
-collision_bounce = 1.0
-collision_use_scale = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5toj"]
 radius = 15.0
@@ -81,8 +77,9 @@ metadata/player2 = true
 metadata/player2 = true
 
 [node name="SmokeTrail" type="GPUParticles2D" parent="Area2D"]
-amount = 100
+amount = 25
 process_material = SubResource("ParticleProcessMaterial_p3ep2")
+lifetime = 0.5
 trail_lifetime = 1.0
 trail_sections = 21
 trail_section_subdivisions = 20

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bhnkixn76fjn2" path="res://Scenes/game_title.tscn" id="7_lterd"]
 [ext_resource type="PackedScene" uid="uid://crq6sspjxffty" path="res://Scenes/pausegraphics.tscn" id="7_my5dh"]
 [ext_resource type="PackedScene" uid="uid://xwfny7na0w5h" path="res://Scenes/p2_trail.tscn" id="7_qs6pl"]
-[ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="8_j8hlo"]
+[ext_resource type="PackedScene" uid="uid://s4usreo1kds8" path="res://Scenes/player1.tscn" id="8_j8hlo"]
 [ext_resource type="PackedScene" uid="uid://bi0oghkdlwk23" path="res://Scenes/player2.tscn" id="9_rmuwc"]
 [ext_resource type="Shader" path="res://Scenes/level.gdshader" id="10_ulefn"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="11_gaxb6"]

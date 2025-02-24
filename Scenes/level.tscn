@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://djh2642nqf640"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_ny81s"]
-[ext_resource type="PackedScene" uid="uid://0xfg10bi6vgc" path="res://Scenes/player1.tscn" id="1_qkieh"]
+[ext_resource type="PackedScene" uid="uid://s4usreo1kds8" path="res://Scenes/player1.tscn" id="1_qkieh"]
 [ext_resource type="AudioStream" uid="uid://bqcglyjtvfgaa" path="res://Sound effects/Newer Wave.mp3" id="2_7flku"]
 [ext_resource type="PackedScene" uid="uid://bi0oghkdlwk23" path="res://Scenes/player2.tscn" id="2_dt80m"]
 [ext_resource type="PackedScene" uid="uid://bjxok3n0yel21" path="res://Scenes/pauseaudio.tscn" id="3_trr1x"]

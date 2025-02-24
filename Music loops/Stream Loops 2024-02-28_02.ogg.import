@@ -2,13 +2,12 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://cipkqhe82drpx"
-path="res://.godot/imported/Stream Loops 2024-02-28_02.ogg-72964f84cffc379d23916a34052225b4.oggvorbisstr"
+uid="uid://bysf173apmvhw"
+valid=false
 
 [deps]
 
 source_file="res://Music loops/Stream Loops 2024-02-28_02.ogg"
-dest_files=["res://.godot/imported/Stream Loops 2024-02-28_02.ogg-72964f84cffc379d23916a34052225b4.oggvorbisstr"]
 
 [params]
 

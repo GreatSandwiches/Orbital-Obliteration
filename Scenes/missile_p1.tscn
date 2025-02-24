@@ -93,12 +93,12 @@ texture = ExtResource("1_qumx0")
 
 [node name="Explosion" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 70
+amount = 25
 process_material = SubResource("ParticleProcessMaterial_6asbo")
-lifetime = 1.5
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
+fixed_fps = 20
 
 [node name="Lifetime" type="Timer" parent="."]
 
