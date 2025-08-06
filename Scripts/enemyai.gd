@@ -97,18 +97,31 @@ func _ready():
 		rapidfire_pwr_location = Vector2(751, 204)
 
 
-# Function to handle shooting projectiles
+# Function to handle shooting projectiles with improved accuracy
 func _shoot(deviation, type):
 	print(bullet_scene)
 	if bullet_scene == null:
 		print("Error: bullet_scene is not assigned!")
 		return
+	
+	# Add some shooting inaccuracy to make AI more realistic
+	var accuracy_modifier = 0.0
+	match ai_state:
+		AIBehaviorState.AGGRESSIVE:
+			accuracy_modifier = randf_range(-0.05, 0.05)  # High accuracy
+		AIBehaviorState.DEFENSIVE:
+			accuracy_modifier = randf_range(-0.1, 0.1)   # Medium accuracy
+		AIBehaviorState.EVASIVE:
+			accuracy_modifier = randf_range(-0.15, 0.15) # Lower accuracy while evading
+		AIBehaviorState.POWERUP_SEEKING:
+			accuracy_modifier = randf_range(-0.08, 0.08) # Medium accuracy
+	
 	if missile == 1:
 		projectile = missile_scene.instantiate()
 	else:
 		projectile = bullet_scene.instantiate()
 	projectile.position = $ProjectileSpawn.global_position
-	projectile.rotation = rotation + deviation
+	projectile.rotation = rotation + deviation + accuracy_modifier
 	get_parent().add_child(projectile)
 
 
@@ -241,20 +254,35 @@ func update_ai_behavior(delta):
 		state_timer = 0.0
 		var player_distance = position.distance_to(global.p2_position)
 		var health_percentage = float(global.ai_health) / MAX_HEALTH
+		var player_health_percentage = float(global.p2_health) / MAX_HEALTH
+		var old_state = ai_state
 		
 		# Choose next state based on current conditions
 		if health_percentage < 0.3:
+			# Low health - prioritize defense and healing items
 			ai_state = AIBehaviorState.DEFENSIVE
-			state_duration = randf_range(2.0, 4.0)
-		elif player_distance > 200:
+			state_duration = randf_range(3.0, 5.0)
+		elif player_distance > 250 and health_percentage > 0.5:
+			# Far from player and healthy - seek powerups
 			ai_state = AIBehaviorState.POWERUP_SEEKING
-			state_duration = randf_range(1.5, 3.0)
+			state_duration = randf_range(2.0, 4.0)
 		elif health_percentage > 0.7 and player_distance < 150:
+			# High health and close to player - be aggressive
 			ai_state = AIBehaviorState.AGGRESSIVE
-			state_duration = randf_range(2.0, 5.0)
+			state_duration = randf_range(3.0, 6.0)
+		elif player_health_percentage < 0.4 and health_percentage > 0.4:
+			# Player is weak and AI is stronger - be aggressive
+			ai_state = AIBehaviorState.AGGRESSIVE
+			state_duration = randf_range(2.0, 4.0)
 		else:
+			# Default to evasive behavior
 			ai_state = AIBehaviorState.EVASIVE
-			state_duration = randf_range(1.0, 2.5)
+			state_duration = randf_range(1.5, 3.0)
+		
+		# Debug output (can be removed in production)
+		if old_state != ai_state:
+			var state_names = ["AGGRESSIVE", "DEFENSIVE", "POWERUP_SEEKING", "EVASIVE"]
+			print("AI state changed from ", state_names[old_state], " to ", state_names[ai_state])
 
 
 # Get target based on current AI behavior state
