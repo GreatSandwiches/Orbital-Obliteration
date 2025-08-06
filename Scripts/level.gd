@@ -21,3 +21,7 @@ func _process(_delta):
 	# Detecting when to end the game
 	if global.p1_score == max_score or global.p2_score == max_score:
 		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
+	
+	# In singleplayer mode, check if AI is permanently defeated
+	if global.game_mode == 0 and global.ai_permanently_defeated:
+		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")

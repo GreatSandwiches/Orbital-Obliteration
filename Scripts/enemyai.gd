@@ -53,6 +53,17 @@ var shield_pwr_location = Vector2(0, 0)
 var rapidfire_pwr_location = Vector2(0, 0)
 var processed_location = Vector2(0, 0)
 
+# Enhanced AI behavior variables
+enum AIBehaviorState { AGGRESSIVE, DEFENSIVE, POWERUP_SEEKING, EVASIVE }
+var ai_state = AIBehaviorState.AGGRESSIVE
+var state_timer = 0.0
+var state_duration = 3.0
+var evasion_direction = Vector2.ZERO
+var last_player_position = Vector2.ZERO
+var player_velocity_prediction = Vector2.ZERO
+var consecutive_defeats = 0
+var difficulty_modifier = 1.0
+
 # Initialize settings and set up powerup locations based on level
 func _ready():
 	$Shieldframes.stop()
@@ -61,6 +72,15 @@ func _ready():
 	global.enemy_shotgun = false
 	global.enemy_damage = false
 	global.ai_health = MAX_HEALTH
+	global.ai_permanently_defeated = false
+	
+	# Initialize AI behavior
+	ai_state = AIBehaviorState.AGGRESSIVE
+	state_timer = 0.0
+	state_duration = randf_range(2.0, 4.0)
+	consecutive_defeats = 0
+	difficulty_modifier = 1.0
+	last_player_position = Vector2.ZERO
 	
 	if global.selected_level == "res://Scenes/level.tscn":
 		powerup_locations = [
@@ -196,12 +216,101 @@ func die():
 	$Shieldframes.set_frame_and_progress(0, SHIELD_RESET_FRAME)
 	shield = true
 	immunity = true
+	
+	# Increase difficulty after each defeat
+	consecutive_defeats += 1
+	difficulty_modifier = min(1.0 + (consecutive_defeats * 0.2), 2.0)
+	speed = SPEED * difficulty_modifier
+	reload_period = max(RELOAD_PERIOD_DEFAULT / difficulty_modifier, 0.2)
+	
+	# Check if AI should be permanently defeated in singleplayer mode
+	if global.game_mode == 0 and consecutive_defeats >= global.ai_defeat_threshold:
+		global.ai_permanently_defeated = true
+		visible = false
+		position = HIDING_POSITION
+		# Set AI health to 0 to prevent further interactions
+		global.ai_health = 0
+
+
+# Enhanced AI behavior state machine
+func update_ai_behavior(delta):
+	state_timer += delta
+	
+	# Change AI state based on conditions
+	if state_timer >= state_duration:
+		state_timer = 0.0
+		var player_distance = position.distance_to(global.p2_position)
+		var health_percentage = float(global.ai_health) / MAX_HEALTH
+		
+		# Choose next state based on current conditions
+		if health_percentage < 0.3:
+			ai_state = AIBehaviorState.DEFENSIVE
+			state_duration = randf_range(2.0, 4.0)
+		elif player_distance > 200:
+			ai_state = AIBehaviorState.POWERUP_SEEKING
+			state_duration = randf_range(1.5, 3.0)
+		elif health_percentage > 0.7 and player_distance < 150:
+			ai_state = AIBehaviorState.AGGRESSIVE
+			state_duration = randf_range(2.0, 5.0)
+		else:
+			ai_state = AIBehaviorState.EVASIVE
+			state_duration = randf_range(1.0, 2.5)
+
+
+# Get target based on current AI behavior state
+func get_behavior_target():
+	match ai_state:
+		AIBehaviorState.AGGRESSIVE:
+			# Predict player movement for better targeting
+			var player_velocity = global.p2_position - last_player_position
+			player_velocity_prediction = global.p2_position + (player_velocity * 2.0)
+			last_player_position = global.p2_position
+			return player_velocity_prediction
+			
+		AIBehaviorState.DEFENSIVE:
+			# Stay at a safe distance from player
+			var direction_from_player = (position - global.p2_position).normalized()
+			return global.p2_position + direction_from_player * 300
+			
+		AIBehaviorState.POWERUP_SEEKING:
+			# Prioritize powerups more heavily
+			var closest_powerup = Vector2.ZERO
+			var closest_distance = INF
+			
+			for location in powerup_locations:
+				var processed_loc = location
+				if global.missile_power_hidden == true and location == missile_pwr_location:
+					continue
+				if global.shotgun_power_hidden == true and location == shotgun_pwr_location:
+					continue
+				if global.dmg_power_hidden == true and location == dmg_pwr_location:
+					continue
+				if global.shield_power_hidden == true and location == shield_pwr_location:
+					continue
+				if global.rapid_power_hidden == true and location == rapidfire_pwr_location:
+					continue
+				
+				var distance = position.distance_to(processed_loc)
+				if distance < closest_distance:
+					closest_distance = distance
+					closest_powerup = processed_loc
+			
+			return closest_powerup if closest_powerup != Vector2.ZERO else global.p2_position
+			
+		AIBehaviorState.EVASIVE:
+			# Use evasive maneuvers
+			if evasion_direction == Vector2.ZERO or randf() < 0.1:
+				evasion_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+			
+			return global.p2_position + evasion_direction * 150
+	
+	return global.p2_position
 
 
 # Process physics every frame, including AI movement and behaviors
 func _physics_process(delta):
-	# Hide AI if in game mode 1
-	if global.game_mode == 1:
+	# Hide AI if in game mode 1 or if permanently defeated
+	if global.game_mode == 1 or global.ai_permanently_defeated:
 		velocity = Vector2.ZERO
 		visible = false
 		position = HIDING_POSITION
@@ -216,33 +325,53 @@ func _physics_process(delta):
 	else:
 		$SmokeTrail.emitting = false
 
-	target = global.p2_position
+	# Update AI behavior state
+	update_ai_behavior(delta)
+	
+	# Get target based on current behavior state
+	target = get_behavior_target()
 
-	# Adjust target based on powerup visibility
-	for location in powerup_locations:
-		processed_location = location
-		if global.missile_power_hidden == true and location == missile_pwr_location:
-			processed_location = global.p2_position
-		if global.shotgun_power_hidden == true and location == shotgun_pwr_location:
-			processed_location = global.p2_position
-		if global.dmg_power_hidden == true and location == dmg_pwr_location:
-			processed_location = global.p2_position
-		if global.shield_power_hidden == true and location == shield_pwr_location:
-			processed_location = global.p2_position
-		if global.rapid_power_hidden == true and location == rapidfire_pwr_location:
-			processed_location = global.p2_position
+	# Fallback to old powerup logic if no target found
+	if target == Vector2.ZERO:
+		target = global.p2_position
+		for location in powerup_locations:
+			processed_location = location
+			if global.missile_power_hidden == true and location == missile_pwr_location:
+				processed_location = global.p2_position
+			if global.shotgun_power_hidden == true and location == shotgun_pwr_location:
+				processed_location = global.p2_position
+			if global.dmg_power_hidden == true and location == dmg_pwr_location:
+				processed_location = global.p2_position
+			if global.shield_power_hidden == true and location == shield_pwr_location:
+				processed_location = global.p2_position
+			if global.rapid_power_hidden == true and location == rapidfire_pwr_location:
+				processed_location = global.p2_position
 
-		target_check = position.distance_to(processed_location)
-		if target_check < position.distance_to(target):
-			target = processed_location
+			target_check = position.distance_to(processed_location)
+			if target_check < position.distance_to(target):
+				target = processed_location
 
 	nav.target_position = target
 
-	# Calculate movement direction and speed
+	# Calculate movement direction and speed with behavior modifications
 	var direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	var distance_to_player = global_position.distance_to(global.p2_position)
-	var speed_factor = clamp((distance_to_player - min_distance) / min_distance, 0, 1)
+	
+	# Adjust speed factor based on AI state
+	var base_speed_factor = clamp((distance_to_player - min_distance) / min_distance, 0, 1)
+	var speed_factor = base_speed_factor
+	
+	match ai_state:
+		AIBehaviorState.AGGRESSIVE:
+			speed_factor = min(base_speed_factor * 1.3, 1.0)
+		AIBehaviorState.DEFENSIVE:
+			speed_factor = base_speed_factor * 0.7
+		AIBehaviorState.EVASIVE:
+			speed_factor = min(base_speed_factor * 1.1, 1.0)
+			# Add some jittery movement for evasion
+			direction += Vector2(randf_range(-0.3, 0.3), randf_range(-0.3, 0.3))
+			direction = direction.normalized()
 
 	# Smoothly rotate towards the direction of movement
 	if direction != Vector2.ZERO:
@@ -252,10 +381,27 @@ func _physics_process(delta):
 	# Adjust velocity based on direction and speed
 	velocity = velocity.lerp(direction * speed * speed_factor, accel * delta)
 
-	# Shooting logic
+	# Enhanced shooting logic with behavior-based modifications
 	if $Ray.get_collider() != null:
 		if $Ray.get_collider().is_in_group("player"):
-			if loaded == true:
+			var should_shoot = loaded
+			
+			# Modify shooting behavior based on AI state
+			match ai_state:
+				AIBehaviorState.AGGRESSIVE:
+					# Always shoot when able
+					should_shoot = loaded
+				AIBehaviorState.DEFENSIVE:
+					# Only shoot if player is close
+					should_shoot = loaded and distance_to_player < 200
+				AIBehaviorState.EVASIVE:
+					# Shoot less frequently while evading
+					should_shoot = loaded and randf() < 0.7
+				AIBehaviorState.POWERUP_SEEKING:
+					# Shoot if player is blocking path to powerup
+					should_shoot = loaded and distance_to_player < 150
+			
+			if should_shoot:
 				if global.enemy_shotgun == true:
 					angle_list = [(-2 * SHOTGUN_ANGLE_SMALL),
 					 (-1 * SHOTGUN_ANGLE_SMALL),

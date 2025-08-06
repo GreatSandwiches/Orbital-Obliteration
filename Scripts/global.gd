@@ -49,6 +49,8 @@ var ai_position = DEFAULT_POSITION
 var enemy_rapid = false
 var enemy_shotgun = false
 var enemy_damage = false
+var ai_permanently_defeated = false
+var ai_defeat_threshold = 5  # Number of defeats before AI is considered permanently defeated
 
 # General Variables
 var asteroid_1_pos = DEFAULT_POSITION
